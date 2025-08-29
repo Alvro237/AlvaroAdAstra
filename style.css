@@ -206,3 +206,17 @@ footer {
   font-size: .8rem;
   color: var(--muted);
 }
+
+.timeline {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.timeline:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: #6658ea;
+}
