@@ -208,82 +208,122 @@ footer {
 }
 
 .timeline {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 2.5rem 0;
   position: relative;
+  padding: 2rem 0;
 }
-.timeline:before {
+.timeline::before {
   content: '';
   position: absolute;
   left: 50%;
+  top: 0;
+  transform: translateX(-50%);
   width: 2px;
   height: 100%;
-  background: #6658ea;
+  background: var(--accent-2);
+  z-index: 0;
 }
-    .content{ border: #6658ea 1px solid; padding: 20px; border-radius: 20px; color: royalblue;}
-    .timeline ul{ margin: 0; padding: 0}
-    .timeline ul li{ 
-        list-style: none;
-        position: relative;
-        width: 50%;
-        padding: 20px 40px;
-        box-sizing: border-box;
-    }
-    
-    .timeline ul li:nth-child(odd){
-        float: left;
-        text-align: right;
-        clear: both;
-    }
-    .timeline ul li:nth-child(odd)::before{
-        content: '';
-        position: absolute;
-        top: 40px;
-        right: -14px;
-        width: 20px;
-        height: 20px;
-        background: white;
-        border: 2px solid #6658ea;
-        border-radius: 50%
-    }
-    .timeline ul li:nth-child(odd)::after{
-        content: '';
-        position: absolute;
-        border-style: solid;
-        width: 0;
-        height: 0;
-        top: 44px;
-        right: 25px;
-        border-width: 10px 0 10px 15px;
-        border-color: transparent transparent transparent #6658ea;
-    }
+.timeline ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+.timeline ul li {
+  position: relative;
+  width: 50%;
+  padding: 1.25rem 2rem;
+  box-sizing: border-box;
+}
+.timeline ul li .content {
+  border: 1px solid var(--accent-2);
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: var(--card);
+  color: var(--accent-2);
+  position: relative;
+  z-index: 1;
+}
+.timeline ul li:nth-child(odd) {
+  float: left;
+  text-align: right;
+  clear: both;
+}
+.timeline ul li:nth-child(odd)::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  right: -1.1rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--bg);
+  border: 2px solid var(--accent-2);
+  border-radius: 50%;
+  z-index: 2;
+}
+.timeline ul li:nth-child(odd)::after {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  right: 1.6rem;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  border-width: 0.625rem 0 0.625rem 0.9375rem;
+  border-color: transparent transparent transparent var(--accent-2);
+  z-index: 1;
+}
+.timeline ul li:nth-child(even) {
+  float: right;
+  text-align: left;
+  clear: both;
+}
+.timeline ul li:nth-child(even)::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: -1.1rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--bg);
+  border: 2px solid var(--accent-2);
+  border-radius: 50%;
+  z-index: 2;
+}
+.timeline ul li:nth-child(even)::after {
+  content: '';
+  position: absolute;
+  top: 2.75rem;
+  left: 1.6rem;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  border-width: 0.625rem 0.9375rem 0.625rem 0;
+  border-color: transparent var(--accent-2) transparent transparent;
+  z-index: 1;
+}
 
-    .timeline ul li:nth-child(even){
-        float: right;
-        text-align: left;
-        clear: both;
-    }
-   
-   
-    .timeline ul li:nth-child(even)::before{
-        content: '';
-        position: absolute;
-        top: 40px;
-        left: -10px;
-        width: 20px;
-        height: 20px;
-        background: white;
-        border: 2px solid #6658ea;
-        border-radius: 50%
-    }
-    .timeline ul li:nth-child(even)::after{
-        content: '';
-        position: absolute;
-        border-style: solid;
-        width: 0;
-        height: 0;
-        top: 44px;
-        left: 25px;
-        border-width: 10px 15px 10px 0px;
-        border-color: transparent #6658ea transparent transparent;
-    }
+/* Responsive: stack timeline items vertically on small screens */
+@media (max-width: 700px) {
+  .timeline ul li,
+  .timeline ul li:nth-child(odd),
+  .timeline ul li:nth-child(even) {
+    width: 100%;
+    float: none;
+    text-align: left;
+    padding-left: 2.5rem;
+    padding-right: 0;
+  }
+  .timeline::before {
+    left: 2rem;
+    transform: none;
+  }
+  .timeline ul li::before {
+    left: -0.5rem !important;
+    right: auto !important;
+  }
+  .timeline ul li::after {
+    left: 1.6rem !important;
+    right: auto !important;
+  }
+}
