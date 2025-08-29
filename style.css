@@ -252,4 +252,18 @@ footer {
   overflow: hidden;
 }
 
-
+/* Responsive: stack items vertically on small screens */
+@media (max-width: 700px) {
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    float: none;
+    width: 100%;
+    text-align: left;
+    padding: 1rem 0;
+  }
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+}
