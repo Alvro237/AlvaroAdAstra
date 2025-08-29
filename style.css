@@ -224,10 +224,10 @@ footer {
 .timeline::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 50%;
   width: 4px;
-  margin-left: -2px;
+  margin-left: 0px;
   background: var(--border);
   height: 100%;
 }
@@ -246,11 +246,13 @@ footer {
 }
 
 .timeline-item.left {
+  width: 46.5%; /* or any value less than 50% */
   float: left;
-  text-align: right;
+  text-align: left;
 }
 
 .timeline-item.right {
+  width: 50%; /* adjust so both sides add up to 100% */
   float: right;
   text-align: left;
 }
@@ -268,12 +270,12 @@ footer {
 }
 
 .timeline-item.left::after {
-  right: 8px;
+  right: -8px; /* Increase negative value */
   left: auto;
 }
 
 .timeline-item.right::after {
-  left: -8px;
+  left: -8px; /* Increase negative value */
   right: auto;
 }
 
@@ -283,6 +285,20 @@ footer {
   border-radius: 1rem;
   padding: 1rem;
   position: relative;
+  z-index: 2;
+}
+
+/* New arrow styles */
+.timeline-arrow {
+  position: absolute;
+  top: 0px; /* Adjust as needed */
+  left: 50.25%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 16px solid var(--border); /* Same color as timeline line */
   z-index: 2;
 }
 
@@ -313,3 +329,4 @@ footer {
     left: 0;
   }
 }
+
