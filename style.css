@@ -229,3 +229,41 @@ footer {
   padding: 1rem 2rem;
   box-sizing: border-box;
 }
+
+/* Position left items to the left */
+.timeline-item.left {
+  float: left;
+  clear: both;
+  text-align: right;
+}
+
+/* Position right items to the right */
+.timeline-item.right {
+  float: right;
+  clear: both;
+  text-align: left;
+}
+
+/* Make sure the timeline container clears floats */
+.timeline ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Responsive: stack items vertically on small screens */
+@media (max-width: 700px) {
+  .timeline-item,
+  .timeline-item.left,
+  .timeline-item.right {
+    float: none;
+    width: 100%;
+    text-align: left;
+    padding: 1rem 0;
+  }
+  .timeline::before {
+    left: 20px;
+    transform: none;
+  }
+}
