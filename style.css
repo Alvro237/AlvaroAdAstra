@@ -206,64 +206,88 @@ footer {
   font-size: .8rem;
   color: var(--muted);
 }
-
 .timeline {
-  margin: 2.5rem 0;
   position: relative;
-  padding: 2rem 0;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
 }
+
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
-  left: 50%;
   top: 0;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 100%;
-  background: var(--accent-2);
-  z-index: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+  background: var(--border);
 }
+
 .timeline-item {
-  position: relative;
-  width: 45%;
+  width: 50%;
   padding: 1rem 2rem;
   box-sizing: border-box;
+  position: relative;
 }
 
-/* Position left items to the left */
 .timeline-item.left {
   float: left;
-  clear: both;
   text-align: right;
 }
 
-/* Position right items to the right */
 .timeline-item.right {
   float: right;
-  clear: both;
   text-align: left;
 }
 
-/* Make sure the timeline container clears floats */
-.timeline ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  z-index: 1;
 }
 
-/* Responsive: stack items vertically on small screens */
-@media (max-width: 700px) {
-  .timeline-item,
+.timeline-item.left::after {
+  right: -10px;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile: stack all items */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 8px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    text-align: left;
+  }
   .timeline-item.left,
   .timeline-item.right {
     float: none;
-    width: 100%;
     text-align: left;
-    padding: 1rem 0;
   }
-  .timeline::before {
-    left: 20px;
-    transform: none;
+  .timeline-item::after {
+    left: 0;
   }
 }
