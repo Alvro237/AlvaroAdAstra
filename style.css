@@ -212,7 +212,7 @@ footer {
 .timeline {
   position: relative;
   max-width: 980px;
-  margin: 2rem auto 0 auto;
+  /*margin: 2rem auto 0 auto;*/
   padding-bottom: 2rem;
   list-style: none;
   /* REMOVE these two lines: */
@@ -268,7 +268,7 @@ footer {
 }
 
 .timeline-item.left::after {
-  right: -8px;
+  right: 8px;
   left: auto;
 }
 
