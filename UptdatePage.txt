@@ -1,5 +1,9 @@
 Notes:
 
-Every time you make a change → git add . → git commit -m "update" → git push.
+Every time you make a change → git add . → git commit -m "update" → git push
 GitHub will auto-update your live site after ~30–60 seconds.
 If you ever don’t see changes, clear your browser cache or press Ctrl+Shift+R (hard refresh).
+
+git add .
+git commit -m "update"
+git push
