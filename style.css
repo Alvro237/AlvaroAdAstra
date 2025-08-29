@@ -268,11 +268,13 @@ footer {
 }
 
 .timeline-item.left::after {
-  right: -10px;
+  right: -8px;
+  left: auto;
 }
 
 .timeline-item.right::after {
-  left: -10px;
+  left: -8px;
+  right: auto;
 }
 
 .timeline-content {
