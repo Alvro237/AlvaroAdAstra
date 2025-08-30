@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isentropic Rocket Calculator</title>
+  <link rel="stylesheet" href="style.css" /> <!-- Keep your palette -->
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">🚀 Rocket Calculator</div>
+      <nav>
+        <a href="#IsentropicRocket">Isentropic Performance</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="IsentropicRocket">
+    <h1>Isentropic Performance</h1>
+
+    <!-- Inputs -->
+    <p>Enter values to calculate Rocket performance: </p>
+    <label>Expansion Ratio (-): <input type="number" id="expansionRatio" /></label><br><br>
+    <label>Specific Heat Ratio (γ): <input type="number" id="specificHeatRatio" /></label><br><br>
+    <label>Chamber Pressure (MPa): <input type="number" id="chamberPressure" /></label><br><br>
+    <label>Chamber Temperature (K): <input type="number" id="chamberTemperature" /></label><br><br>
+    <label>Ambient Pressure (MPa): <input type="number" id="ambientPressure" /></label><br><br>
+
+    <!-- FIX: button now has id="compute" (no onclick) -->
+    <button id="compute">Calculate performance</button>
+
+    <!-- Results -->
+    <div class="results">
+      <h2>Results</h2>
+      <table>
+        <tr><th>Exit Velocity (m/s)</th><td id="vExit">—</td></tr>
+        <tr><th>Exit Pressure (Pa)</th><td id="pExit">—</td></tr>
+        <tr><th>Exit Temperature (K)</th><td id="tExit">—</td></tr>
+        <tr><th>Exit Mach</th><td id="machExit">—</td></tr>
+        <tr><th>Pe / Pc</th><td id="pRatio">—</td></tr>
+        <tr><th>Te / Tc</th><td id="tRatio">—</td></tr>
+        <tr><th>Thrust Coefficient (Cf)</th><td id="cf">—</td></tr>
+        <tr><th>Thrust (N)</th><td id="thrust">—</td></tr>
+        <tr><th>Vacuum Thrust (N)</th><td id="thrustVac">—</td></tr>
+        <tr><th>Specific Impulse (s)</th><td id="isp">—</td></tr>
+        <tr><th>Mass Flow Rate (kg/s)</th><td id="mdot">—</td></tr>
+      </table>
+    </div>
+  </main>
+
+  <a href="index.html">← Back to Home</a>
+
+  <script src="script.js"></script>
+</body>
+</html>
