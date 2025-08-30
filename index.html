@@ -15,8 +15,10 @@
 
   <div class="sidebar">
   <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
-  <a href="index.html">Home</a>
-  <a href="Isentropic_calculator.html">Isentropic Calculator</a>
+  <a href="#About">About</a>
+  <a href="#My education">My education</a>
+  <a href="#requirements-timeline">My experience</a>
+  <a href="#contact">Contact</a>
   <!-- Add more links here -->
   </div>
 
@@ -24,10 +26,8 @@
     <div class="container nav">
       <div class="logo">✈️ My Aerospace Portfolio</div>
       <nav>
-        <a href="#about">About</a>
-        <a href="#My education">My education</a>
-        <a href="#requirements-timeline">My experience</a>
-        <a href="#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="Isentropic_calculator.html">Calculators</a>
       </nav>
     </div>
   </header>
@@ -174,42 +174,6 @@
 </section>
 
     <!-- END of TIMELINE -->
-
-    <section id="tools">
-      <h2>Mini Tool: Dynamic Pressure & Drag</h2>
-      <p>Quick calculator to demo JavaScript interacting with the page. Edit values and see results update.</p>
-      <form id="calc-form" class="card" onsubmit="event.preventDefault();">
-        <div class="row">
-          <div>
-            <label for="speed">Speed V (m/s)</label>
-            <input type="number" id="speed" step="any" value="70" />
-          </div>
-          <div>
-            <label for="rho">Air density ρ (kg/m³)</label>
-            <input type="number" id="rho" step="any" value="1.225" />
-          </div>
-          <div>
-            <label for="area">Reference area A (m²)</label>
-            <input type="number" id="area" step="any" value="0.7" />
-          </div>
-          <div>
-            <label for="cd">Drag coefficient C<sub>d</sub></label>
-            <input type="number" id="cd" step="any" value="0.32" />
-          </div>
-        </div>
-        <button id="compute" type="button">Compute</button>
-        <div class="result">
-          <div class="box">
-            <div class="label">Dynamic pressure q</div>
-            <div class="value"><span id="q">—</span> Pa</div>
-          </div>
-          <div class="box">
-            <div class="label">Drag D</div>
-            <div class="value"><span id="drag">—</span> N</div>
-          </div>
-        </div>
-      </form>
-    </section>
 
     <section id="contact">
       <h2>Contact</h2>

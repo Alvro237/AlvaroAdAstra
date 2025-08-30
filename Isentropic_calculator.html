@@ -12,8 +12,11 @@
 
   <div class="sidebar">
   <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
-  <a href="index.html">Home</a>
-  <a href="Isentropic_calculator.html">Isentropic Calculator</a>
+  <a href="#IsentropicRocket"> Rocket Calculator</a>
+  <a href="#IsentropicFlow">Isentropic flow Calculator</a>
+  <a href="#ShockCalculator">Shock Calculator</a>
+  <a href="#DragCalculator">Drag Calculator</a>
+
   <!-- Add more links here -->
   </div>
 
@@ -21,26 +24,36 @@
     <div class="container nav">
       <div class="logo">🚀 Rocket Calculator</div>
       <nav>
-        <a href="#IsentropicRocket">Isentropic Performance</a>
+        <a href="index.html">Home</a>
+        <a href="Isentropic_calculator.html">Calculators</a>
       </nav>
     </div>
   </header>
 
-  <main class="container" id="IsentropicRocket">
-    <h1>Isentropic Performance</h1>
 
+
+  <main class="container">
+  <h1>Online Calculators</h1>
+  <p>
+    I have developed several tools to streamline straightforward but tedious calculations that aerospace engineers often perform on a daily basis. While many resources such as tables are available, I believe that having an interactive tool where the relevant parameters can be entered on demand provides significant added value.
+  </p>
+
+  <section id="IsentropicRocket">
+  <h2>Isentropic Rocket Performance</h2>
+     <p>Enter values to calculate the isentropic rocket performance. You can partially fill the input data to get results for some parameters. Results do not take into account boundary layer separation or shocks waves. </p>
+
+  <div class="calc-layout">
     <!-- Inputs -->
-    <p>Enter values to calculate Rocket performance. You can partially fill the input data to get results for some parameters </p>
-    <label>Expansion Ratio (-): <input type="number" id="expansionRatio" /></label><br><br>
-    <label>Specific Heat Ratio (γ): <input type="number" id="specificHeatRatio" /></label><br><br>
-    <label>Gas molecular weight (g/mol): <input type="number" id="molarMass" /></label><br><br>
-    <label>Throat Area (m^2): <input type="number" id="throatArea" /></label><br><br>
-    <label>Chamber Pressure (MPa): <input type="number" id="chamberPressure" /></label><br><br>
-    <label>Chamber Temperature (K): <input type="number" id="chamberTemperature" /></label><br><br>
-    <label>Ambient Pressure (MPa): <input type="number" id="ambientPressure" /></label><br><br>
+     <div class="inputs">
+     <label>Expansion Ratio (-): <input type="number" id="expansionRatio" /></label><br><br>
+     <label>Specific Heat Ratio (γ): <input type="number" id="specificHeatRatio" /></label><br><br>
+     <label>Gas molecular weight (g/mol): <input type="number" id="molarMass" /></label><br><br>
+     <label>Throat Area (m^2): <input type="number" id="throatArea" /></label><br><br>
+     <label>Chamber Pressure (MPa): <input type="number" id="chamberPressure" /></label><br><br>
+     <label>Chamber Temperature (K): <input type="number" id="chamberTemperature" /></label><br><br>
+     <label>Ambient Pressure (MPa): <input type="number" id="ambientPressure" /></label><br><br>
 
-    <!-- FIX: button now has id="compute" (no onclick) -->
-    <button id="compute">Calculate performance</button>
+    </div>
 
     <!-- Results -->
     <div class="results">
@@ -58,8 +71,110 @@
         <tr><th>Specific Impulse (s)</th><td id="isp">—</td></tr>
         <tr><th>Mass Flow Rate (kg/s)</th><td id="mdot">—</td></tr>
       </table>
+      <button id="compute">Calculate performance</button>
+
     </div>
-  </main>
+  </div>
+</section>
+
+<section id="IsentropicFlow">
+  <h2>Isentropic Flow</h2>
+<div class="inputs">
+    <label>γ: <input type="number" id="gamma" value="1.4" step="0.01"></label>
+    <div style="height: 2.5px;"></div>
+    <div class="custom-select-wrapper">
+        <label for="knownParam">Known parameter:</label>
+        <select id="knownParam">
+            <option value="Ma">Mach number</option>
+            <option value="T0T">T0/T</option>
+            <option value="p0p">p0/p</option>
+            <option value="rho0rho">ρ0/ρ</option>
+            <option value="AAstar">A/A*</option>
+            <option value="TTstar">T/T*</option>
+            <option value="ppstar">p/p*</option>
+            <option value="rhorhostar">ρ/ρ*</option>
+        </select>
+    </div>
+    <label><input type="number" id="paramValue" step="any"></label>
+</div>
+  <table class="calculator-table">
+    <tr>
+      <th>γ</th>
+      <th>Ma</th>
+      <th>T0/T</th>
+      <th>p0/p</th>
+      <th>ρ0/ρ</th>
+      <th>A/A*</th>
+      <th>T/T*</th>
+      <th>p/p*</th>
+      <th>ρ/ρ*</th>
+    </tr>
+    <tr id="resultsRow">
+      <td id="res-gamma">—</td>
+      <td id="res-Ma">—</td>
+      <td id="res-T0T">—</td>
+      <td id="res-p0p">—</td>
+      <td id="res-rho0rho">—</td>
+      <td id="res-AAstar">—</td>
+      <td id="res-TTstar">—</td>
+      <td id="res-ppstar">—</td>
+      <td id="res-rhorhostar">—</td>
+    </tr>
+  </table>
+
+  <button id="computeIS">Fill Table</button>
+</section>
+
+<section id="ShockCalculator">
+  <h2>Shock Calculator</h2>
+
+</section>
+
+<section id="DragCalculator">
+    <h2>Dynamic Pressure & Drag Calculator</h2>
+    <p>Quick tool to obtain the dynamic pressure, drag and lift on an object.</p>
+    <form id="calc-form" class="card" onsubmit="event.preventDefault();">
+        <div class="row">
+            <div>
+                <label for="speed">Speed V (m/s)</label>
+                <input type="number" id="speed" step="any" value="70" />
+            </div>
+            <div>
+                <label for="rho">Air density ρ (kg/m³)</label>
+                <input type="number" id="rho" step="any" value="1.225" />
+            </div>
+            <div>
+                <label for="area">Reference area A (m²)</label>
+                <input type="number" id="area" step="any" value="0.7" />
+            </div>
+            <div>
+                <label for="cd">Drag coefficient C<sub>d</sub></label>
+                <input type="number" id="cd" step="any" value="0.32" />
+            </div>
+            <div>
+                <label for="cl">Lift coefficient C<sub>L</sub></label>
+                <input type="number" id="cl" step="any" value="0.4" />
+            </div>
+        </div>
+        <button id="computedrag" type="button">Compute</button>
+        <div class="result">
+            <div class="box">
+                <div class="label">Drag D</div>
+                <div class="value"><span id="drag">—</span> N</div>
+            </div>
+            <div class="box">
+                <div class="label">Lift L</div>
+                <div class="value"><span id="lift">—</span> N</div>
+            </div>
+            <div class="box">
+                <div class="label">Dynamic pressure q</div>
+                <div class="value"><span id="q">—</span> Pa</div>
+            </div>
+        </div>
+    </form>
+</section>
+
+</main>
 
   <a href="index.html">← Back to Home</a>
 

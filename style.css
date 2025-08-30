@@ -350,3 +350,120 @@ footer {
 .sidebar a:hover {
 background-color: #575757;
 }
+/* Side-by-side layout */
+.calc-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap; /* ensures responsiveness */
+}
+
+/* Inputs block */
+.inputs {
+  flex: 1 1 40%;
+}
+
+/* Results block */
+.results {
+  flex: 1 1 55%;
+}
+
+.results h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.results table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results th,
+.results td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.results th {
+  text-align: right;
+  font-weight: 600;
+  width: 50%;
+}
+
+.results td {
+  text-align: left;
+  font-weight: 500;
+  width: 50%;
+}
+
+#compute {
+  display: block;
+  margin: 4rem auto; /* top-bottom margin + auto left-right centers it */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.calculator-table {
+    margin: 2rem auto; /* top-bottom margin + auto left-right centers it */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.calculator-table th, .calculator-table td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: center;
+}
+.calculator-table th {
+    background-color: #0d142a;
+}
+
+
+/* Style for the container that holds the select box */
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-right: 10px;
+}
+
+/* Style the select box itself */
+.custom-select-wrapper select {
+    background-color: #1a1e2a; /* Dark background */
+    color: #ffffff; /* White text */
+    border: 1px solid #4a5462; /* Subtle border */
+    padding: 5px 40px 5px 15px; /* Add space for custom arrow */
+    border-radius: 4px;
+    width: 180px; /* Adjust width as needed */
+    cursor: pointer;
+
+    /* Hide the default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Create the custom arrow using a pseudo-element */
+.custom-select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allows clicks to pass through to the select */
+    color: #b0bec5; /* Light gray color for the arrow */
+}
+
+#computedrag {
+  display: block;
+  margin: 2rem auto; /* top-bottom margin + auto left-right centers it */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
