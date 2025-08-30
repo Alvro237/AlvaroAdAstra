@@ -309,7 +309,7 @@ footer {
 }
 
 /* Mobile: stack all items */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .timeline::before {
     left: 8px;
   }
