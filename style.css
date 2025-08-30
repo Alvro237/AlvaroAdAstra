@@ -330,23 +330,23 @@ footer {
   }
 }
 
-    /* Sidebar styles (keeps your palette untouched) */
-    .sidebar {
-      position: fixed;
-      top: 25px;
-      left: 0;
-      width: 220px;
-      height: 100%;
-      background-color: #06011484; /* You can swap with your palette color */
-      padding-top: 2rem;
-      overflow-y: auto; /* Scroll if too many links */
-    }
-    .sidebar a {
-      display: block;
-      padding: 10px 20px;
-      text-decoration: none;
-      color: white;
-    }
-    .sidebar a:hover {
-      background-color: #575757;
-    }
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  width: 220px;
+  height: 100%;
+  background-color: #06011484; /* You can swap with your palette color */
+  padding-top: 2rem;
+  overflow-y: auto; /* Scroll if too many links */
+}
+.sidebar a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
+.sidebar a:hover {
+background-color: #575757;
+}
