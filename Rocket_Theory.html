@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rocket Theory</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax for rendering LaTeX -->
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+      </script>
+</head>
+<body>
+  <div class="sidebar">
+  <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
+  <a href="#Rocket_Design">Rocket design</a>
+  <a href="#Rocket_equations">Rocket equations</a>
+  <a href="#Solid_motors">Solid motors</a>
+  <a href="#Hybrid_rockets">Hybrid rockets</a>
+  <a href="#Liquid_rockets">Liquid rockets</a>
+
+  <!-- Add more links here -->
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">✈️ My Aerospace Portfolio</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="Isentropic_calculator.html">Calculators</a>
+        <a href="Rocket_Theory.html">Rocket Theory</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="container">
+        <section>
+            <h1>Rocket Theory</h1>
+            <p>This page summarizes key concepts and equations related to rocket design, propulsion, and performance. They are the basis of solid propulsion, and any rocket propulsion engineer should know them. However, it is never a bad time to refresh our memory!</p>
+        </section>
+        <div style="height: 40px;"></div>
+        <section class="card" id="Rocket_Design">
+            <h2>Rocket Design and Performance</h2>
+            <h3 class="text-xl font-medium">The Rocket Equation</h3>
+            <p>The ideal velocity gain imparted by a propulsion system is described by the Tsiolkovsky Rocket Equation. It actually relates the change of velocity of a rocket to the mass ratio before and after the burn.</p>
+            <p class="text-center text-lg italic">
+                $$\Delta V_{id}=g_{e}I_{sp}\ln\left(\frac{m_{o}}{m_{f}}\right)=\Delta V+\Delta V_{g}+\Delta V_{D}+\Delta V_{S}$$
+            </p>
+            <ul>
+                <li>$\Delta V_{id}$: Real velocity gain.</li>
+                <li>$\Delta V$: Mission requirements.</li>
+                <li>$\Delta V_{g}$: Gravity losses, calculated as $\int_{0}^{t} g(t) dt$.</li>
+                <li>$\Delta V_{D}$: Drag losses, calculated as $\int_{0}^{t} \frac{D}{m} dt$.</li>
+                <li>$\Delta V_{S}$: Steering losses.</li>
+                <li>$m_{o}$: Initial mass of the rocket.</li>
+                <li>$m_{f}$: Final mass of the rocket.</li>
+            </ul>
+            <p>Some simplified models and first approximations often neglect the complex terms to get a rough estimation of the propulsive capabilities. Did you know that we need 11.2 km/s to escape Earth gravity?</p>
+
+            <h3 class="text-xl font-medium mt-4">Structural Efficiency and Mass Ratios</h3>
+            <p>Structural efficiency is measured by the propellant mass fraction ($\xi$). Basically, we want it as close to one as possible since we wnt as much propellant as possible in the rocket.</p>
+            <p class="text-center text-lg italic">
+                $$\xi = \frac{m_{p}}{m_{p} + m_{i}}$$
+            </p>
+            <ul>
+                <li>$m_{p}$: Propellant mass.</li>
+                <li>$m_{i}$: Inert mass (structural mass).</li>
+                <li>$m_{pl}$: Payload mass.</li>
+            </ul>
+            <p>The mass ratio, $MR$, can be defined for any stage $i$ as:</p>
+            <p class="text-center text-lg italic">
+                $$MR_{i}=\frac{m_{o}}{m_{f}}=\frac{m_{pl}+m_{p}+m_{i}}{m_{pl}+m_{i}}$$
+            </p>
+            <p>For a given stage, the propellant mass can be expressed as follows. If we recall the rocket equation, we can now compute the propellant we need to escape any body based on the inert mass and our payload. Pretty neat, right?</p>
+            <p class="text-center text-lg italic">
+                $$m_{p_{i}}=m_{pl_{i}}\frac{MR_{i}-1}{MR_{i}-1 / R_{i}}$$
+            </p>
+        </section>
+        <div style="height: 40px;"></div>
+        <section class="card" id="Rocket_equations">
+            <h2>Rocket Propulsion</h2>
+            <h3 class="text-xl font-medium">Thrust Equation</h3>
+            <p>The thrust, $T$, of a rocket motor is given by the following equation. It can be derived using fluid mechanics principles, by using a control volume approach and applying the integral form of the Navier-Stokes equations.</p>
+            <p class="text-center text-lg italic">
+                $$T=\dot{m}_{e}U_{e}+(P_{e}-P_{a})A_{e}$$
+            </p>
+            <ul>
+                <li>$\dot{m}_{e}$: Mass flow rate.</li>
+                <li>$U_{e}$: Exhaust velocity.</li>
+                <li>$P_{e}$: Exhaust pressure.</li>
+                <li>$P_{a}$: Ambient pressure.</li>
+                <li>$A_{e}$: Exhaust area.</li>
+            </ul>
+            <p>The propulsive system is the most efficient when when $P_e=P_a$, condition known as the perfectly expanded. In a vacuum, $P_a=0$, so the thrust is maximized as the pressure term contribution is the largest.</p>
+
+            <h3 class="text-xl font-medium mt-4">Specific Impulse</h3>
+            <p>Specific Impulse, $I_{sp}$, is a measure of the efficiency of a rocket engine and is defined as:</p>
+            <p class="text-center text-lg italic">
+                $$I_{sp}=\frac{T}{\dot{m}g_{e}}$$
+            </p>
+            <p>This value is key to compare rocket performance, since it relates thrust to propellant consumption. Higher specific impulse indicates a more efficient engine.</p>
+
+            <h3 class="text-xl font-medium mt-4">Characteristic Velocity and Thrust Coefficient</h3>
+            <p>Characteristic velocity, $c^{*}$, is a measure of the performance of a propellant. It varies depending on the composition of the fuel.</p>
+            <p class="text-center text-lg italic">
+                $$c^{*}=\sqrt{\frac{g_{e}RT_{c}}{\gamma}}\left(\frac{2}{\gamma+1}\right)^{\frac{\gamma+1}{2(\gamma-1)}}$$
+            </p>
+            <p>The mass flow rate, $\dot{m}$, is related to $c^{*}$ by: $$\dot{m} = \frac{P_{c}A_{t}}{c^{*}}$$</p>
+        </section>
+        <div style="height: 40px;"></div>
+        <section id="Solid_motors" class="card">
+            <h2>Solid Rocket Motors</h2>
+            <p>Solid rocket motors use a single solid propellant grain. Here, both the oxidizer and the fuel are combined into a single solid, using a binder for stability. This is the one I am the most qualified to talk about, since I did my final year thesis on them. The key equation relates the burning rate to the chamber pressure using Vieille's law:</p>
+            <p class="text-center text-lg italic">
+                $$\dot{r} = aP_{c}^{n}$$
+            </p>
+            <p>The chamber pressure, $P_c$, is a function of the propellant properties, port area, and throat area. At steady state operation, the mass flow rate does not accumulate in the combustion chamber, and the one mass generated by the fuel ignition exits the throat. In this case we obtain the following equation for pressure. Of course, at ignition this is not true.
+                In addition, the nozzle is not chocked yet, so we need to set an ordinary differential equation to describe the evolution of the mass in the chamber.</p>
+            <p class="text-center text-lg italic">
+                $$P_{c}=\left[\frac{a\rho_{p}A_{s}c^{*}}{g_{e}A_{t}}\right]^{\frac{1}{1-n}}$$
+            </p>
+            <p>During steady operation for a given geometry and fuel, the pressure in the chamber only depends on the surface of the fuel exposed to the combustion, and subjected to ablation. using this, we can predict the pressure history based on the grain geometry. This picture explains it:
+            </p>
+            <img src="images/Grains.png" alt="Grains" width="500" style="display:block; margin:auto;">
+            <p>By the way, this image is from  <a href="https://www.nakka-rocketry.net/th_grain.html">nakka-rocketry</a>. They go much deeper than me and are worth checking their page!</p>
+
+        </section>
+        <div style="height: 40px;"></div>
+        <section id="Hybrid_rockets" class="card">
+            <h2>Hybrid Rockets</h2>
+            <h3 class="text-xl font-medium">Hybrid Rockets</h3>
+            <p>Hybrid rockets use a solid fuel and a liquid oxidizer. This time, the solid fuel usually has cylindrical ports through its length. The oxidizer is released and its flow rate can be controlled to regulate the combustion. This is why the regression rate is often defined by the oxidizer mass flux:</p>
+            <p class="text-center text-lg italic">
+                $$\dot{r} = aG_{ox}^{n}$$
+            </p>
+            <p>where $G_{ox} = \frac{\dot{m}_{ox}}{A_{p}}$ and $A_{p}$ is the port area.</p>
+        </section>
+        <div style="height: 40px;"></div>
+
+        <section id="Liquid_rockets" class="card">
+            <h2>Liquid Rocket Engines</h2>
+            <p>Liquid rockets use liquid propellants. There are many types being used today by big companies such as SpaceX. They offer the largest controllability and thrust of the industry, which makes them the go-to option for launchers. </p>
+
+            <h3>Types of Propellant Feeding Systems</h3>
+            <p>
+                There are several ways to feed propellants into a liquid rocket engine. Each one provides its advantages and disadvantages in terms of control, complexity, thrust...:
+                <ul>
+                    <li><strong>Cold Gas Thrusters:</strong> These are the simplest, using a compressed inert gas like nitrogen. They offer low thrust and are primarily used for attitude control.</li>
+                    <li><strong>Pressure-Fed:</strong> Propellants are forced from tanks into the combustion chamber using a high-pressure inert gas. This is a simple and reliable method, but the tanks must be very strong and heavy, limiting its use to smaller engines.</li>
+                    <li><strong>Pump-Fed:</strong> The most common method for high-thrust engines, where pumps are used to deliver propellants from the tanks to the combustion chamber. This allows for lighter tanks, as they don't need to withstand high pressure.</li>
+                </ul>
+            </p>
+
+            <h3>Engine Cycles: Open vs. Closed</h3>
+            <p>
+                The engine cycle describes how the turbopumps, which feed the propellants, are powered.
+                <ul>
+                    <li>
+                        <strong>Open Cycle (Gas Generator):</strong> A small amount of propellant/Ox is bled from the main tanks and burned in a separate gas generator to create hot gas. This gas then drives the turbopumps before being exhausted overboard. This simplifies the design but results in a slight loss of efficiency, as part of the mass is dumped. 
+                    </li>
+                    <li>
+                        <strong>Closed Cycle (Staged Combustion):</strong> All propellant/Ox is routed back into the main combustion chamber after driving the turbopumps. This is more complex but more efficient, as no propellant is wasted.
+                    </li>
+                </ul>
+            </p>
+
+            <h3>Closed-Cycle Variations: Fuel Flow, Oxidizer Flow, and Full Flow</h3>
+            <p>
+                Closed-cycle engines are further divided by which propellant is used to power the turbopumps:
+            <ul>
+                <li>
+                    <strong>Fuel-Rich Staged Combustion:</strong>
+                    <p style="margin:4px 0;">
+                        A preburner runs fuel-rich to drive the turbine and its hot exhaust then completes combustion in the main chamber.
+                        It possesses very high efficiency and achievable chamber pressures and allows turbomachinery to operate in a less oxidizing environment. 
+                        However there is a risk of carbon deposits and turbomachinery fouling, requiring a demanding cooling system.
+                    </p>
+                </li>
+                <li>
+                    <strong>Oxidizer-Rich Staged Combustion:</strong>
+                    <p style="margin:4px 0;">
+                        A preburner runs oxidizer-rich to produce an oxygen-rich drive gas for the turbine, which then feeds the main chamber.
+                        This technique is still very efficient and avoids common problems related to fuel-rich gases. 
+                        However, it creates an extremely oxidizing turbine environment that requires oxidation-resistant materials and complex cooling/ metallurgy. There is also a higher risk of explosion.
+                    </p>
+                </li>
+                <li>
+                    <strong>Full-Flow Staged Combustion (FFSC):</strong>
+                    <p style="margin:4px 0;">
+                        Two preburners (one fuel-rich, one oxidizer-rich) route all propellant through turbines before entering the main chamber.
+                        It possesses the highest theoretical efficiency and a lower turbine inlet temperatures per turbine improving turbomachinery life. It also allows to reach very high chamber pressures. 
+                        Despite this, it has greater complexity with more components, plumbing and controls, leading to higher development cost and assembly challenges.
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

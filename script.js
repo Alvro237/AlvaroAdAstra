@@ -323,3 +323,70 @@ document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
 // Add an event listener to call the function when the button is clicked
 document.getElementById('computedrag').addEventListener('click', computeForces);
+
+
+
+function computeObliqueShock() {
+    // Read input values
+    const M1 = parseFloat(document.getElementById('mach1').value);
+    const gamma = parseFloat(document.getElementById('gamma_os').value);
+    const betaDeg = parseFloat(document.getElementById('beta').value);
+
+    // Basic validation
+    if (isNaN(M1) || isNaN(gamma) || isNaN(betaDeg) || M1 <= 1) {
+        document.getElementById('mach2').textContent = '—';
+        document.getElementById('theta').textContent = '—';
+        document.getElementById('pRatio_os').textContent = '—';
+        document.getElementById('rhoRatio_os').textContent = '—';
+        document.getElementById('tRatio_os').textContent = '—';
+        document.getElementById('p0Ratio_os').textContent = '—';
+        return;
+    }
+    
+    // Convert degrees to radians
+    const betaRad = betaDeg * (Math.PI / 180);
+
+    // Calculate normal Mach number (Mn1)
+    const Mn1 = M1 * Math.sin(betaRad);
+    
+    // Check for oblique shock criteria (Mn1 > 1)
+    if (Mn1 <= 1) {
+        document.getElementById('mach2').textContent = '—';
+        document.getElementById('theta').textContent = '—';
+        document.getElementById('pRatio_os').textContent = '—';
+        document.getElementById('rhoRatio_os').textContent = '—';
+        document.getElementById('tRatio_os').textContent = '—';
+        document.getElementById('p0Ratio_os').textContent = '—';
+        alert("Normal component of Mach number must be supersonic (Mn1 > 1) for a shock wave.");
+        return;
+    }
+
+    // Calculate pressure, density, and temperature ratios
+    const pRatio = ((2 * gamma) / (gamma + 1)) * Math.pow(Mn1, 2) - ((gamma - 1) / (gamma + 1));
+    const rhoRatio = ((gamma + 1) * Math.pow(Mn1, 2)) / ((gamma - 1) * Math.pow(Mn1, 2) + 2);
+    const tRatio = pRatio / rhoRatio;
+    
+    // Calculate downstream Mach number (M2)
+    const Mn2_squared = (Math.pow(Mn1, 2) * (gamma - 1) + 2) / (2 * gamma * Math.pow(Mn1, 2) - (gamma - 1));
+    const M2 = Math.sqrt(Mn2_squared / Math.pow(Math.sin(betaRad), 2) + Math.pow(1 / Math.tan(betaRad), 2));
+    
+    // Calculate deflection angle (theta)
+    const thetaRad = Math.atan(2 * (Math.pow(M1, 2) * Math.pow(Math.sin(betaRad), 2) - 1) * Math.cos(betaRad) / (Math.pow(M1, 2) * (gamma + Math.cos(2 * betaRad)) + 2));
+    const thetaDeg = thetaRad * (180 / Math.PI);
+    
+    // *** NEW CALCULATION FOR STAGNATION PRESSURE RATIO USING YOUR FORMULA ***
+    const term1 = Math.pow(((gamma + 1) * Math.pow(M1 * Math.sin(betaRad), 2)) / ((gamma - 1) * Math.pow(M1 * Math.sin(betaRad), 2) + 2), gamma / (gamma - 1));
+    const term2 = Math.pow(((gamma + 1)) / (2 * gamma * Math.pow(M1 * Math.sin(betaRad), 2) - (gamma - 1)), 1 / (gamma - 1));
+    const p0Ratio = term1 * term2;
+
+    // Display results in the table
+    document.getElementById('mach2').textContent = M2.toFixed(3);
+    document.getElementById('theta').textContent = thetaDeg.toFixed(2);
+    document.getElementById('pRatio_os').textContent = pRatio.toFixed(3);
+    document.getElementById('rhoRatio_os').textContent = rhoRatio.toFixed(3);
+    document.getElementById('tRatio_os').textContent = tRatio.toFixed(3);
+    document.getElementById('p0Ratio_os').textContent = p0Ratio.toFixed(3);
+}
+
+// Add event listener to the new button
+document.getElementById("computeOblique").addEventListener("click", computeObliqueShock);
