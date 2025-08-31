@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rocket Theory</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- MathJax for rendering LaTeX -->
+    <!-- MathJax for rendering LaTeX -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+      </script>
+    <style>
+        /* minimal styles so the link looks & behaves like a card */
+        .card-link { display:block; color:inherit; text-decoration:none; }
+        .card {
+            max-width:900px;
+            margin:20px auto;
+            padding:20px;
+            border-radius:8px;
+            border:1px solid #e0e0e0;
+            background:#0d142a;
+            box-shadow: 0 6px 18px rgba(13,20,42,0.06);
+            transition: transform .12s ease, box-shadow .12s ease;
+        }
+        .card-link:hover .card,
+        .card-link:focus .card {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(13,20,42,0.12);
+        }
+        .card h2 { text-align:center; margin-top:0; }
+        .card p { line-height:1.5; }
+        .card img { display:block; margin:auto; max-width:100%; height:auto; }
+        .card .cta { text-align:center; margin-top:12px; }
+    </style>
+</head>
+<body>
+  <div class="sidebar">
+  <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
+  <a href="#Overview">Overview</a>
+  <a href="#Structural_enginnering">Structural enginnering</a>
+  <a href="#Thermal_enginnering">Thermal enginnering</a>
+  <a href="#CFD_enginnering">CFD enginnering</a>
+
+  <!-- Add more links here -->
+  </div>
+
+  <header>
+    <div class="container nav">
+      <div class="logo">✈️ My Aerospace Portfolio</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="Isentropic_calculator.html">Calculators</a>
+        <a href="Rocket_Theory.html">Rocket Theory</a>
+        <a href="Newsletter.html">Newsletter</a>
+      </nav>
+    </div>
+  </header>
+
+
+
+<a class="card-link" href="Working_as_a_simulations_engineer.html" aria-label="Go to article: What to expect as a simulations engineer?">
+  <section class="card" id="Overview">
+      <h2>What to expect as a simulations engineer?</h2>
+      <p>
+        Have you ever wondered what being a simulations enginner is like? Are you passionate about CFD, thermal analyses or solving structural problems? If that idea has crossed your mind,
+        this article aims to share my experience working in the field, revealing what the job really looks like. Of course, this is my personal experience after just 11 months, but I hope I can cover how
+        exciting this experience was, no matter its length.
+      </p>
+      <img src="images/Simulations.png" alt="Simulations" width="500" style="display:block; margin:auto;">
+      <p class="cta">
+        If you have already worked in the field, do not doubt to reach out and share your experience!
+      </p>
+  </section>
+</a>
+
