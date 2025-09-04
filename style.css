@@ -443,10 +443,15 @@ background-color: #575757;
 
 /* Mobile: stack all items */
 @media (max-width: 760px) {
-    .sidebar {
+  /* Sidebar becomes top bar */
+  .sidebar {
     display: none;
   }
-  
+  .sidebar a {
+    display: none;
+    margin-right: .6rem;
+  }
+
   .timeline::before {
     left: 8px;
   }
