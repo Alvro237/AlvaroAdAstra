@@ -442,7 +442,7 @@ background-color: #575757;
 }
 
 /* Mobile: stack all items */
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   .timeline::before {
     left: 8px;
   }
@@ -464,8 +464,9 @@ background-color: #575757;
 
   .sidebar a {
   display: none;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: white;
-}
+  }
+  
+  .sidebar {
+  display: none;
+  }
 }
