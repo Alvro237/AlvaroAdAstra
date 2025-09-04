@@ -354,7 +354,7 @@ footer {
     display: none;
   }
   .sidebar a {
-    display: inline-block;
+    display: none;
     margin-right: .6rem;
   }
 
