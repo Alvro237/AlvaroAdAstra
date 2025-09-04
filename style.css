@@ -345,36 +345,46 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* --- Mobile Styles (Hamburger Menu) --- */
+/* ===========================
+  Responsive Adjustments
+  =========================== */
 @media (max-width: 768px) {
-    .nav {
-        flex-wrap: wrap;
-    }
-    .logo {
-        flex-grow: 1;
-    }
-    .menu-toggle {
-        display: block; /* Shown on small screens */
-    }
-    nav {
-        width: 100%;
-        flex-direction: column;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
-    }
-    nav.open {
-        max-height: 300px; /* Adjust as needed for content */
-    }
-    nav a {
-        padding: 1rem;
-        width: 100%;
-        text-align: center;
-        background-color: rgba(44, 62, 80, 0.8);
-        border-top: 1px solid #34495e;
-    }
-    nav a:hover {
-      background-color: #3498db;
-    }
+  /* Sidebar becomes top bar */
+  .sidebar {
+    display: none;
+  }
+  .sidebar a {
+    display: inline-block;
+    margin-right: .6rem;
+  }
+
+  /* Calculator stacks */
+  .calc-layout {
+    flex-direction: column;
+  }
+  .inputs,
+  .results {
+    flex: 1 1 100%;
+  }
+
+  /* Nav turns into hamburger */
+  .menu-toggle {
+    display: block;
+  }
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .8rem;
+  }
+  nav.mobile-open {
+    display: flex;
+  }
+  nav a {
+    margin-left: 0;
+    display: block;
+    width: 100%;
+  }
+}
+
 }
