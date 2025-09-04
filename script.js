@@ -162,20 +162,8 @@ function calculateIsPerf() {
 
 document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
-// Get the hamburger button and the navigation menu elements
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav');
-
-// Function to toggle the menu's visibility
-function toggleMenu() {
-    mainNav.classList.toggle('mobile-open');
+function ACTIVATE() {
+    alert("Please provide at least the expansion ratio and specific heat ratio.");
 }
 
-// Add a click event listener for mouse clicks
-menuToggle.addEventListener('click', toggleMenu);
-
-// Add a touchstart event listener for touch-enabled devices
-menuToggle.addEventListener('touchstart', toggleMenu);
-// ---------- End of script.js ---------- 
-
-
+document.getElementById("hamburger").addEventListener("click", ACTIVATE);
