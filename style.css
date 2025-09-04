@@ -69,6 +69,14 @@ nav a:hover {
   color: var(--text);
 }
 
+/* Hamburger toggle (hidden by default) */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: .5rem;
+}
+
 /* ===========================
   Main 
   =========================== */
@@ -134,6 +142,7 @@ input[type="email"] {
   background: #0d142a;
   color: var(--text);
   border: 1px solid var(--border);
+  min-height: 44px; /* Touch friendly */
 }
 
 /* Form row layout */
@@ -141,13 +150,6 @@ input[type="email"] {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: .8rem;
-}
-
-/* Responsive: stack rows on small screens */
-@media (max-width: 640px) {
-  .row {
-   grid-template-columns: 1fr;
-  }
 }
 
 /* Button styles */
@@ -161,6 +163,7 @@ button {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: #0a0a0a;
   font-weight: 700;
+  min-height: 44px; /* Touch friendly */
 }
 
 /* ===========================
@@ -206,18 +209,15 @@ footer {
   font-size: .8rem;
   color: var(--muted);
 }
+
 /* ===========================
   Timeline
   =========================== */
 .timeline {
   position: relative;
   max-width: 980px;
-  /*margin: 2rem auto 0 auto;*/
   padding-bottom: 2rem;
   list-style: none;
-  /* REMOVE these two lines: */
-  /* display: flex; */
-  /* flex-direction: column; */
   overflow: hidden;
 }
 
@@ -246,13 +246,13 @@ footer {
 }
 
 .timeline-item.left {
-  width: 46.5%; /* or any value less than 50% */
+  width: 46.5%; 
   float: left;
   text-align: left;
 }
 
 .timeline-item.right {
-  width: 50%; /* adjust so both sides add up to 100% */
+  width: 50%; 
   float: right;
   text-align: left;
 }
@@ -270,12 +270,12 @@ footer {
 }
 
 .timeline-item.left::after {
-  right: -8px; /* Increase negative value */
+  right: -8px; 
   left: auto;
 }
 
 .timeline-item.right::after {
-  left: -8px; /* Increase negative value */
+  left: -8px; 
   right: auto;
 }
 
@@ -288,84 +288,65 @@ footer {
   z-index: 2;
 }
 
-/* New arrow styles */
 .timeline-arrow {
   position: absolute;
-  top: 0px; /* Adjust as needed */
+  top: 0px; 
   left: 50.25%;
   transform: translateX(-50%);
   width: 0px;
   height: 0;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-bottom: 16px solid var(--border); /* Same color as timeline line */
+  border-bottom: 16px solid var(--border);
   z-index: 2;
 }
 
-/* Ensure next section starts after timeline */
 .timeline + section {
   margin-top: 2.5rem;
   clear: both;
 }
 
-/* Mobile: stack all items */
-@media (max-width: 600px) {
-  .timeline::before {
-    left: 8px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 2.5rem;
-    padding-right: 1rem;
-    text-align: left;
-    float: none;
-  }
-  .timeline-item.left,
-  .timeline-item.right {
-    float: none;
-    text-align: left;
-  }
-  .timeline-item::after {
-    left: 0;
-  }
-}
-
-/* Sidebar styles */
+/* ===========================
+  Sidebar
+  =========================== */
 .sidebar {
   position: fixed;
   top: 25px;
   left: 0;
   width: 220px;
   height: 100%;
-  background-color: #06011484; /* You can swap with your palette color */
+  background-color: #06011484;
   padding-top: 2rem;
-  overflow-y: auto; /* Scroll if too many links */
+  overflow-y: auto; 
 }
+
 .sidebar a {
   display: block;
   padding: 10px 20px;
   text-decoration: none;
   color: white;
 }
+
 .sidebar a:hover {
-background-color: #575757;
+  background-color: #575757;
 }
-/* Side-by-side layout */
+
+/* ===========================
+  Calculator Layout
+  =========================== */
 .calc-layout {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
   margin-top: 1rem;
-  flex-wrap: wrap; /* ensures responsiveness */
+  flex-wrap: wrap;
 }
 
-/* Inputs block */
 .inputs {
   flex: 1 1 40%;
 }
 
-/* Results block */
 .results {
   flex: 1 1 55%;
 }
@@ -400,7 +381,7 @@ background-color: #575757;
 
 #compute {
   display: block;
-  margin: 4rem auto; /* top-bottom margin + auto left-right centers it */
+  margin: 4rem auto;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   border-radius: 8px;
@@ -408,62 +389,139 @@ background-color: #575757;
 }
 
 .calculator-table {
-    margin: 2rem auto; /* top-bottom margin + auto left-right centers it */
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    width: 100%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  width: 100%;
 }
+
 .calculator-table th, .calculator-table td {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    text-align: center;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
 }
+
 .calculator-table th {
-    background-color: #0d142a;
+  background-color: #0d142a;
 }
 
-
-/* Style for the container that holds the select box */
 .custom-select-wrapper {
-    position: relative;
-    display: inline-block;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-right: 10px;
 }
 
-/* Style the select box itself */
 .custom-select-wrapper select {
-    background-color: #1a1e2a; /* Dark background */
-    color: #ffffff; /* White text */
-    border: 1px solid #4a5462; /* Subtle border */
-    padding: 5px 40px 5px 15px; /* Add space for custom arrow */
-    border-radius: 4px;
-    width: 180px; /* Adjust width as needed */
-    cursor: pointer;
-
-    /* Hide the default dropdown arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+  background-color: #1a1e2a;
+  color: #ffffff;
+  border: 1px solid #4a5462;
+  padding: 5px 40px 5px 15px;
+  border-radius: 4px;
+  width: 180px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: 44px; /* Touch friendly */
 }
 
-/* Create the custom arrow using a pseudo-element */
 .custom-select-wrapper::after {
-    content: '▼';
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none; /* Allows clicks to pass through to the select */
-    color: #b0bec5; /* Light gray color for the arrow */
+  content: '▼';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #b0bec5;
 }
 
 #computedrag {
   display: block;
-  margin: 2rem auto; /* top-bottom margin + auto left-right centers it */
+  margin: 2rem auto;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* ===========================
+  Responsive Adjustments
+  =========================== */
+@media (max-width: 768px) {
+  /* Sidebar becomes top bar */
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 1rem;
+  }
+  .sidebar a {
+    display: inline-block;
+    margin-right: .6rem;
+  }
+
+  /* Calculator stacks */
+  .calc-layout {
+    flex-direction: column;
+  }
+  .inputs,
+  .results {
+    flex: 1 1 100%;
+  }
+
+  /* Nav turns into hamburger */
+  .menu-toggle {
+    display: block;
+  }
+  .nav {
+    display: none;
+  }
+  .nav.mobile-open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .8rem;
+  }
+  nav a {
+    margin-left: 0;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Results stack */
+  .result {
+    grid-template-columns: 1fr;
+  }
+
+  /* Timeline mobile */
+  .timeline::before {
+    left: 8px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    text-align: left;
+    float: none;
+  }
+  .timeline-item.left,
+  .timeline-item.right {
+    float: none;
+    text-align: left;
+  }
+  .timeline-item::after {
+    left: -6px;
+    width: 22px;
+    height: 22px;
+  }
 }
