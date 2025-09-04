@@ -143,12 +143,6 @@ input[type="email"] {
   gap: .8rem;
 }
 
-/* Responsive: stack rows on small screens */
-@media (max-width: 640px) {
-  .row {
-   grid-template-columns: 1fr;
-  }
-}
 
 /* Button styles */
 button {
@@ -308,27 +302,6 @@ footer {
   clear: both;
 }
 
-/* Mobile: stack all items */
-@media (max-width: 600px) {
-  .timeline::before {
-    left: 8px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 2.5rem;
-    padding-right: 1rem;
-    text-align: left;
-    float: none;
-  }
-  .timeline-item.left,
-  .timeline-item.right {
-    float: none;
-    text-align: left;
-  }
-  .timeline-item::after {
-    left: 0;
-  }
-}
 
 /* Sidebar styles */
 .sidebar {
@@ -466,4 +439,33 @@ background-color: #575757;
   font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* Mobile: stack all items */
+@media (max-width: 600px) {
+  .timeline::before {
+    left: 8px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    text-align: left;
+    float: none;
+  }
+  .timeline-item.left,
+  .timeline-item.right {
+    float: none;
+    text-align: left;
+  }
+  .timeline-item::after {
+    left: 0;
+  }
+
+  .sidebar a {
+  display: none;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
 }
