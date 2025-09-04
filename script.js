@@ -162,11 +162,14 @@ function calculateIsPerf() {
 
 document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
-const toggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav nav"); // now selects <nav>
+    // Get the hamburger button and the navigation menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav');
 
-toggle.addEventListener("click", () => {
-  nav.classList.toggle("mobile-open");
-});
+    // Add a click event listener to the button
+    menuToggle.addEventListener('click', () => {
+        // Toggle the 'open' class on the navigation menu
+        navMenu.classList.toggle('open');
+    });
 
 
