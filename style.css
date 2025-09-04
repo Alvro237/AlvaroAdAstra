@@ -2,21 +2,21 @@
   CSS Variables - THEME COLORS
   =========================== */
 :root {
-  --bg: #0b1020;           /* Main background */
-  --bg-soft: #121933;      /* Soft background */
-  --text: #e7eaf6;         /* Main text color */
-  --muted: #b7c0d8;        /* Muted text color */
-  --accent: #5eead4;       /* Accent (teal) */
-  --accent-2: #93c5fd;     /* Accent 2 (blue) */
-  --card: #0f152b;         /* Card background */
-  --border: #26304f;       /* Border color */
+  --bg: #0b1020;           
+  --bg-soft: #121933;      
+  --text: #e7eaf6;         
+  --muted: #b7c0d8;        
+  --accent: #5eead4;       
+  --accent-2: #93c5fd;     
+  --card: #0f152b;         
+  --border: #26304f;       
 }
 
 /* ===========================
   Base Styles
   =========================== */
 html {
-  scroll-behavior: smooth; /* Smooth scrolling */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -39,7 +39,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(6px); /* Blurred background */
+  backdrop-filter: blur(6px);
   background: color-mix(in oklab, var(--bg), transparent 40%);
   border-bottom: 1px solid var(--border);
 }
@@ -56,10 +56,14 @@ header {
   letter-spacing: .3px;
 }
 
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
 nav a {
   color: var(--muted);
   text-decoration: none;
-  margin-left: 1rem;
   padding: .4rem .6rem;
   border-radius: .6rem;
 }
@@ -73,8 +77,11 @@ nav a:hover {
 .menu-toggle {
   display: none;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   padding: .5rem;
+  color: var(--text);
+  background: none;
+  border: none;
 }
 
 /* ===========================
@@ -91,7 +98,7 @@ h1, h2 {
 }
 
 h1 {
-  font-size: clamp(1.6rem, 2.5vw + 1rem, 2.6rem); /* Responsive font size */
+  font-size: clamp(1.6rem, 2.5vw + 1rem, 2.6rem);
 }
 
 h2 {
@@ -115,7 +122,7 @@ p {
 .grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 /* ===========================
@@ -145,14 +152,12 @@ input[type="email"] {
   min-height: 44px; /* Touch friendly */
 }
 
-/* Form row layout */
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: .8rem;
 }
 
-/* Button styles */
 button {
   display: inline-block;
   margin-top: 1rem;
@@ -227,15 +232,8 @@ footer {
   top: 10px;
   left: 50%;
   width: 4px;
-  margin-left: 0px;
   background: var(--border);
   height: 100%;
-}
-
-.timeline::after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .timeline-item {
@@ -248,13 +246,11 @@ footer {
 .timeline-item.left {
   width: 46.5%; 
   float: left;
-  text-align: left;
 }
 
 .timeline-item.right {
   width: 50%; 
   float: right;
-  text-align: left;
 }
 
 .timeline-item::after {
@@ -270,13 +266,11 @@ footer {
 }
 
 .timeline-item.left::after {
-  right: -8px; 
-  left: auto;
+  right: -8px;
 }
 
 .timeline-item.right::after {
-  left: -8px; 
-  right: auto;
+  left: -8px;
 }
 
 .timeline-content {
@@ -293,17 +287,12 @@ footer {
   top: 0px; 
   left: 50.25%;
   transform: translateX(-50%);
-  width: 0px;
+  width: 0;
   height: 0;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-bottom: 16px solid var(--border);
   z-index: 2;
-}
-
-.timeline + section {
-  margin-top: 2.5rem;
-  clear: both;
 }
 
 /* ===========================
@@ -356,96 +345,6 @@ footer {
   margin-bottom: 1rem;
 }
 
-.results table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.results th,
-.results td {
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.results th {
-  text-align: right;
-  font-weight: 600;
-  width: 50%;
-}
-
-.results td {
-  text-align: left;
-  font-weight: 500;
-  width: 50%;
-}
-
-#compute {
-  display: block;
-  margin: 4rem auto;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.calculator-table {
-  margin: 2rem auto;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.calculator-table th, .calculator-table td {
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  text-align: center;
-}
-
-.calculator-table th {
-  background-color: #0d142a;
-}
-
-.custom-select-wrapper {
-  position: relative;
-  display: inline-block;
-  font-size: 12px;
-  line-height: 1.5;
-  margin-right: 10px;
-}
-
-.custom-select-wrapper select {
-  background-color: #1a1e2a;
-  color: #ffffff;
-  border: 1px solid #4a5462;
-  padding: 5px 40px 5px 15px;
-  border-radius: 4px;
-  width: 180px;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  min-height: 44px; /* Touch friendly */
-}
-
-.custom-select-wrapper::after {
-  content: '▼';
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #b0bec5;
-}
-
-#computedrag {
-  display: block;
-  margin: 2rem auto;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 /* ===========================
   Responsive Adjustments
   =========================== */
@@ -475,14 +374,14 @@ footer {
   .menu-toggle {
     display: block;
   }
-  .nav {
+  nav {
     display: none;
-  }
-  .nav.mobile-open {
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: .8rem;
+  }
+  nav.mobile-open {
+    display: flex;
   }
   nav a {
     margin-left: 0;
@@ -498,12 +397,10 @@ footer {
 }
 
 @media (max-width: 600px) {
-  /* Results stack */
   .result {
     grid-template-columns: 1fr;
   }
 
-  /* Timeline mobile */
   .timeline::before {
     left: 8px;
   }
@@ -511,13 +408,7 @@ footer {
     width: 100%;
     padding-left: 2.5rem;
     padding-right: 1rem;
-    text-align: left;
     float: none;
-  }
-  .timeline-item.left,
-  .timeline-item.right {
-    float: none;
-    text-align: left;
   }
   .timeline-item::after {
     left: -6px;

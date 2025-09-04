@@ -390,3 +390,11 @@ function computeObliqueShock() {
 
 // Add event listener to the new button
 document.getElementById("computeOblique").addEventListener("click", computeObliqueShock);
+
+
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("mobile-open");
+  });
