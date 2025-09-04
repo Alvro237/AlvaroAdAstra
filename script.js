@@ -162,14 +162,12 @@ function calculateIsPerf() {
 
 document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
-    // Get the hamburger button and the navigation menu
+document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('nav');
-
-    // Add a click event listener to the button
     menuToggle.addEventListener('click', () => {
-        // Toggle the 'open' class on the navigation menu
         navMenu.classList.toggle('open');
     });
+});
 
 
