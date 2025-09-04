@@ -162,12 +162,14 @@ function calculateIsPerf() {
 
 document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('nav');
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('open');
-    });
-});
+// Get the hamburger button and the navigation menu elements
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+// Add a click event listener to the hamburger button
+menuToggle.addEventListener('click', () => {
+    // Toggle the 'mobile-open' class on the nav menu
+    // This class will control the menu's visibility via CSS
+    mainNav.classList.toggle('mobile-open');
 
 
