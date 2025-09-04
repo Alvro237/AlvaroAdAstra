@@ -166,22 +166,16 @@ document.getElementById("compute").addEventListener("click", calculateIsPerf);
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 
-// Add a click event listener to the hamburger button
-menuToggle.addEventListener('click', () => {
-    // Toggle the 'mobile-open' class on the nav menu
-    // This class will control the menu's visibility via CSS
+// Function to toggle the menu's visibility
+function toggleMenu() {
     mainNav.classList.toggle('mobile-open');
-    // Optionally, you can also toggle an 'active' class on the button itself for styling
-    menuToggle.classList.toggle('active');
-});   
+}
 
-// Close the menu when a link is clicked (for better UX on mobile)
-mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        mainNav.classList.remove('mobile-open');
-        menuToggle.classList.remove('active');
-    });
-}); 
+// Add a click event listener for mouse clicks
+menuToggle.addEventListener('click', toggleMenu);
+
+// Add a touchstart event listener for touch-enabled devices
+menuToggle.addEventListener('touchstart', toggleMenu);
 // ---------- End of script.js ---------- 
 
 
