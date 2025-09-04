@@ -162,10 +162,11 @@ function calculateIsPerf() {
 
 document.getElementById("compute").addEventListener("click", calculateIsPerf);
 
-// ---------- Menu toggle ----------
 const toggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav"); // FIXED selector
+const nav = document.querySelector(".nav nav"); // now selects <nav>
 
 toggle.addEventListener("click", () => {
-  nav.classList.toggle("mobile-open"); // matches CSS
+  nav.classList.toggle("mobile-open");
 });
+
+
