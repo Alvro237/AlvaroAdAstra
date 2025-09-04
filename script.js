@@ -171,5 +171,17 @@ menuToggle.addEventListener('click', () => {
     // Toggle the 'mobile-open' class on the nav menu
     // This class will control the menu's visibility via CSS
     mainNav.classList.toggle('mobile-open');
+    // Optionally, you can also toggle an 'active' class on the button itself for styling
+    menuToggle.classList.toggle('active');
+});   
+
+// Close the menu when a link is clicked (for better UX on mobile)
+mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mainNav.classList.remove('mobile-open');
+        menuToggle.classList.remove('active');
+    });
+}); 
+// ---------- End of script.js ---------- 
 
 
