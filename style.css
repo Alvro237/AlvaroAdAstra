@@ -455,7 +455,7 @@ background-color: #575757;
 /* Keep the timeline line centered */
   .timeline::before {
     left: 0%;
-    transform: translateX(-50%);
+    transform: translateX(-0%);
   }
 
   /* Boxes centered around the line */
