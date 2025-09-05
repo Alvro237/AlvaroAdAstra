@@ -441,14 +441,35 @@ background-color: #575757;
   cursor: pointer;
 }
 
-.math-equation {
+.matheq {
   overflow-x: auto;    /* horizontal scroll if too wide */
   overflow-y: hidden;  /* no vertical scroll */
-  white-space: nowrap; /* keep the equation on one line */
+  white-space: nowrap; /* keep it in one line */
   display: block;
-  max-width: 100%;     /* don’t exceed screen width */
-  font-size: clamp(14px, 2vw, 20px); /* scales with screen size */
+  max-width: 100%;
+  font-size: clamp(14px, 2vw, 20px); /* responsive scaling */
 }
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;   /* enables horizontal scroll on small screens */
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+}
+
+.calculator-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;   /* prevents columns from squishing too much */
+}
+
+.calculator-table th,
+.calculator-table td {
+  padding: 0.6rem 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  white-space: nowrap; /* keeps text from breaking into multiple lines */
+}
+
 
 /* Mobile: stack all items */
 @media (max-width: 760px) {
