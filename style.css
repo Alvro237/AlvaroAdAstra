@@ -452,23 +452,71 @@ background-color: #575757;
     margin-right: .6rem;
   }
 
-  .timeline::before {
-    left: 8px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 2.5rem;
-    padding-right: 1rem;
-    text-align: left;
-    float: none;
-  }
-  .timeline-item.left,
-  .timeline-item.right {
-    float: none;
-    text-align: left;
-  }
-  .timeline-item::after {
-    left: 0;
-  }
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 100%;
+  width: 4px;
+  margin-left: 0px;
+  background: var(--border);
+  height: 100%;
+}
+
+.timeline::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.timeline-item {
+  width: 100%;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.timeline-item.left {
+  width: 100%; /* or any value less than 50% */
+  float: left;
+  text-align: left;
+}
+
+.timeline-item.right {
+  width: 100%; /* adjust so both sides add up to 100% */
+  float: right;
+  text-align: left;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  z-index: 1;
+}
+
+.timeline-item.left::after {
+  right: -8px; /* Increase negative value */
+  left: auto;
+}
+
+.timeline-item.right::after {
+  left: -8px; /* Increase negative value */
+  right: auto;
+}
+
+.timeline-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+}
 
 }
