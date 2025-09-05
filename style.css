@@ -459,7 +459,7 @@ background-color: #575757;
 .calculator-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;   /* prevents columns from squishing too much */
+  min-width: 200px;   /* prevents columns from squishing too much */
 }
 
 .calculator-table th,
