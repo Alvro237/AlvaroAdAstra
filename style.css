@@ -459,7 +459,7 @@ background-color: #575757;
 
   /* Full-width items with less left padding */
   .timeline-item {
-    width: 100%;
+    width: 150%;
     padding-left: 35px;   /* reduced from 60px → tighter spacing */
     padding-right: 1rem;
     float: none;
