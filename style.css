@@ -478,13 +478,13 @@ background-color: #575757;
 
 .timeline-item.left {
   width: 100%; /* or any value less than 50% */
-  float: left;
+  float: center;
   text-align: left;
 }
 
 .timeline-item.right {
   width: 100%; /* adjust so both sides add up to 100% */
-  float: right;
+  float: center;
   text-align: left;
 }
 
@@ -501,12 +501,12 @@ background-color: #575757;
 }
 
 .timeline-item.left::after {
-  right: -8px; /* Increase negative value */
+  right: auto; /* Increase negative value */
   left: auto;
 }
 
 .timeline-item.right::after {
-  left: -8px; /* Increase negative value */
+  left: auto; /* Increase negative value */
   right: auto;
 }
 
