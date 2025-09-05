@@ -468,7 +468,7 @@ background-color: #575757;
 
   .timeline-item.left,
   .timeline-item.right {
-    width: 100%;
+    width: 150%;
     float: none;
     text-align: left;
   }
