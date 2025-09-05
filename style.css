@@ -452,26 +452,28 @@ background-color: #575757;
     margin-right: .6rem;
   }
 
-/* Keep the timeline line in the center */
+/* Keep the timeline line centered */
   .timeline::before {
     left: 50%;
-    transform: translateX(-50%); /* ensures it stays centered */
+    transform: translateX(-50%);
   }
 
-  /* Items take full width */
+  /* Boxes centered around the line */
   .timeline-item {
-    width: 100%;
+    width: 90%;                  /* slightly smaller than screen so they don’t get cut */
+    margin: 1rem auto;            /* auto centers them */
     float: none;
     text-align: left;
-    padding: 1rem 1rem 1rem 1rem; /* balanced padding */
+    padding: 1rem;
     box-sizing: border-box;
   }
 
   .timeline-item.left,
   .timeline-item.right {
-    width: 100%;
+    width: 90%;
     float: none;
     text-align: left;
+    margin: 1rem auto;
   }
 
   /* Hide the blue dots */
