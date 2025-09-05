@@ -476,7 +476,7 @@ background-color: #575757;
     box-sizing: border-box;
   }
 
-.timeline-item.first-item {
+.timeline-item.timeline::before {
   top: -10%;
   margin-top: 5rem;  /* adjust as needed */
 }
