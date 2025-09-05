@@ -452,22 +452,20 @@ background-color: #575757;
     margin-right: .6rem;
   }
 
-/* Timeline vertical line moves to the left */
+ /* Timeline line stays on the left */
   .timeline::before {
-    left: 20px;   /* place line on left edge */
-    margin: 0;
+    left: 15px;   /* thinner margin than before */
   }
 
-  /* Each item is full width, stacked */
+  /* Full-width items with less left padding */
   .timeline-item {
     width: 100%;
-    padding-left: 60px;   /* leave space for the line + dot */
+    padding-left: 35px;   /* reduced from 60px → tighter spacing */
     padding-right: 1rem;
-    float: none;          /* remove floating */
+    float: none;
     text-align: left;
   }
 
-  /* Remove left/right variations */
   .timeline-item.left,
   .timeline-item.right {
     width: 100%;
@@ -475,10 +473,9 @@ background-color: #575757;
     text-align: left;
   }
 
-  /* The dots align with the vertical line */
+  /* HIDE the dots */
   .timeline-item::after {
-    left: 20px;  /* same as .timeline::before */
-    right: auto;
+    display: none;
   }
 
 }
