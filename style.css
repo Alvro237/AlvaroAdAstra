@@ -454,7 +454,7 @@ background-color: #575757;
 
  /* Timeline line stays on the left */
   .timeline::before {
-    left: 200px;   /* thinner margin than before */
+    left: 0px;   /* thinner margin than before */
   }
 
   /* Full-width items with less left padding */
