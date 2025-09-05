@@ -453,6 +453,14 @@ background-color: #575757;
   }
 
 /* Keep the timeline line centered */
+
+  .timeline {
+    width: 100vw;       /* full viewport width */
+    max-width: none;    /* remove any restriction */
+    margin: 0;          /* no centering offset */
+    padding: 0;
+  }
+
   .timeline::before {
     left: 0%;
     transform: translateX(-0%);
@@ -460,7 +468,7 @@ background-color: #575757;
 
   /* Boxes centered around the line */
   .timeline-item {
-    width: 90%;                  /* slightly smaller than screen so they don’t get cut */
+    width: 100%;                  /* slightly smaller than screen so they don’t get cut */
     margin: auto auto;            /* auto centers them */
     float: none;
     text-align: left;
@@ -470,7 +478,7 @@ background-color: #575757;
 
   .timeline-item.left,
   .timeline-item.right {
-    width: 90%;
+    width: 100%;
     float: none;
     text-align: left;
     margin: auto auto;
