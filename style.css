@@ -462,8 +462,8 @@ background-color: #575757;
   }
 
   .timeline::before {
-    left: 0%;
-    transform: translateX(-0%);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   /* Boxes centered around the line */
