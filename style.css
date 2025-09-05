@@ -461,10 +461,10 @@ background-color: #575757;
   /* Boxes centered around the line */
   .timeline-item {
     width: 90%;                  /* slightly smaller than screen so they don’t get cut */
-    margin: 1rem auto;            /* auto centers them */
+    margin: auto auto;            /* auto centers them */
     float: none;
     text-align: left;
-    padding: 1rem;
+    padding: auto;
     box-sizing: border-box;
   }
 
@@ -473,7 +473,7 @@ background-color: #575757;
     width: 90%;
     float: none;
     text-align: left;
-    margin: 1rem auto;
+    margin: auto auto;
   }
 
   /* Hide the blue dots */
