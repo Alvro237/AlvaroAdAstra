@@ -476,6 +476,9 @@ background-color: #575757;
     box-sizing: border-box;
   }
 
+.timeline-item.first-item {
+  margin-top: 2rem;  /* adjust as needed */
+}
   .timeline-item.left,
   .timeline-item.right {
     width: 100%;
