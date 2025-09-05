@@ -442,10 +442,12 @@ background-color: #575757;
 }
 
 .math-equation {
-  overflow-x: auto;     /* scroll if really too long */
-  white-space: normal;  /* allow wrapping */
-  text-align: center;
-  font-size: clamp(14px, 2vw, 20px); /* responsive font size */
+  overflow-x: auto;    /* horizontal scroll if too wide */
+  overflow-y: hidden;  /* no vertical scroll */
+  white-space: nowrap; /* keep the equation on one line */
+  display: block;
+  max-width: 100%;     /* don’t exceed screen width */
+  font-size: clamp(14px, 2vw, 20px); /* scales with screen size */
 }
 
 /* Mobile: stack all items */
