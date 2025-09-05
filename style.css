@@ -441,6 +441,13 @@ background-color: #575757;
   cursor: pointer;
 }
 
+.math-equation {
+  overflow-x: auto;     /* scroll if really too long */
+  white-space: normal;  /* allow wrapping */
+  text-align: center;
+  font-size: clamp(14px, 2vw, 20px); /* responsive font size */
+}
+
 /* Mobile: stack all items */
 @media (max-width: 760px) {
   /* Sidebar becomes top bar */
