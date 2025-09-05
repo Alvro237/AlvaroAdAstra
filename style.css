@@ -527,7 +527,7 @@ background-color: #575757;
   .nav {
   display: flex;
   align-items: right;
-  justify-content: space-between;
+  justify-content: right;
   padding: .8rem 0;
 }
 }
