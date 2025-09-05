@@ -452,71 +452,33 @@ background-color: #575757;
     margin-right: .6rem;
   }
 
-.timeline::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 100%;
-  width: 4px;
-  margin-left: 0px;
-  background: var(--border);
-  height: 100%;
-}
+/* Timeline vertical line moves to the left */
+  .timeline::before {
+    left: 20px;   /* place line on left edge */
+    margin: 0;
+  }
 
-.timeline::after {
-  content: "";
-  display: table;
-  clear: both;
-}
+  /* Each item is full width, stacked */
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;   /* leave space for the line + dot */
+    padding-right: 1rem;
+    float: none;          /* remove floating */
+    text-align: left;
+  }
 
-.timeline-item {
-  width: 100%;
-  padding: 1rem 2rem;
-  box-sizing: border-box;
-  position: relative;
-}
+  /* Remove left/right variations */
+  .timeline-item.left,
+  .timeline-item.right {
+    width: 100%;
+    float: none;
+    text-align: left;
+  }
 
-.timeline-item.left {
-  width: 100%; /* or any value less than 50% */
-  float: center;
-  text-align: left;
-}
-
-.timeline-item.right {
-  width: 100%; /* adjust so both sides add up to 100% */
-  float: center;
-  text-align: left;
-}
-
-.timeline-item::after {
-  content: "";
-  position: absolute;
-  top: 1.2rem;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 3px solid var(--bg);
-  z-index: 1;
-}
-
-.timeline-item.left::after {
-  right: auto; /* Increase negative value */
-  left: auto;
-}
-
-.timeline-item.right::after {
-  left: auto; /* Increase negative value */
-  right: auto;
-}
-
-.timeline-content {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  padding: 1rem;
-  position: relative;
-  z-index: 2;
-}
+  /* The dots align with the vertical line */
+  .timeline-item::after {
+    left: 20px;  /* same as .timeline::before */
+    right: auto;
+  }
 
 }
