@@ -190,6 +190,28 @@
       <p>Feel free to contact me via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></p>
       <p>Or either why not check my LinkedIn?: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230">Alvaro Casillas</a></p>
     </section>
+
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+      <input type="hidden" name="access_key" value="168fb0ac-0517-4516-9edb-733023e860a2">
+      <input type="hidden" name="email_to" value="alvaro.cas.contact@gmail.com">
+
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="message">Message</label>
+      <textarea name="message" id="message" required></textarea>
+
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+      <!-- Custom Confirmation / Success Page -->
+      <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
+
+      <button type="submit">Submit Form</button>
+    </form>
   </main>
 
   <footer>

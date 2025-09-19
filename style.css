@@ -531,3 +531,14 @@ background-color: #575757;
   padding: .8rem 0;
 }
 }
+
+input, textarea {
+  display: block;
+  width: 98%;
+  background-color: #0d142a ;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: white; /* text color */
+}
