@@ -1,221 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isentropic Rocket Calculator</title>
-  <link rel="stylesheet" href="style.css" /> <!-- Keep your palette -->
+  <title>Aerospace Calculators</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <div class="sidebar">
-  <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
-  <a href="#IsentropicRocket"> Rocket Calculator</a>
-  <a href="#IsentropicFlow">Isentropic flow Calculator</a>
-  <a href="#ShockCalculator">Shock Calculator</a>
-  <a href="#DragCalculator">Drag Calculator</a>
+<div id="reading-progress"></div>
+<canvas id="star-canvas"></canvas>
 
-  <!-- Add more links here -->
-  </div>
-
-  <header>
-    <div class="container nav">
-      <div class="logo">✈️ Calculators</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="Isentropic_calculator.html">Calculators</a>
-        <a href="Rocket_Theory.html">Rocket Theory</a>
-        <a href="Newsletter.html">Newsletter</a>
-      </nav>
-    </div>
-  </header>
-
-
-
-  <main class="container">
-  <h1>Online Calculators</h1>
-  <p>
-    I have developed several tools to streamline straightforward but tedious calculations that aerospace engineers often perform on a daily basis. While many resources such as tables are available, I believe that having an interactive tool where the relevant parameters can be entered on demand provides significant added value.
-  </p>
-
-  <section id="IsentropicRocket">
-  <h2>Isentropic Rocket Performance</h2>
-     <p>Enter values to calculate the isentropic rocket performance. You can partially fill the input data to get results for some parameters. Results do not take into account boundary layer separation or shocks waves. </p>
-
-  <div class="calc-layout">
-    <!-- Inputs -->
-     <div class="inputs">
-     <label>Expansion Ratio (-): <input type="number" id="expansionRatio" /></label><br><br>
-     <label>Specific Heat Ratio (γ): <input type="number" id="specificHeatRatio" /></label><br><br>
-     <label>Gas molecular weight (g/mol): <input type="number" id="molarMass" /></label><br><br>
-     <label>Throat Area (m^2): <input type="number" id="throatArea" /></label><br><br>
-     <label>Chamber Pressure (MPa): <input type="number" id="chamberPressure" /></label><br><br>
-     <label>Chamber Temperature (K): <input type="number" id="chamberTemperature" /></label><br><br>
-     <label>Ambient Pressure (MPa): <input type="number" id="ambientPressure" /></label><br><br>
-
-    </div>
-
-    <!-- Results -->
-    <div class="results">
-      <h2>Results</h2>
-      <table>
-        <tr><th>Exit Velocity (m/s)</th><td id="vExit">—</td></tr>
-        <tr><th>Exit Pressure (Pa)</th><td id="pExit">—</td></tr>
-        <tr><th>Exit Temperature (K)</th><td id="tExit">—</td></tr>
-        <tr><th>Exit Mach</th><td id="machExit">—</td></tr>
-        <tr><th>Pe / Pc</th><td id="pRatio">—</td></tr>
-        <tr><th>Te / Tc</th><td id="tRatio">—</td></tr>
-        <tr><th>Thrust Coefficient (Cf)</th><td id="cf">—</td></tr>
-        <tr><th>Thrust (N)</th><td id="thrust">—</td></tr>
-        <tr><th>Vacuum Thrust (N)</th><td id="thrustVac">—</td></tr>
-        <tr><th>Specific Impulse (s)</th><td id="isp">—</td></tr>
-        <tr><th>Mass Flow Rate (kg/s)</th><td id="mdot">—</td></tr>
-      </table>
-      <button id="compute">Calculate performance</button>
-
-    </div>
-  </div>
-</section>
-
-<section id="IsentropicFlow">
-  <h2>Isentropic Flow</h2>
-<div class="inputs">
-    <label>γ: <input type="number" id="gamma" value="1.4" step="0.01"></label>
-    <div class="custom-select-wrapper">
-        <label for="knownParam">Known parameter:</label>
-        <select id="knownParam">
-            <option value="Ma">Mach number</option>
-            <option value="T0T">T0/T</option>
-            <option value="p0p">p0/p</option>
-            <option value="rho0rho">ρ0/ρ</option>
-            <option value="AAstar">A/A*</option>
-            <option value="TTstar">T/T*</option>
-            <option value="ppstar">p/p*</option>
-            <option value="rhorhostar">ρ/ρ*</option>
-        </select>
-    </div>
-    <label><input type="number" id="paramValue" step="any"></label>
-</div>
-  <div class="table-responsive">
-  <table class="calculator-table">
-    <tr>
-      <th>γ</th>
-      <th>Ma</th>
-      <th>T0/T</th>
-      <th>p0/p</th>
-      <th>ρ0/ρ</th>
-      <th>A/A*</th>
-      <th>T/T*</th>
-      <th>p/p*</th>
-      <th>ρ/ρ*</th>
-    </tr>
-    <tr id="resultsRow">
-      <td id="res-gamma">—</td>
-      <td id="res-Ma">—</td>
-      <td id="res-T0T">—</td>
-      <td id="res-p0p">—</td>
-      <td id="res-rho0rho">—</td>
-      <td id="res-AAstar">—</td>
-      <td id="res-TTstar">—</td>
-      <td id="res-ppstar">—</td>
-      <td id="res-rhorhostar">—</td>
-    </tr>
-  </table>
+<div class="sidebar">
+  <h2>🚀 Menu</h2>
+  <a href="#IsentropicRocket">Rocket Perf.</a>
+  <a href="#IsentropicFlow">Isentropic Flow</a>
+  <a href="#ShockCalculator">Shock Waves</a>
+  <a href="#DragCalculator">Drag &amp; Lift</a>
 </div>
 
-  <button id="computeIS">Fill Table</button>
-</section>
+<header>
+  <div class="container nav">
+    <div class="logo">✈️ Calculators</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Isentropic_calculator.html">Calculators</a>
+      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="Newsletter.html">Newsletter</a>
+    </nav>
+  </div>
+</header>
 
+<main class="container">
 
-<section id="ShockCalculator">
-    <h2>Oblique Shock Wave Calculator</h2>
-    <p>Calculate flow properties across an oblique shock wave.</p>
-    <div class="card">
-        <div class="row">
-            <div>
-                <label for="mach1">Upstream Mach number M₁</label>
-                <input type="number" id="mach1" step="any" value="2.0" />
-            </div>
-            <div>
-                <label for="gamma_os">Specific Heat Ratio γ</label>
-                <input type="number" id="gamma_os" step="any" value="1.4" />
-            </div>
-            <div>
-                <label for="beta">Shock Angle β (°)</label>
-                <input type="number" id="beta" step="any" value="45" />
-            </div>
+  <section style="padding-top:3rem; border-bottom:none;">
+    <div class="hero-eyebrow">Interactive Tools</div>
+    <h1>Online Calculators</h1>
+    <p style="max-width:640px;">
+      Interactive tools for the calculations aerospace engineers perform every day. Enter your parameters and get instant results — no tables required.
+    </p>
+  </section>
+
+  <!-- ROCKET PERFORMANCE -->
+  <section id="IsentropicRocket" class="reveal">
+    <div class="section-header"><h2>Isentropic Rocket Performance</h2></div>
+    <p>Compute nozzle exit conditions and thrust parameters. Partial inputs give partial results — results assume isentropic flow (no shocks, no boundary layer separation).</p>
+    <div class="card" style="margin-top:1.2rem;">
+      <div class="calc-layout">
+        <div class="inputs">
+          <label>Expansion Ratio  (Ae/At):<input type="number" id="expansionRatio" placeholder="e.g. 8" /></label><br>
+          <label>Specific Heat Ratio γ:<input type="number" id="specificHeatRatio" placeholder="e.g. 1.4" /></label><br>
+          <label>Gas Molecular Weight (g/mol):<input type="number" id="molarMass" placeholder="e.g. 22" /></label><br>
+          <label>Throat Area (m²):<input type="number" id="throatArea" placeholder="e.g. 0.005" /></label><br>
+          <label>Chamber Pressure (MPa):<input type="number" id="chamberPressure" placeholder="e.g. 3.5" /></label><br>
+          <label>Chamber Temperature (K):<input type="number" id="chamberTemperature" placeholder="e.g. 3200" /></label><br>
+          <label>Ambient Pressure (MPa):<input type="number" id="ambientPressure" placeholder="e.g. 0.101" /></label><br>
         </div>
-        <button id="computeOblique">Compute</button>
-
         <div class="results">
-            <table>
-                <tr><th>Downstream Mach number M₂</th><td id="mach2">—</td></tr>
-                <tr><th>Deflection angle θ (°)</th><td id="theta">—</td></tr>
-                <tr><th>Pressure Ratio P₂/P₁</th><td id="pRatio_os">—</td></tr>
-                <tr><th>Density Ratio ρ₂/ρ₁</th><td id="rhoRatio_os">—</td></tr>
-                <tr><th>Temperature Ratio T₂/T₁</th><td id="tRatio_os">—</td></tr>
-                <tr><th>Stagnation Pressure Ratio P₀₂/P₀₁</th><td id="p0Ratio_os">—</td></tr>
-            </table>
+          <h2>Results</h2>
+          <table>
+            <tr><th>Exit Velocity (m/s)</th>      <td id="vExit">—</td></tr>
+            <tr><th>Exit Pressure (Pa)</th>        <td id="pExit">—</td></tr>
+            <tr><th>Exit Temperature (K)</th>      <td id="tExit">—</td></tr>
+            <tr><th>Exit Mach</th>                 <td id="machExit">—</td></tr>
+            <tr><th>Pe / Pc</th>                   <td id="pRatio">—</td></tr>
+            <tr><th>Te / Tc</th>                   <td id="tRatio">—</td></tr>
+            <tr><th>Thrust Coefficient Cf</th>     <td id="cf">—</td></tr>
+            <tr><th>Thrust (N)</th>                <td id="thrust">—</td></tr>
+            <tr><th>Vacuum Thrust (N)</th>         <td id="thrustVac">—</td></tr>
+            <tr><th>Specific Impulse (s)</th>      <td id="isp">—</td></tr>
+            <tr><th>Mass Flow Rate (kg/s)</th>     <td id="mdot">—</td></tr>
+          </table>
+          <button id="compute">Calculate Performance 🚀</button>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 
-
-<section id="DragCalculator">
-    <h2>Dynamic Pressure & Drag Calculator</h2>
-    <p>Quick tool to obtain the dynamic pressure, drag and lift on an object.</p>
-    <form id="calc-form" class="card" onsubmit="event.preventDefault();">
-        <div class="row">
-            <div>
-                <label for="speed">Speed V (m/s)</label>
-                <input type="number" id="speed" step="any" value="70" />
-            </div>
-            <div>
-                <label for="rho">Air density ρ (kg/m³)</label>
-                <input type="number" id="rho" step="any" value="1.225" />
-            </div>
-            <div>
-                <label for="area">Reference area A (m²)</label>
-                <input type="number" id="area" step="any" value="0.7" />
-            </div>
-            <div>
-                <label for="cd">Drag coefficient C<sub>d</sub></label>
-                <input type="number" id="cd" step="any" value="0.32" />
-            </div>
-            <div>
-                <label for="cl">Lift coefficient C<sub>L</sub></label>
-                <input type="number" id="cl" step="any" value="0.4" />
-            </div>
+  <!-- ISENTROPIC FLOW -->
+  <section id="IsentropicFlow" class="reveal">
+    <div class="section-header"><h2>Isentropic Flow Relations</h2></div>
+    <p>Enter any known parameter to get the full isentropic flow table for that Mach number.</p>
+    <div class="card" style="margin-top:1.2rem;">
+      <div class="inputs">
+        <label>γ: <input type="number" id="gamma" value="1.4" step="0.01" style="width:100px; display:inline-block; margin-left:.5rem;"></label>
+        <div style="margin-top:.8rem; display:flex; align-items:center; flex-wrap:wrap; gap:.6rem;">
+          <div class="custom-select-wrapper">
+            <label for="knownParam">Known parameter:</label>
+            <select id="knownParam">
+              <option value="Ma">Mach number</option>
+              <option value="T0T">T₀/T</option>
+              <option value="p0p">p₀/p</option>
+              <option value="rho0rho">ρ₀/ρ</option>
+              <option value="AAstar">A/A*</option>
+            </select>
+          </div>
+          <label style="margin:0;">Value: <input type="number" id="paramValue" step="any" style="width:110px; display:inline-block; margin-left:.3rem;"></label>
         </div>
-        <button id="computedrag" type="button">Compute</button>
-        <div class="result">
-            <div class="box">
-                <div class="label">Drag D</div>
-                <div class="value"><span id="drag">—</span> N</div>
-            </div>
-            <div class="box">
-                <div class="label">Lift L</div>
-                <div class="value"><span id="lift">—</span> N</div>
-            </div>
-            <div class="box">
-                <div class="label">Dynamic pressure q</div>
-                <div class="value"><span id="q">—</span> Pa</div>
-            </div>
+      </div>
+      <div class="table-responsive" style="margin-top:1rem;">
+        <table class="calculator-table">
+          <tr>
+            <th>γ</th><th>Ma</th><th>T₀/T</th><th>p₀/p</th>
+            <th>ρ₀/ρ</th><th>A/A*</th><th>T/T*</th><th>p/p*</th><th>ρ/ρ*</th>
+          </tr>
+          <tr id="resultsRow">
+            <td id="res-gamma">—</td><td id="res-Ma">—</td><td id="res-T0T">—</td>
+            <td id="res-p0p">—</td><td id="res-rho0rho">—</td><td id="res-AAstar">—</td>
+            <td id="res-TTstar">—</td><td id="res-ppstar">—</td><td id="res-rhorhostar">—</td>
+          </tr>
+        </table>
+      </div>
+      <button id="computeIS">Fill Table</button>
+    </div>
+  </section>
+
+  <!-- OBLIQUE SHOCK -->
+  <section id="ShockCalculator" class="reveal">
+    <div class="section-header"><h2>Oblique Shock Wave Calculator</h2></div>
+    <p>Compute flow properties across an oblique shock wave given upstream conditions and shock angle.</p>
+    <div class="card" style="margin-top:1.2rem;">
+      <div class="row">
+        <div>
+          <label for="mach1">Upstream Mach M₁</label>
+          <input type="number" id="mach1" step="any" value="2.0" />
         </div>
-    </form>
-</section>
+        <div>
+          <label for="gamma_os">Specific Heat Ratio γ</label>
+          <input type="number" id="gamma_os" step="any" value="1.4" />
+        </div>
+        <div>
+          <label for="beta">Shock Angle β (°)</label>
+          <input type="number" id="beta" step="any" value="45" />
+        </div>
+      </div>
+      <button id="computeOblique">Compute Shock</button>
+      <div class="results" style="margin-top:1rem;">
+        <table>
+          <tr><th>Downstream Mach M₂</th>           <td id="mach2">—</td></tr>
+          <tr><th>Deflection angle θ (°)</th>        <td id="theta">—</td></tr>
+          <tr><th>Pressure Ratio P₂/P₁</th>          <td id="pRatio_os">—</td></tr>
+          <tr><th>Density Ratio ρ₂/ρ₁</th>           <td id="rhoRatio_os">—</td></tr>
+          <tr><th>Temperature Ratio T₂/T₁</th>       <td id="tRatio_os">—</td></tr>
+          <tr><th>Stag. Pressure Ratio P₀₂/P₀₁</th>  <td id="p0Ratio_os">—</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
 
-
-
-
-
+  <!-- DRAG & LIFT -->
+  <section id="DragCalculator" class="reveal">
+    <div class="section-header"><h2>Dynamic Pressure &amp; Drag / Lift</h2></div>
+    <p>Quick tool to compute dynamic pressure, drag, and lift forces on an object.</p>
+    <div class="card" style="margin-top:1.2rem;">
+      <div class="row">
+        <div>
+          <label for="speed">Speed V (m/s)</label>
+          <input type="number" id="speed" step="any" value="70" />
+        </div>
+        <div>
+          <label for="rho">Air density ρ (kg/m³)</label>
+          <input type="number" id="rho" step="any" value="1.225" />
+        </div>
+        <div>
+          <label for="area">Reference area A (m²)</label>
+          <input type="number" id="area" step="any" value="0.7" />
+        </div>
+        <div>
+          <label for="cd">Drag coefficient C<sub>d</sub></label>
+          <input type="number" id="cd" step="any" value="0.32" />
+        </div>
+        <div>
+          <label for="cl">Lift coefficient C<sub>L</sub></label>
+          <input type="number" id="cl" step="any" value="0.4" />
+        </div>
+      </div>
+      <button id="computedrag">Compute Forces</button>
+      <div class="result">
+        <div class="box"><div class="label">Drag D</div><div class="value"><span id="drag">—</span> N</div></div>
+        <div class="box"><div class="label">Lift L</div><div class="value"><span id="lift">—</span> N</div></div>
+        <div class="box"><div class="label">Dynamic pressure q</div><div class="value"><span id="q">—</span> Pa</div></div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
-  <a href="index.html">← Back to Home</a>
+<footer>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · <span class="gradient-text">Per aspera ad astra</span></div>
+</footer>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

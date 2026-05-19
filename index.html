@@ -1,236 +1,262 @@
 <!doctype html>
 <html lang="en">
-
-<!-- HEADER -->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Per aspera ad astra</title>
-  <meta name="description" content="This is my personal site! It includes some calculators and some lessons I learned from my journey." />
-  <link rel="stylesheet" href="style.css" /> <!-- Link to external CSS file -->
+  <meta name="description" content="Personal aerospace engineering site — calculators, rocket theory, and lessons from the journey." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-<!-- BODY -->
 <body>
 
-  <div class="sidebar">
-  <h2 style="color:white; padding-left:20px;">🚀 Menu</h2>
+<div id="reading-progress"></div>
+<canvas id="star-canvas"></canvas>
+
+<div class="sidebar">
+  <h2>🚀 Menu</h2>
   <a href="#About">About</a>
-  <a href="#My education">My education</a>
-  <a href="#requirements-timeline">My experience</a>
+  <a href="#My education">Education</a>
+  <a href="#requirements-timeline">Experience</a>
   <a href="#contact">Contact</a>
-  <!-- Add more links here -->
+</div>
+
+<header>
+  <div class="container nav">
+    <div class="logo">✈️ Per aspera ad astra</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Isentropic_calculator.html">Calculators</a>
+      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="Newsletter.html">Newsletter</a>
+    </nav>
   </div>
+</header>
 
-  <header>
-    <div class="container nav">
-      <div class="logo">✈️ Per aspera ad astra</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="Isentropic_calculator.html">Calculators</a>
-        <a href="Rocket_Theory.html">Rocket Theory</a>
-        <a href="Newsletter.html">Newsletter</a>
-      </nav>
-    </div>
-  </header>
+<main class="container">
 
-  <main class="container">
-    <section id="Introduction">
-      <h1>Hello there! Welcome to my site</h1>
-      <p>   This is my personal website dedicated to showcasing my work and projects in the aerospace field. It contains a bit about my background, and most of my interests. The real motivation behind this page is
-        to keep track of my experience and share what I have learned through the years. Despite this being for my personal use, anyone is free to roam this page and use its tools.
-      </p>
-      <div style="height: 2.5px;"></div>
-
-     <img src="images/Image1_rocket.png" 
-       alt="Rocket flying in space" 
-       style="display:block; margin:auto; max-width:100%; height:auto;">
-    </section>
-
-      <section id="About">
-      <h2>About me</h2>
-      </p>  If you have reached this far, I should present myself. I just graduated from my bachelor in aerospace engineering, which means I am oficially an engineer. My college years have been the most complicated yet amusing years
-      of my life. Each challenge brought the best of me and my classmates, and the lessons I learned will follow me throughout my carrer. You may be wondering where it may lead. Well, me too. However, I have always had an objective
-      in mind, and the name of this page could give you a little hint. <strong>"Per aspera ad astra"</strong>, which translates to "Through hardships to the stars". Of course, this sentence is not mine, but I couldn't have expressed it better. Indeed, <strong>this journey started when I decided to become an astronaut</strong>, over 15 years ago. 
-      Over time, I have met some brilliant minds, with similar interests and passions. I have discovered new branches of engineering, and my reasons to pursue this carrer have shifted. When I was young, I wanted to be in space,
-      feel the zero gravity and see earth from a unique perspective. Later, I became aware that what pushes me further is the human desire to explore the unknown. Over the years, I have learned to crave a great challenge, and enjoy
-      the feeling of completing it. Now, the will to contribute to enhancing humanity's knowledge and secure our place among the stars drives me forward.
-      <p>
-      <p>However, there is still much work to do, and my mission is far from being over. As you may have noticed, I am not an astronaut (yet, I hope). But my passion for engineering is still there, and thus I still push forward learning more
-        about rocket propulsion, astrophysics, satellites, launches, space vehicles... and with this page, programming! Because no matter how incredible the destination may be, the aerospace journey still fascinates me day after day, and
-        reminds me there are discoveries yet to be made in every single domain of science.
-      </p>
-    </section>
-
-    <section id="My education">
-      <h2>My education</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Aerospace Student @UC3M</h3>
-          <p>I completed my aerospace engineering degree at Universidad Carlos III de Madrid (UC3M).<p><p>As an engineer, I learned about aircrafts and rockets. After all, <strong>it is</strong> rocket science. </p>
-        </article>
-        <article class="card">
-          <h3>Purdue University exchange</h3>
-          <p>I participated in a student exchange program at Purdue University, making solid foundations in Propulsion and orbit Mechanics.</p>
-        </article>
-        <article class="card">
-          <h3>Space Engineering Master</h3>
-          <p>I am currently pursuing a Master's degree in Space Engineering at UC3M, learning about satellite subsystems, launchers, space comms and space missions.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Start of TIMELINE -->
-
-<section id="requirements-timeline">
-  <h2>My Experience</h2>
-  <ul class="timeline">
-    <div class="timeline-arrow"></div>
+  <!-- HERO -->
+  <section id="Introduction" class="hero-section" style="border-bottom:none; padding-top:5rem;">
+    <div class="hero-eyebrow">Aerospace Engineer · MA & Propulsion · Simulations · EPS & TH</div>
+    <h1 id="typewriter-title" data-text="Hello there. Welcome to my site.">Hello there. Welcome to my site.</h1>
+    <p class="hero-description">
+      A personal space dedicated to aerospace engineering: from rocket propulsion theory to simulation work, calculators, and lessons learned along the way. Built from scratch, for the love of the craft.
+    </p>
+    <div class="orbit-deco"></div>
     
-      <li class="timeline-item right" style="margin-top: 0rem;">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2025-2026</p>
-        <h3>EP2: Research under collaboration scholarship</h3>
-        <p style="text-align: center;"> EP2 is the plasma propulsion research team from the UC3M. During my first year in the master, I was granted the collaboration scholarship to research on plasma generation.</p>
-        <ul>
-          <li>My first task was to optimize the vacuum control system in the plasma chamber by designing a power PCB to centralize the control system. This system connects the valves, mass flow controllers and pressure sensors to a LabView module designed previously by the team.</li>
-          <li>Now, I am currently focusing on the design of an RF antenna and the impedance matching network to operate it in order to produce plasma within the same chamber.</li>
-          <li>Working on this project allowed me to learn more about circuits, board design, LabVIEW, hardware testing and integration.</li>
-        </ul>
-      </div>
-    </li>
+  </section>
 
-    <li class="timeline-item left" style="margin-top: 4rem;">
-      <div class="timeline-content card">
-        <p style="text-align: right;">2024-2025</p>
-        <h3>Simulations Engineer @Madrid Space Europe</h3>
-        <ul>
-          <li>Madrid Space is a consultant company for the Space Cluster. They solve thermal, structural and fluid problems, no matter how complex they are!</li>
-          <li>I learned how to perform three types of simulations: 
+  <!-- ABOUT -->
+  <section id="About" class="reveal">
+    <div class="section-header"><h2>About me</h2></div>
+    <div class="badge">Per aspera ad astra</div>
+    <p>
+      I just graduated from my bachelor in aerospace engineering — officially an engineer. My college years were the most complicated yet fascinating of my life.
+      Each challenge brought the best of me and my classmates, and the lessons learned will follow me throughout my career.
+    </p>
+    <p>
+      You may wonder where it leads. The name of this page gives a hint: <strong>"Through hardships to the stars."</strong>
+      This journey started when I decided to become an astronaut, over 15 years ago. Over time I've met brilliant minds, discovered new branches of engineering, and my reasons to pursue this career have evolved.
+      Now, the will to contribute to humanity's knowledge and secure our place among the stars drives me forward.
+    </p>
+    <p>
+      I am not an astronaut yet. But my passion for engineering is still there — rocket propulsion, astrophysics, satellites, launches, space vehicles, and programming. Because no matter how incredible the destination, the aerospace journey still fascinates me every single day.
+    </p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="My education" class="reveal">
+    <div class="section-header"><h2>My education</h2></div>
+    <div class="grid">
+      <article class="card reveal-left delay-1">
+        <div class="badge">B.Sc.</div>
+        <h3>Aerospace Engineering @UC3M</h3>
+        <p>Completed my aerospace engineering degree at Universidad Carlos III de Madrid. Learned about aircraft, rockets, and the fundamentals of propulsion. After all — <strong>it is</strong> rocket science.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Propulsion</span>
+          <span class="tech-tag">Aerodynamics</span>
+          <span class="tech-tag">Structures</span>
+        </div>
+      </article>
+      <article class="card reveal delay-2">
+        <div class="badge">Exchange</div>
+        <h3>Purdue University</h3>
+        <p>Student exchange program at Purdue University, building solid foundations in Propulsion and Orbital Mechanics. One of the best aerospace programs in the world.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Orbital Mechanics</span>
+          <span class="tech-tag">Advanced Propulsion</span>
+        </div>
+      </article>
+      <article class="card reveal-right delay-3">
+        <div class="badge">M.Sc.</div>
+        <h3>Space Engineering Master @UC3M</h3>
+        <p>Currently pursuing a Master's in Space Engineering — satellite subsystems, launchers, space communications, and space missions design.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Satellites</span>
+          <span class="tech-tag">Launchers</span>
+          <span class="tech-tag">Space Comms</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="requirements-timeline">
+    <div class="section-header"><h2>My Experience</h2></div>
+    <ul class="timeline">
+      <div class="timeline-arrow"></div>
+
+      <li class="timeline-item right reveal-right" style="margin-top:0;">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2025–2026</p>
+          <h3>EP2 · Research Scholarship @UC3M</h3>
+          <p style="text-align:center;">EP2 is the plasma propulsion research team at UC3M. Granted the collaboration scholarship to research plasma generation.</p>
+          <ul>
+            <li>Designed a power PCB to centralize vacuum control (valves, mass flow controllers, pressure sensors → LabVIEW).</li>
+            <li>Currently designing an RF antenna and impedance matching network to generate plasma in the chamber.</li>
+          </ul>
+          <div class="tech-tags" style="margin-top:.8rem;">
+            <span class="tech-tag">PCB Design</span>
+            <span class="tech-tag">LabVIEW</span>
+            <span class="tech-tag">RF Antennas</span>
+            <span class="tech-tag">Plasma</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="timeline-item left reveal-left" style="margin-top:4rem;">
+        <div class="timeline-content card">
+          <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
+          <h3>Simulations Engineer @Madrid Space Europe</h3>
+          <p style="text-align:center;">Space cluster consultant solving thermal, structural, and fluid problems.</p>
           <ul>
             <li>CFD with Hypermesh CFD and OpenFOAM</li>
             <li>Thermal analyses with ESATAN</li>
             <li>Structural analyses with Hypermesh (FEM)</li>
+            <li>Started as intern → junior engineer contract after 4 months!</li>
           </ul>
-          <li>It all started as an internship, but after 4 months I had a contract to work as a junior engineer!</li>
-        </ul>
-        <p style="text-align: center;"> I also defended my final year thesis and obtained 9.6/10! Nothing better than designing and simulating a rocket motor</p>
-        <img src="images/Portada_TFG.png" alt="Portada" width="300" style="display:block; margin:auto;">
-        <p style="text-align: center;"> Here is a quick snapshot of what the results looked like... </p>
-        <img src="images/Speed_TFG.png" alt="Speed" width="300" style="display:block; margin:auto;">
-      </div>
-    </li>
-    <li class="timeline-item right" style="margin-top: 0rem;">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2022-2025</p>
-        <h3>SAETA UC3M: Student's club</h3>
-        <ul>
-          <li>SAETA is a student group that builds UAVs</li>
-          <li>I participated in the first XtraChallenge, hosted by the UPV with our flying wing design</li>
-          <li>I also got started into CFD with Simscale and OpenFOAM</li>
-          <li>We received founding from Aernnova, Airbus, Fuvex and many others. Thanks to all the members of the CR team!</li>
-          <li>I designed the Motor integration part in CatiaV5 and 3D printed it</li>
-          <li>I was a member of the Propulsion and Systems team, working our way through the power system, motors, propellers... We even worked on the landing gear!</li>
-        </ul>
-      <p style="text-align: center;"> This is the blended wing SAETA presented to the competition. Despite only being able to take of shortly, it set the path for the 2024 competition. The newer models fly (almost...) as smooth as an A320!! </p>
-      <img src="images/Vencejo2.png" alt="Vencejo" width="300" style="display:block; margin:auto;">
-      <p style="text-align: center;"> And here is the Motor integration piece assemby! Entirely printed in lightwheight PLA for the competition  </p>
-      <img src="images/MIP.PNG" alt="MIP" width="300" style="display:block; margin:auto;">
-      </div>
-    </li>
-    <li class="timeline-item left">
-      <div class="timeline-content card">
-        <p style="text-align: right;">2024 - 2025</p>
-        <h3>Private tutor</h3>
-        <ul>
-          <li>I gave individual classes to High school Students, both in physics and mathematics to prepare them for the EVAU</li>
-        </ul>
-      </div>
-    </li>
-    <li class="timeline-item left">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2023 - 2024</p>
-        <h3>PSP Student Launch: Rocket design (SRM)</h3>
-        <ul>
-          <li>We had to meet NASA's requirements for a rocket competition</li>
-          <li>I was part of the team that designed the deployable payload that separates and lands on its own. It behave like a quadcopter!</li>
-          <li>We chose or built the necessary electronics</li>
-          <li>I acted as a structures Engineer while working on the payload</li>
-        </ul>
-      </div>
-    </li>
-    <li class="timeline-item left">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2024</p>
-        <h3>Purdue: Research Project</h3>
-        <ul>
-          <li>We used OpenVSP within a research team and a professor from Purdue to assess the software capacity to simulate UAV winglets</li>
-          <li>We even 3D printed the flying wing prototype!</li>
-        </ul>
-      <p style="text-align: center;"> Here is a picture of one of the OpenVSP models </p>
-      <img src="images/OVSP.PNG" alt="OVSP1" width="300" style="display:block; margin:auto;">
-      </div>
-    </li>
+          <p style="text-align:center; margin-top:.8rem;">Defended final year thesis: <strong>9.6 / 10</strong> — design and simulation of a micronozzle for in-space propulsion.</p>
+          <img src="images/Portada_TFG.png" alt="Thesis" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
+          <img src="images/Speed_TFG.png" alt="CFD result" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
+          <div class="tech-tags" style="margin-top:.8rem;">
+            <span class="tech-tag">OpenFOAM</span>
+            <span class="tech-tag">ESATAN</span>
+            <span class="tech-tag">HyperMesh</span>
+            <span class="tech-tag">FEM</span>
+          </div>
+        </div>
+      </li>
 
-    <li class="timeline-item right">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2023</p>
-        <h3>Valentin Sailing School</h3>
-        <ul>
-          <li>I Taught advanced concepts of meteorology, sailing, and navigation to a diverse age group</li>
-          <li>Developed my leadership & communication skills</li>
-          <li>I also led a group of people at sea to promote safe and enjoyable learning</li>
-        </ul>
-         <p style="text-align: center;"> I am afraid I dont have any pictures I can share, but I can assure the experience looked like this:</p>
-        <img src="images/Sailing.png" alt="Sailing" width="200" style="display:block; margin:auto;">
-      </div>
-    </li>
-    <li class="timeline-item left">
-      <div class="timeline-content card">
-        <p style="text-align: left;">2018 & 2019</p>
-        <h3>Typsa.SA & VMAWRE</h3>
-        <ul>
-          <li>I did two internships during High School, which were my first real contacts with the corporate sector</li>
-        </ul>
-      </div>
-    </li>
-  </ul>
-</section>
+      <li class="timeline-item right reveal-right">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2022–2025</p>
+          <h3>SAETA UC3M · Student UAV Club</h3>
+          <ul>
+            <li>Participated in the first XtraChallenge (UPV) with a flying wing design.</li>
+            <li>CFD experience with Simscale and OpenFOAM.</li>
+            <li>Funded by Aernnova, Airbus, Fuvex, and others.</li>
+            <li>Designed the Motor Integration Part in CatiaV5 — 3D printed for competition.</li>
+            <li>Member of Propulsion & Systems team.</li>
+          </ul>
+          <img src="images/Vencejo2.png" alt="Vencejo" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
+          <img src="images/MIP.PNG" alt="MIP" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
+          <div class="tech-tags" style="margin-top:.8rem;">
+            <span class="tech-tag">CatiaV5</span>
+            <span class="tech-tag">OpenFOAM</span>
+            <span class="tech-tag">3D Printing</span>
+          </div>
+        </div>
+      </li>
 
-    <!-- END of TIMELINE -->
+      <li class="timeline-item left reveal-left">
+        <div class="timeline-content card">
+          <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
+          <h3>Private Tutor · Physics & Maths</h3>
+          <ul>
+            <li>Individual classes to high school students preparing for the EVAU.</li>
+          </ul>
+        </div>
+      </li>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Feel free to contact me via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></p>
-      <p>Or either why not check my LinkedIn?: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230">Alvaro Casillas</a></p>
-    </section>
+      <li class="timeline-item left reveal-left">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023–2024</p>
+          <h3>PSP Student Launch · Rocket Design (SRM)</h3>
+          <ul>
+            <li>NASA requirements competition for rocket design.</li>
+            <li>Designed the deployable quadcopter payload that separates and lands autonomously.</li>
+            <li>Electronics selection and integration; acted as Structures Engineer.</li>
+          </ul>
+          <div class="tech-tags" style="margin-top:.8rem;">
+            <span class="tech-tag">SRM</span>
+            <span class="tech-tag">Payload Design</span>
+            <span class="tech-tag">Avionics</span>
+          </div>
+        </div>
+      </li>
 
-    <form action="https://api.web3forms.com/submit" method="POST">
+      <li class="timeline-item left reveal-left">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024</p>
+          <h3>Purdue · Research Project — OpenVSP</h3>
+          <ul>
+            <li>Used OpenVSP within a research team to assess UAV winglet simulation capabilities.</li>
+            <li>3D printed the flying wing prototype.</li>
+          </ul>
+          <img src="images/OVSP.PNG" alt="OpenVSP" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
+        </div>
+      </li>
 
+      <li class="timeline-item right reveal-right">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023</p>
+          <h3>Valentin Sailing School · Instructor</h3>
+          <ul>
+            <li>Taught advanced meteorology, sailing, and navigation to diverse age groups.</li>
+            <li>Led groups at sea; developed leadership and communication skills.</li>
+          </ul>
+          <img src="images/Sailing.png" alt="Sailing" width="180" style="display:block;margin:1rem auto;border-radius:.6rem;">
+        </div>
+      </li>
+
+      <li class="timeline-item left reveal-left">
+        <div class="timeline-content card">
+          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2018 &amp; 2019</p>
+          <h3>Typsa.SA &amp; VMAWRE · High School Internships</h3>
+          <ul>
+            <li>First real contacts with the corporate sector during high school.</li>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="section-header"><h2>Contact</h2></div>
+    <p>Feel free to reach out via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></p>
+    <p>Or check my LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></p>
+
+    <form action="https://api.web3forms.com/submit" method="POST" style="margin-top:1.5rem; max-width:560px;">
       <input type="hidden" name="access_key" value="168fb0ac-0517-4516-9edb-733023e860a2">
-      <input type="hidden" name="email_to" value="alvaro.cas.contact@gmail.com">
-
+      <input type="hidden" name="email_to"   value="alvaro.cas.contact@gmail.com">
       <label for="name">Name</label>
-      <input type="text" name="name" id="name" required>
-
+      <input type="text"  name="name"    id="name"    required>
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" required>
-
+      <input type="email" name="email"   id="email"   required>
       <label for="message">Message</label>
       <textarea name="message" id="message" required></textarea>
-      
-      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-      <!-- Custom Confirmation / Success Page -->
-      <!-- <input type="hidden" name="redirect" value="https://mywebsite.com/thanks.html"> -->
-
-      <button type="submit">Send email</button>
+      <input type="checkbox" name="botcheck" style="display:none;">
+      <button type="submit">Send Message ✉️</button>
     </form>
-  </main>
+  </section>
 
-  <footer>
-    <div class="container">© <span id="year"></span> Alvaro Casillas. Built from scratch.</div>
-  </footer>
-<script src="script.js"></script> <!-- Link to external JS file -->
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · Built from scratch · <span class="gradient-text">Per aspera ad astra</span></div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
