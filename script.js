@@ -401,6 +401,7 @@ const obliqueBtn = document.getElementById('computeOblique');
 if (obliqueBtn) obliqueBtn.addEventListener('click', computeObliqueShock);
 
 (function initRocket() {
+  if (!document.querySelector('.orbit-deco')) return;
   const c = document.createElement('canvas');
   c.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;';
   document.body.appendChild(c);
