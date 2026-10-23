@@ -2,6 +2,8 @@
   IMPORTS
   =========================== */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
 
 /* ===========================
   CSS Variables - THEME COLORS
@@ -11,7 +13,7 @@
   --bg-soft: #0d1635;
   --text: #e7eaf6;
   --muted: #8a9bc0;
-  --accent: #00f5d4;
+  --accent: #b6e7f7;
   --accent-2: #4db8ff;
   --accent-3: #ff6b6b;
   --card: #090f26;
@@ -160,7 +162,7 @@ header {
 }
 
 .logo {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Merriweather', monospace;
   font-weight: 700;
   font-size: .82rem;
   letter-spacing: 1.5px;
@@ -211,7 +213,7 @@ main section {
 h1, h2, h3 { line-height: 1.2; margin: 0 0 .7rem; }
 
 h1 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Merriweather', monospace;
   font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
   font-weight: 900;
   background: linear-gradient(135deg, var(--text) 0%, var(--accent) 50%, var(--accent-2) 100%);
@@ -223,7 +225,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Orbitron', monospace;
+  font-family: 'Merriweather', monospace;
   font-size: clamp(1.05rem, 1.8vw + .5rem, 1.4rem);
   font-weight: 700;
   color: var(--accent);
