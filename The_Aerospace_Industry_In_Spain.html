@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Aerospace Industry in Spain</title>
+  <meta name="description" content="Presenting the Industry Map: an interactive map of the aeronautics, space and defence companies in Spain, its filters, who it is for and the sources behind it." />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/Logo.png">
+  <style>
+    .map-cta { display: inline-block; margin: .6rem 0 .2rem; padding: .65rem 1.3rem; border-radius: 999px; border: 1px solid var(--accent-2);
+      color: var(--accent); text-decoration: none; font-family: 'Orbitron', monospace; font-size: .72rem; letter-spacing: 2px;
+      background: rgba(77,184,255,0.08); transition: background .25s, box-shadow .25s; }
+    .map-cta:hover { background: rgba(77,184,255,0.16); box-shadow: 0 0 22px rgba(77,184,255,0.25); color: var(--accent); }
+    .article-figure { margin: 1.4rem 0; text-align: center; }
+    .article-figure img { display: block; margin: 0 auto; border-radius: .8rem; border: 1px solid var(--border); box-shadow: 0 0 30px rgba(0,245,212,0.07); }
+    .article-figure figcaption { color: var(--muted); font-size: .8rem; margin-top: .6rem; line-height: 1.5; }
+    .figure-pair { display: flex; gap: 1.2rem; align-items: center; }
+    .figure-pair img.wide { flex: 1 1 0; min-width: 0; }
+    .figure-pair img.phone { flex: 0 0 auto; width: 31%; max-width: 230px; }
+    .sources li { word-break: break-word; }
+    .legend-dot { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-right: .35rem; vertical-align: -1px; }
+    @media (max-width: 760px) {
+      .figure-pair { flex-direction: column; }
+      .figure-pair img.wide { flex: none; width: 100%; }
+      .figure-pair img.phone { width: 60%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="reading-progress"></div>
+<canvas id="star-canvas"></canvas>
+
+<div class="sidebar">
+  <h2>🚀 Menu</h2>
+  <a href="#Overview">Overview</a>
+  <a href="#Features">What it does</a>
+  <a href="#Filters">Filters</a>
+  <a href="#Audience">Who it is for</a>
+  <a href="#Limitations">Pre-alpha notes</a>
+  <a href="#Sources">Sources</a>
+</div>
+
+<header>
+  <div class="container nav">
+    <div class="logo">✈️ Aerospace in Spain</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Isentropic_calculator.html">Calculators</a>
+      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="Newsletter.html">Newsletter</a>
+      <a href="mapa.html">Industry Map</a>
+    </nav>
+  </div>
+</header>
+
+    <main class="container">
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Overview">
+            <div class="article-date">Oct. 2026</div>
+            <h2>The aerospace industry in Spain, on one map</h2>
+            <p>When I started looking at where I could work after my master's, I ran into a surprisingly basic problem: there was no single place to
+              see the Spanish aerospace industry. There are association member lists, regional cluster websites, official registries and business
+              directories, but each one shows only a slice, and none of them tells you where the companies actually are. If you want to know which
+              space companies exist around Madrid, or who does composites in Andalusia, you end up opening twenty tabs.</p>
+            <p>So I built the tool I was missing. The <strong>Industry Map</strong> gathers more than 900 aeronautics, space and defence companies
+              in Spain into one interactive map. Every company has a card with its sector, its activity, a short description, its website and all
+              the sites we could locate, and you can filter the whole map in a couple of taps.</p>
+            <p>This article explains what the map can do, how the filters work, who I had in mind while building it and, finally, where the data
+              comes from. It is a pre-alpha, so expect rough edges. Let us dive into it!</p>
+            <a class="map-cta" href="mapa.html">OPEN THE INDUSTRY MAP →</a>
+            <figure class="article-figure">
+              <img src="images/Industry_Map.jpg" alt="The Industry Map showing clusters of aerospace companies across Spain" width="900" loading="lazy">
+              <figcaption>The map at country level: numbered circles group nearby companies and split up as you zoom in.</figcaption>
+            </figure>
+        </section>
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Features">
+            <h2>What you can do with it</h2>
+            <p>The map is designed to answer a simple question quickly: <em>who is doing what, and where?</em> These are the main things you can do with it:</p>
+            <ul>
+              <li><strong>Explore by zoom:</strong> at country level, companies are grouped into numbered circles. Zoom in, or tap a circle, and they split
+                into individual pins. This keeps the map readable even in hubs with hundreds of companies.</li>
+              <li><strong>Read a company card:</strong> tap any pin to open its card with the sectors it works in, the type of activity, a short description,
+                its tags (cluster memberships, approvals...), the list of sites and a link to its website. The map moves so the pin stays visible next to the card.</li>
+              <li><strong>See every site:</strong> many companies have more than one location (headquarters, plants, offices). Each one appears as its own pin,
+                and from the card you can jump between them.</li>
+              <li><strong>Browse crowded spots:</strong> when several companies share the same town, tapping the group fans the pins out and opens a list of
+                every company there, in alphabetical order, so you can go straight to the one you want.</li>
+              <li><strong>Search:</strong> type a company name or a city in the search box. Results update as you type, and pressing Enter zooms the map to the matches.</li>
+              <li><strong>Read the colours:</strong> pins are coloured by sector:
+                <span class="legend-dot" style="background:#2f7de1"></span>aeronautics,
+                <span class="legend-dot" style="background:#f08a24"></span>space and
+                <span class="legend-dot" style="background:#c0392b"></span>defence. A company that works in several sectors gets a pin split between their colours.</li>
+              <li><strong>Use it on any screen:</strong> on a phone or a tablet, the filters open as a full panel and the company card slides up from the bottom,
+                so it works one-handed on the train as well as on a desktop.</li>
+            </ul>
+        </section>
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Filters">
+            <h2>The filters</h2>
+            <p>The <strong>Filters</strong> button opens three groups. Inside a group, selecting several options shows companies that match <em>any</em> of them;
+              between groups, the conditions add up. For example, <em>Space</em> + <em>Engineering / R&amp;D</em> + <em>CITT-Espacio</em> shows the space engineering
+              companies listed by that Madrid cluster. Each option shows how many companies you would get, and the counts update live as you combine them.</p>
+            <ul>
+              <li><strong>Sector:</strong> Aeronautics, Space and Defence. A company can belong to more than one.</li>
+              <li><strong>Activity:</strong> MRO / maintenance, Drones / UAS, Engineering / R&amp;D, Structures &amp; composites, Engines &amp; propulsion,
+                Machining &amp; components, Space systems, Testing &amp; inspection and Startups / ESA BIC.</li>
+              <li><strong>Network or cluster:</strong> Andalucía Aerospace, Aerópolis (Seville), HEGAN (Basque Country), Espai Aero CV (Valencia), the Galician cluster,
+                AERA (Aragon), CAAC (Canary Islands), Castilla-La Mancha, CITT-Espacio, TEDAE, AESA Part 145 and AESA POA. This tells you the company appears
+                in that cluster or official list; its sites can be in another region.</li>
+            </ul>
+            <p>When you are happy with the selection, <strong>Show N companies</strong> closes the panel and zooms to the results, and <strong>Clear filters</strong>
+              takes you back to the full map. Filters and search work together, so you can, for instance, look for every MRO organisation around a given city.</p>
+            <figure class="article-figure">
+              <div class="figure-pair">
+                <img class="wide" src="images/Industry_Map_Filters.jpg" alt="Filter panel open with the sector and activity options" width="700" loading="lazy">
+                <img class="phone" src="images/Industry_Map_Mobile.jpg" alt="The Industry Map on a phone screen" width="230" loading="lazy">
+              </div>
+              <figcaption>The filter panel on a desktop, and the same map on a phone.</figcaption>
+            </figure>
+        </section>
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Audience">
+            <h2>Who it is for</h2>
+            <p>I built this map first and foremost for <strong>people looking for a job or an internship</strong> in the sector. When you are a student, you usually
+              know the five big names, but the Spanish industry is made of hundreds of smaller companies: suppliers, engineering firms, maintenance shops, test labs
+              and young space startups. Many of them are hiring and very few students have heard of them. With the map you can:</p>
+            <ul>
+              <li><strong>Find companies near you</strong>, or near the city you want to move to, and check the commute before applying.</li>
+              <li><strong>Target your speciality:</strong> if you love propulsion, structures or simulation, filter by that activity and build a list of companies to contact.</li>
+              <li><strong>Discover the hubs:</strong> see at a glance how the industry concentrates in areas such as Madrid, Andalusia, the Basque Country or Catalonia,
+                and which smaller regions also have an aerospace community.</li>
+              <li><strong>Prepare an application:</strong> the card gives you the activity and the website, a good starting point to learn about a company before an interview.</li>
+            </ul>
+            <p>It is also useful for <strong>engineers changing jobs</strong>, <strong>students looking for a thesis or a company for their TFG/TFM</strong>,
+              <strong>companies scouting suppliers or partners</strong> in a given region, and anyone curious about how big and how varied the Spanish aerospace
+              ecosystem really is. If you have ever wondered "who does this in Spain?", the map is for you.</p>
+        </section>
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Limitations">
+            <h2>A pre-alpha: what to keep in mind</h2>
+            <p>The data was compiled by hand from public sources, and an industry this size changes every month. A few things to keep in mind:</p>
+            <ul>
+              <li><strong>Locations:</strong> a pin may point to the municipality, or to the registered office, rather than to the exact plant or office. Within a town,
+                companies are grouped on the same spot on purpose.</li>
+              <li><strong>Coverage:</strong> some companies may be missing, and a few may have moved, merged or closed. Inclusion is not an endorsement.</li>
+              <li><strong>Language:</strong> the map interface is in English, while company descriptions are kept in their original Spanish for now.</li>
+              <li><strong>Check before you go:</strong> if a company interests you, take two minutes to confirm its address and activity on its website.
+                It is the quickest way to be sure.</li>
+            </ul>
+            <p>If you spot an error or a missing company, I would love to hear about it through the <a href="index.html#contact">contact section</a>.
+              Every correction makes the map better for the next person.</p>
+        </section>
+
+        <div style="height: 40px;"></div>
+        <section class="card" id="Sources">
+            <h2>Sources</h2>
+            <p>The company list was built by merging and de-duplicating the following public sources (consulted in October 2026), and then completing each
+              company's activity and sites from its own website and public business registries:</p>
+            <ul class="sources">
+              <li><strong>Business directory:</strong> <a href="https://www.einforma.com/empresas/Industria-Manufacturera/CNAE-3031-Construccion-Aeronautica-Y-Espacial-Civil-Y-Su-Maquinaria.html" target="_blank" rel="noopener">eInforma, companies registered under CNAE 3031 and 3032 (civil and military aeronautical and space construction)</a>.</li>
+              <li><strong>National association:</strong> <a href="https://tedae.org/Asociados/" target="_blank" rel="noopener">TEDAE, current members</a>.</li>
+              <li><strong>Spanish Aviation Safety Agency (AESA):</strong> <a href="https://www.seguridadaerea.gob.es/sites/default/files/listado_organizaciones_145.pdf" target="_blank" rel="noopener">Part 145 maintenance organisations</a> and
+                <a href="https://www.seguridadaerea.gob.es/sites/default/files/LISTA%20DE%20ORGANIZACIONES%20DE%20PRODUCCI%C3%93N%20ESPA%C3%91OLAS%20-%20FEBRERO%202023.pdf" target="_blank" rel="noopener">production organisations (POA, 2023 list)</a>.</li>
+              <li><strong>Regional clusters:</strong>
+                <a href="https://andaluciaaerospace.com/miembros-del-cluster/socios-de-pleno-derecho/" target="_blank" rel="noopener">Andalucía Aerospace</a>,
+                <a href="https://www.aeropolis.es/parque-tecnologico-aeroespacial-de-andalucia/" target="_blank" rel="noopener">Aerópolis</a>,
+                <a href="https://hegan.com/Corporativa/PAsociados.aspx" target="_blank" rel="noopener">HEGAN</a>,
+                <a href="https://espaiaerocv.es/socios/" target="_blank" rel="noopener">Espai Aero CV</a>,
+                <a href="https://www.consorcioaeroespacial.com/miembros/" target="_blank" rel="noopener">Consorcio Aeroespacial Gallego</a>,
+                <a href="https://www.aeracluster.com/quienes-somos/" target="_blank" rel="noopener">AERA</a>,
+                <a href="https://caac.com.es/miembros/" target="_blank" rel="noopener">CAAC</a>,
+                <a href="https://clusteraeronauticoclm.com" target="_blank" rel="noopener">Castilla-La Mancha aeronautics cluster</a> and
+                <a href="https://citt-espacio.madrimasd.org/index.php/miembros/empresas/" target="_blank" rel="noopener">CITT-Espacio</a>.</li>
+              <li><strong>Startups:</strong> <a href="https://esastar-emr.sso.esa.int/StartUps/StartUpsList" target="_blank" rel="noopener">ESA BIC incubatees and alumni registry</a>.</li>
+              <li><strong>Reference catalogues:</strong> <a href="https://plataforma-aeroespacial.es/ecosistema-aeroespacial-espanol/" target="_blank" rel="noopener">Plataforma Aeroespacial Española, Spanish aerospace ecosystem</a> and the
+                <a href="https://datos.gob.es/es/catalogo/e00003301-catalogo-industria-espanola-de-defensa-sexta-edicion-aeroespacial" target="_blank" rel="noopener">Ministry of Defence catalogue of the Spanish defence industry, aerospace sector</a>.</li>
+              <li><strong>Map:</strong> base map © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>, built with
+                <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> and
+                <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank" rel="noopener">Leaflet.markercluster</a>.</li>
+            </ul>
+        </section>
+        <p> I hope this map saves you some of the twenty tabs I had to open, and helps you find a place in this industry where you can grow. The sector in Spain is much
+          bigger and more diverse than it looks from the outside, and there is room for all kinds of engineers. Have a look, play with the filters, and good luck with the search!</p>
+        <p><a class="map-cta" href="mapa.html">OPEN THE INDUSTRY MAP →</a></p>
+    </main>
+
+<footer>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · <span class="gradient-text">Per aspera ad astra</span></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

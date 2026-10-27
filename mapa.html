@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industry Map · Per aspera ad astra</title>
+  <meta name="description" content="Interactive map of the aeronautics, space and defence companies in Spain." />
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="images/Logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <style>
+    /* Pantalla completa sin scroll de página: la cabecera ocupa lo que necesite y el mapa el resto.
+       (dvh evita que la barra del navegador móvil tape la parte inferior). */
+    body.pagina-mapa { height: 100vh; height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+    body.pagina-mapa > header, body.pagina-mapa > footer { flex: 0 0 auto; }
+    #mapa-app { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+    /* Sin border-box el padding se sumaba al ancho: en móvil la ficha y los filtros se salían de la pantalla. */
+    .mapa-leyenda, .mapa-leyenda *, #mapa-panel, #mapa-panel *, #mapa-lista-nodo, #mapa-lista-nodo * { box-sizing: border-box; }
+    #mapa { position: absolute; inset: 0; z-index: 1; }
+    .mapa-leyenda {
+      position: absolute; top: 12px; left: 56px; width: min(360px, calc(100% - 68px));
+      max-height: calc(100% - 24px); z-index: 500; display: flex; flex-direction: column;
+      background: rgba(6,13,31,.94); border: 1px solid var(--border, #26354d);
+      border-radius: 1rem; padding: .5rem; backdrop-filter: blur(8px);
+    }
+    .mapa-barra { display: flex; align-items: center; gap: .4rem; }
+    #mapa-toggle {
+      flex: 0 0 auto; display: inline-flex; align-items: center; gap: .45rem; font: inherit; font-size: .85rem;
+      color: var(--text, #fff); background: rgba(255,255,255,.06); border: 1px solid var(--border, #26354d);
+      border-radius: 999px; padding: .38rem .8rem; cursor: pointer;
+    }
+    #mapa-toggle:hover, #mapa-toggle[aria-expanded="true"] { border-color: var(--accent-2, #7dd3fc); }
+    #mapa-toggle .flecha { font-size: .65rem; transition: transform .2s; }
+    #mapa-toggle[aria-expanded="true"] .flecha { transform: rotate(180deg); }
+    .mapa-insignia {
+      min-width: 1.25rem; padding: 0 .38rem; border-radius: 999px; text-align: center;
+      background: var(--accent-2, #7dd3fc); color: #06101f; font-size: .72rem; font-weight: 700; line-height: 1.25rem;
+    }
+    .mapa-insignia[hidden] { display: none; }
+    .mapa-buscar {
+      flex: 1 1 auto; min-width: 0; font: inherit; font-size: .85rem; color: var(--text, #fff);
+      background: rgba(255,255,255,.06); border: 1px solid var(--border, #26354d);
+      border-radius: 999px; padding: .38rem .85rem;
+    }
+    .mapa-buscar::placeholder { color: var(--muted, #adb8ca); }
+    .mapa-resumen-fila { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .35rem .35rem 0; }
+    #mapa-resumen { color: var(--muted, #adb8ca); font-size: .76rem; line-height: 1.35; }
+    .mapa-limpiar {
+      flex: 0 0 auto; font: inherit; font-size: .78rem; color: var(--accent-2, #7dd3fc);
+      background: transparent; border: 0; padding: .1rem .2rem; cursor: pointer; text-decoration: underline;
+    }
+    .mapa-limpiar[hidden] { display: none; }
+    .mapa-limpiar, .mapa-info { margin-left: auto; }
+    .mapa-limpiar:not([hidden]) + .mapa-info { margin-left: .4rem; }
+    .mapa-info { display: inline-flex; align-items: center; min-height: 36px; color: var(--accent-2); font-size: .74rem; white-space: nowrap; text-decoration: none; padding: 0 .1rem; }
+    .mapa-limpiar { display: inline-flex; align-items: center; min-height: 36px; }
+    .mapa-info:hover { text-decoration: underline; }
+    #mapa-cuerpo {
+      overflow-y: auto; overscroll-behavior: contain; margin-top: .5rem; padding: 0 .35rem .4rem;
+      border-top: 1px solid var(--border, #26354d);
+    }
+    #mapa-cuerpo[hidden] { display: none; }
+    .mapa-grupo { margin-top: .8rem; }
+    .mapa-grupo[hidden] { display: none; }
+    .mapa-grupo h3 { margin: 0 0 .4rem; font-size: .8rem; font-weight: 600; color: var(--muted, #adb8ca); }
+    .mapa-grupo p { margin: .45rem 0 0; color: var(--muted, #adb8ca); font-size: .72rem; line-height: 1.4; }
+    .mapa-chips-fila { display: flex; flex-wrap: wrap; gap: .3rem; }
+    button.chip {
+      display: inline-flex; align-items: center; gap: .4rem; font: inherit; font-size: .78rem;
+      color: var(--text, #fff); background: transparent; border: 1px solid var(--border, #26354d);
+      border-radius: 999px; padding: .24rem .65rem; cursor: pointer;
+    }
+    button.chip:hover { border-color: var(--accent-2, #7dd3fc); }
+    button.chip.on { background: var(--accent-2, #7dd3fc); color: #06101f; border-color: transparent; }
+    button.chip.vacio { opacity: .4; }
+    button.chip i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: 0 0 auto; box-shadow: 0 0 0 1.5px rgba(255,255,255,.85); }
+    button.chip small { opacity: .75; }
+    .mapa-leyenda button:focus-visible, .mapa-aplicar:focus-visible, .mapa-buscar:focus-visible, .mapa-cerrar:focus-visible, .mapa-sede:focus-visible,
+    .mapa-lista-cerrar:focus-visible, .mapa-empresa-btn:focus-visible {
+      outline: 2px solid var(--accent-2, #7dd3fc); outline-offset: 2px;
+    }
+    .pin { width: 18px; height: 18px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 1px 5px rgba(0,0,0,.45); transition: transform .15s; }
+    .pin-area { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .pin.sel { transform: scale(1.35); }
+    @media (hover: hover) { .pin:hover { transform: scale(1.35); } }
+    .leaflet-container { -webkit-tap-highlight-color: transparent; }
+    .mapa-aplicar {
+      position: sticky; bottom: 0; display: block; width: 100%; margin: .9rem 0 0; padding: .65rem 1rem;
+      font: inherit; font-size: .9rem; font-weight: 600; color: #06101f; background: var(--accent-2, #7dd3fc);
+      border: 0; border-radius: .8rem; cursor: pointer; box-shadow: 0 -12px 14px -6px rgba(6,13,31,.96);
+    }
+
+    #mapa-panel {
+      position: absolute; top: 0; right: 0; bottom: 0; width: min(400px, 100%); z-index: 600;
+      background: var(--card, #101827); border-left: 1px solid var(--border, #26354d);
+      padding: 1.4rem 1.3rem 2rem; overflow-y: auto; transform: translateX(100%);
+      transition: transform .28s ease; box-shadow: -8px 0 30px rgba(0,0,0,.35);
+    }
+    #mapa-panel.abierto { transform: none; }
+    #mapa-panel h2 { font-size: 1.3rem; margin: .2rem 2rem .3rem 0; }
+    #mapa-panel p { line-height: 1.55; }
+    .mapa-cerrar {
+      position: absolute; top: .8rem; right: .8rem; width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid var(--border, #26354d); background: transparent; color: var(--text, #fff);
+      font-size: 1.1rem; cursor: pointer;
+    }
+    .mapa-meta { color: var(--muted, #adb8ca); font-size: .9rem; margin: 0 0 1rem; }
+    .mapa-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0; }
+    .mapa-tags span { border: 1px solid var(--border, #26354d); border-radius: 999px; padding: .15rem .65rem; font-size: .8rem; color: var(--accent, #9fc7ff); }
+    .mapa-sedes { list-style: none; padding: 0; margin: .5rem 0 1.2rem; }
+    .mapa-sede {
+      width: 100%; text-align: left; background: transparent; color: var(--text, #fff);
+      border: 1px solid var(--border, #26354d); border-radius: .6rem; padding: .55rem .8rem;
+      margin-bottom: .4rem; font: inherit; cursor: pointer;
+    }
+    .mapa-sede:hover, .mapa-sede.act { border-color: var(--accent-2, #7dd3fc); background: var(--card-hover, #1b2b42); }
+    .mapa-web { display: inline-block; color: var(--accent-2, #7dd3fc); overflow-wrap: anywhere; }
+    .mapa-sin-web { color: var(--muted, #adb8ca); font-size: .9rem; }
+    .mapa-nota { color: var(--muted, #adb8ca); font-size: .78rem; margin-top: 1.4rem; }
+
+    /* Lista lateral que aparece al desplegar en círculo los marcadores de un grupo. */
+    #mapa-lista-nodo {
+      position: absolute; top: 86px; right: 12px; bottom: 12px; width: min(320px, calc(100% - 24px));
+      max-height: calc(100% - 98px); z-index: 650; display: flex; flex-direction: column;
+      color: var(--text, #fff); background: rgba(16,24,39,.97);
+      border: 1px solid var(--border, #26354d); border-radius: 1rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,.4); backdrop-filter: blur(10px);
+      overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none;
+      transform: translateX(calc(100% + 20px)); transition: transform .25s ease, opacity .25s ease, visibility .25s;
+    }
+    #mapa-lista-nodo.abierto {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0);
+    }
+    .mapa-lista-cabecera {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem;
+      padding: 1rem 1rem .65rem; border-bottom: 1px solid var(--border, #26354d);
+    }
+    .mapa-lista-cabecera h2 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
+    .mapa-lista-cabecera p { margin: .3rem 0 0; color: var(--muted, #adb8ca); font-size: .8rem; }
+    .mapa-lista-cerrar {
+      flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--border, #26354d); background: transparent; color: var(--text, #fff);
+      font-size: 1rem; cursor: pointer;
+    }
+    #mapa-lista-empresas { list-style: none; margin: 0; padding: .55rem; overflow-y: auto; overscroll-behavior: contain; }
+    #mapa-lista-empresas li { margin: 0; padding: 0; }
+    .mapa-empresa-btn {
+      display: block; width: 100%; padding: .7rem .75rem; margin: 0 0 .35rem; text-align: left;
+      color: var(--text, #fff); background: transparent; border: 1px solid transparent;
+      border-radius: .65rem; font: inherit; cursor: pointer; overflow-wrap: anywhere;
+    }
+    .mapa-empresa-btn:hover { background: var(--card-hover, #1b2b42); border-color: var(--accent-2, #7dd3fc); }
+    .mapa-empresa-nombre { display: block; font-size: .9rem; font-weight: 600; }
+    .mapa-empresa-sede { display: block; margin-top: .2rem; color: var(--muted, #adb8ca); font-size: .77rem; }
+    .mapa-lista-vacia { padding: 1rem; color: var(--muted, #adb8ca); font-size: .9rem; }
+
+    .leaflet-container { font-family: inherit; }
+
+    /* Teléfonos: filtros a todo el ancho y zoom abajo a la izquierda (arriba lo taparían los filtros). */
+    @media (max-width: 700px) {
+      .mapa-leyenda { left: 12px; width: calc(100% - 24px); top: 10px; max-height: 82%; }
+      .leaflet-top.leaflet-left { top: auto; bottom: 22px; }
+    }
+    /* Ficha y lista como hoja inferior: teléfonos, y tablets en vertical (el lateral taparía media pantalla). */
+    @media (max-width: 700px), (max-width: 1024px) and (orientation: portrait) {
+      #mapa-panel {
+        top: auto; left: 0; right: 0; width: 100%; height: 62%; max-height: 640px; border-left: 0;
+        border-top: 1px solid var(--border, #26354d); border-radius: 1.1rem 1.1rem 0 0; transform: translateY(100%);
+        padding: 1.7rem 1.2rem max(1.6rem, env(safe-area-inset-bottom)); overscroll-behavior: contain;
+      }
+      #mapa-panel::before {
+        content: ''; position: absolute; top: .5rem; left: 50%; width: 42px; height: 4px; margin-left: -21px;
+        border-radius: 4px; background: var(--border, #26354d);
+      }
+      #mapa-panel.abierto { transform: translateY(0); }
+      #mapa-lista-nodo { top: auto; left: 10px; right: 10px; bottom: 10px; width: auto; max-height: 40%; transform: translateY(calc(100% + 20px)); }
+      #mapa-lista-nodo.abierto { transform: translateY(0); }
+    }
+    /* Pantallas táctiles: zonas de toque de 40 px o más y letra de 16 px en el buscador (iOS hace zoom si es menor). */
+    @media (pointer: coarse), (max-width: 700px) {
+      .mapa-buscar { font-size: 16px; min-height: 42px; }
+      #mapa-toggle { min-height: 42px; }
+      button.chip { min-height: 38px; padding: .4rem .85rem; font-size: .85rem; }
+      .mapa-limpiar { min-height: 36px; padding: .4rem .5rem; }
+      .mapa-aplicar { min-height: 46px; }
+      .mapa-cerrar { width: 44px; height: 44px; top: .6rem; right: .6rem; }
+      #mapa-panel h2 { margin-right: 2.8rem; }
+      .mapa-lista-cerrar { width: 42px; height: 42px; }
+      .mapa-sede { min-height: 46px; }
+      .mapa-empresa-btn { min-height: 52px; }
+    }
+    /* Tablet, móvil o poca altura (móvil apaisado): sin pie, para dar todo el espacio al mapa. */
+    @media (max-width: 1024px), (max-height: 560px) { body.pagina-mapa > footer { display: none; } }
+    @media (max-height: 560px) { #mapa-app { min-height: 240px; } }
+    @media (prefers-reduced-motion: reduce) {
+      #mapa-panel, #mapa-lista-nodo, .pin { transition: none; }
+    }
+  </style>
+</head>
+<body class="pagina-mapa">
+<header>
+  <div class="container nav">
+    <div class="logo">✈️ Industry Map</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Isentropic_calculator.html">Calculators</a>
+      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="Newsletter.html">Newsletter</a>
+      <a href="mapa.html" aria-current="page">Industry Map</a>
+    </nav>
+  </div>
+</header>
+
+<div id="mapa-app">
+  <div id="mapa" aria-label="Map of aerospace companies in Spain"></div>
+  <div class="mapa-leyenda" role="group" aria-label="Map filters">
+    <div class="mapa-barra">
+      <button type="button" id="mapa-toggle" aria-expanded="false" aria-controls="mapa-cuerpo">
+        Filters <span class="mapa-insignia" id="mapa-insignia" hidden>0</span><span class="flecha" aria-hidden="true">▼</span>
+      </button>
+      <input type="search" id="mapa-buscar" class="mapa-buscar" placeholder="Search company or city" aria-label="Search company or city" autocomplete="off" />
+    </div>
+    <div class="mapa-resumen-fila">
+      <span id="mapa-resumen" role="status" aria-live="polite">Loading companies…</span>
+      <button type="button" class="mapa-limpiar" id="mapa-limpiar" hidden>Clear filters</button>
+      <a class="mapa-info" href="The_Aerospace_Industry_In_Spain.html">About the map</a>
+    </div>
+    <div id="mapa-cuerpo" hidden>
+      <section class="mapa-grupo" id="grupo-sector" aria-label="Filter by sector">
+        <h3>Sector</h3>
+        <div class="mapa-chips-fila" id="mapa-sectores"></div>
+        <p>A multi-coloured pin belongs to several sectors.</p>
+      </section>
+      <section class="mapa-grupo" id="grupo-actividad" aria-label="Filter by activity">
+        <h3>Activity</h3>
+        <div class="mapa-chips-fila" id="mapa-chips"></div>
+      </section>
+      <section class="mapa-grupo" id="grupo-redes" aria-label="Filter by network or cluster">
+        <h3>Network or cluster</h3>
+        <div class="mapa-chips-fila" id="mapa-redes"></div>
+        <p>The company appears in that cluster or registry. Its sites may be in another region.</p>
+      </section>
+      <button type="button" class="mapa-aplicar" id="mapa-aplicar">Show companies</button>
+    </div>
+  </div>
+  <aside id="mapa-panel" aria-live="polite"></aside>
+  <aside id="mapa-lista-nodo" aria-label="Companies in the expanded group" aria-hidden="true">
+    <div class="mapa-lista-cabecera">
+      <div>
+        <h2>Companies at this spot</h2>
+        <p id="mapa-lista-contador">Select a company to see its card.</p>
+      </div>
+      <button class="mapa-lista-cerrar" id="mapa-lista-cerrar" type="button" aria-label="Close list">✕</button>
+    </div>
+    <ul id="mapa-lista-empresas"></ul>
+  </aside>
+</div>
+
+<footer>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · <span class="gradient-text">Per aspera ad astra</span></div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="mapa_data.js"></script>
+<script>
+(function () {
+  'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var COLOR = { aero: '#2f7de1', espacial: '#f08a24', defensa: '#c0392b' };
+  var NOMBRE = { aero: 'Aeronautics', espacial: 'Space', defensa: 'Defence' };
+  var COLOR_SIN_SECTOR = '#7f8c8d';
+  // Fichas de un mapa_data.js antiguo (sin campo "sectores"): se deriva del sector único.
+  var SECTOR_ANTIGUO = { aero: ['aero'], espacial: ['espacial'], defensa: ['defensa'], ambos: ['aero', 'espacial'] };
+
+  var map = L.map('mapa', { zoomControl: true, minZoom: 4 }).setView([40.2, -3.7], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+  }).addTo(map);
+
+  var cluster = L.markerClusterGroup({ maxClusterRadius: 45, showCoverageOnHover: false, spiderfyDistanceMultiplier: 1.3 });
+  map.addLayer(cluster);
+  var panel = document.getElementById('mapa-panel');
+  var listaNodo = document.getElementById('mapa-lista-nodo');
+  var listaEmpresas = document.getElementById('mapa-lista-empresas');
+  var listaContador = document.getElementById('mapa-lista-contador');
+  var markers = [];
+  var desplegados = [];
+  var selEl = null;
+  var appEl = document.getElementById('mapa-app');
+  // Misma condición que el CSS: ficha y lista salen como hoja inferior en móvil y en tablet vertical.
+  var MQ_HOJA = window.matchMedia('(max-width: 700px), (max-width: 1024px) and (orientation: portrait)');
+  // El mapa se redimensiona solo al cambiar de tamaño la ventana; esto cubre también cambios de la cabecera o de la barra del navegador.
+  if (window.ResizeObserver) new ResizeObserver(function () { map.invalidateSize({ pan: false }); }).observe(appEl);
+
+  // Parte del mapa que queda a la vista mientras hay una ficha o lista abierta.
+  function zonaVisible(cubierta) {
+    var W = appEl.clientWidth, H = appEl.clientHeight;
+    var ley = document.querySelector('.mapa-leyenda');
+    if (MQ_HOJA.matches) return { x0: 0, x1: W, y0: ley.offsetTop + ley.offsetHeight + 6, y1: H - cubierta.offsetHeight };
+    return { x0: 0, x1: W - cubierta.offsetWidth, y0: 0, y1: H };
+  }
+  function centroDe(zv) {
+    var W = appEl.clientWidth, H = appEl.clientHeight;
+    if (zv.x1 - zv.x0 < 100 || zv.y1 - zv.y0 < 40) return [W / 2, H / 2];
+    return [(zv.x0 + zv.x1) / 2, (zv.y0 + zv.y1) / 2];
+  }
+  // Va a un punto dejándolo centrado en la parte visible (no escondido bajo la ficha).
+  function irA(lat, lon, zoom) {
+    var c = centroDe(zonaVisible(panel));
+    var p = map.project([lat, lon], zoom).add([appEl.clientWidth / 2 - c[0], appEl.clientHeight / 2 - c[1]]);
+    map.flyTo(map.unproject(p, zoom), zoom, { duration: .8 });
+  }
+  function verGrupo(grupo) {
+    if (!grupo) return;
+    var c = centroDe(zonaVisible(listaNodo));
+    var pt = map.latLngToContainerPoint(grupo.getLatLng());
+    if (Math.abs(pt.x - c[0]) > 4 || Math.abs(pt.y - c[1]) > 4) map.panBy([pt.x - c[0], pt.y - c[1]], { duration: .4 });
+  }
+  function ajustarVista() {
+    var ps = markers.filter(function (m) { return pasa(m._empresa); }).map(function (m) { return m.getLatLng(); });
+    if (ps.length) map.fitBounds(L.latLngBounds(ps).pad(0.15), { maxZoom: 10, duration: .8 });
+  }
+
+  function esc(t) {
+    var d = document.createElement('div');
+    d.textContent = (t === null || t === undefined) ? '' : String(t);
+    return d.innerHTML;
+  }
+  function escAttr(t) {
+    return esc(t).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function urlSegura(url) {
+    return typeof url === 'string' && /^https?:\/\/\S+$/i.test(url) ? url : '';
+  }
+  function coordValida(s) {
+    return Array.isArray(s) && s.length >= 3 &&
+      Number.isFinite(Number(s[1])) && Number.isFinite(Number(s[2])) &&
+      Number(s[1]) >= -90 && Number(s[1]) <= 90 &&
+      Number(s[2]) >= -180 && Number(s[2]) <= 180;
+  }
+
+  function norm(t) {
+    return String(t === null || t === undefined ? '' : t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+  // Fondo del pin: color liso con un sector; con varios, el círculo se reparte a partes iguales.
+  function fondoPin(sectores) {
+    var cs = sectores.map(function (s) { return COLOR[s]; }).filter(Boolean);
+    if (!cs.length) return COLOR_SIN_SECTOR;
+    if (cs.length === 1) return cs[0];
+    return 'conic-gradient(' + cs.map(function (c, i) {
+      return c + ' ' + (i * 100 / cs.length).toFixed(2) + '% ' + ((i + 1) * 100 / cs.length).toFixed(2) + '%';
+    }).join(', ') + ')';
+  }
+  function nombreSectores(emp) {
+    return emp.sectores.length ? emp.sectores.map(function (s) { return NOMBRE[s]; }).join(' · ') : 'Sector not determined';
+  }
+
+  // Normaliza y valida datos aunque el Excel haya dejado algún campo vacío.
+  (EMPRESAS || []).forEach(function (emp) {
+    if (!Array.isArray(emp.sectores)) emp.sectores = SECTOR_ANTIGUO[emp.sector] || [];
+    if (!Array.isArray(emp.acts)) emp.acts = [];
+    if (!Array.isArray(emp.redes)) emp.redes = [];
+    if (!Array.isArray(emp.tags)) emp.tags = [];
+    if (!Array.isArray(emp.sedes)) emp.sedes = [];
+    emp.sedes = emp.sedes.filter(coordValida);
+    emp.web = urlSegura(emp.web);
+    emp.desc = emp.desc || 'Description pending.';
+    emp.tipo = emp.tipo || 'Activity type pending.';
+    emp._q = norm(emp.nombre + ' ' + emp.sedes.map(function (s) { return s[0]; }).join(' '));
+  });
+
+  var conCoordenadas = EMPRESAS.filter(function (e) { return e.sedes.length > 0; }).length;
+
+  function cerrarListaNodo() {
+    listaNodo.classList.remove('abierto');
+    listaNodo.setAttribute('aria-hidden', 'true');
+  }
+
+  function mostrarListaNodo(marcadores) {
+    // Orden alfabético por empresa (sin distinguir mayúsculas ni tildes); mismas empresas juntas por orden de sede.
+    desplegados = marcadores.slice().sort(function (a, b) {
+      var na = a._empresa ? a._empresa.nombre : '', nb = b._empresa ? b._empresa.nombre : '';
+      return String(na).localeCompare(String(nb), 'es', { sensitivity: 'base', numeric: true }) || (a._sedeIndex || 0) - (b._sedeIndex || 0);
+    });
+    listaEmpresas.innerHTML = '';
+
+    if (!desplegados.length) {
+      listaEmpresas.innerHTML = '<li class="mapa-lista-vacia">No companies found at this spot.</li>';
+      listaContador.textContent = '0 companies';
+    } else {
+      listaContador.textContent = desplegados.length + (desplegados.length === 1 ? ' location' : ' locations') + ' · alphabetical';
+      listaEmpresas.innerHTML = desplegados.map(function (m, i) {
+        var emp = m._empresa;
+        var sede = emp && emp.sedes[m._sedeIndex] ? emp.sedes[m._sedeIndex][0] : '';
+        return '<li><button type="button" class="mapa-empresa-btn" data-marker-index="' + i + '">' +
+          '<span class="mapa-empresa-nombre">' + esc(emp ? emp.nombre : 'Unnamed company') + '</span>' +
+          (sede ? '<span class="mapa-empresa-sede">' + esc(sede) + '</span>' : '') +
+          '</button></li>';
+      }).join('');
+    }
+
+    listaNodo.classList.add('abierto');
+    listaNodo.setAttribute('aria-hidden', 'false');
+  }
+
+  function cerrar() {
+    panel.classList.remove('abierto');
+    if (selEl) selEl.classList.remove('sel');
+    selEl = null;
+  }
+
+  function abrir(emp, idx) {
+    cerrarListaNodo();
+    if (MQ_HOJA.matches) cerrarFiltros();
+    var s = emp.sedes[idx];
+    var web = emp.web
+      ? '<p><a class="mapa-web" href="' + escAttr(emp.web) + '" target="_blank" rel="noopener noreferrer">Website ↗</a></p>'
+      : '<p class="mapa-sin-web">Website not available or not yet confirmed.</p>';
+    panel.innerHTML =
+      '<button class="mapa-cerrar" aria-label="Close panel">✕</button>' +
+      '<h2>' + esc(emp.nombre) + '</h2>' +
+      '<p class="mapa-meta">' + esc(nombreSectores(emp)) + ' · ' + esc(emp.tipo) + '</p>' +
+      '<p>' + esc(emp.desc) + '</p>' +
+      '<div class="mapa-tags">' + emp.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
+      '<strong>' + (emp.sedes.length === 1 ? 'Site' : 'Sites') + ' (' + emp.sedes.length + ')</strong>' +
+      '<ul class="mapa-sedes">' + emp.sedes.map(function (x, i) {
+        return '<li><button class="mapa-sede' + (i === idx ? ' act' : '') + '" data-i="' + i + '">' + esc(x[0]) + '</button></li>';
+      }).join('') + '</ul>' +
+      web +
+      '<p class="mapa-nota">Coordinates may point to the municipality rather than the exact facility. Company details are kept in their original Spanish.</p>';
+    panel.classList.add('abierto');
+    panel.scrollTop = 0;
+    panel.querySelector('.mapa-cerrar').onclick = cerrar;
+    panel.querySelectorAll('.mapa-sede').forEach(function (b) {
+      b.onclick = function () {
+        var i = Number(b.dataset.i);
+        if (!emp.sedes[i]) return;
+        abrir(emp, i);
+        irA(Number(emp.sedes[i][1]), Number(emp.sedes[i][2]), 12);
+      };
+    });
+  }
+
+  // Leaflet.markercluster dispara "spiderfied" cuando separa los marcadores
+  // solapados en círculo. La lista muestra exactamente los marcadores de ese grupo.
+  cluster.on('spiderfied', function (e) {
+    cerrar();
+    if (MQ_HOJA.matches) cerrarFiltros();
+    mostrarListaNodo(e.markers || []);
+    verGrupo(e.cluster);
+  });
+  cluster.on('unspiderfied', function () {
+    cerrarListaNodo();
+  });
+
+  document.getElementById('mapa-lista-cerrar').addEventListener('click', function () {
+    cerrarListaNodo();
+    if (typeof cluster.unspiderfy === 'function') cluster.unspiderfy();
+  });
+
+  listaEmpresas.addEventListener('click', function (e) {
+    var boton = e.target.closest('button[data-marker-index]');
+    if (!boton) return;
+    var marker = desplegados[Number(boton.dataset.markerIndex)];
+    if (!marker) return;
+    cerrarListaNodo();
+    marker.fire('click');
+  });
+
+  var bounds = L.latLngBounds();
+  EMPRESAS.forEach(function (emp) {
+    emp.sedes.forEach(function (s, i) {
+      var fondo = fondoPin(emp.sectores);
+      var icon = L.divIcon({
+        className: '',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        html: '<div class="pin-area"><div class="pin" style="background:' + fondo + '"></div></div>'
+      });
+      var lat = Number(s[1]), lon = Number(s[2]);
+      var m = L.marker([lat, lon], {
+        icon: icon,
+        title: emp.nombre + ' — ' + s[0],
+        keyboard: true
+      });
+      m._empresa = emp;
+      m._sedeIndex = i;
+      m.on('click', function () {
+        if (selEl) selEl.classList.remove('sel');
+        selEl = m.getElement() && m.getElement().querySelector('.pin');
+        if (selEl) selEl.classList.add('sel');
+        abrir(emp, i);
+        irA(lat, lon, Math.max(map.getZoom(), 10));
+      });
+      markers.push(m);
+      bounds.extend([lat, lon]);
+    });
+  });
+  cluster.addLayers(markers);
+  if (markers.length && bounds.isValid()) {
+    map.fitBounds(bounds.pad(0.05), { maxZoom: 7 });
+  }
+
+  /* ==FILTROS== */
+  // Cada grupo combina sus opciones con "o" (cualquiera); los grupos se combinan entre sí con "y".
+  // Sin nada seleccionado, el grupo no filtra.
+  var SECTORES = [['aero', 'Aeronautics'], ['espacial', 'Space'], ['defensa', 'Defence']];
+  var ACTIVIDADES = ['MRO / mantenimiento', 'Drones / UAS', 'Ingeniería / I+D', 'Estructuras y composites',
+    'Motores y propulsión', 'Mecanizado y componentes', 'Sistemas espaciales', 'Ensayos e inspección', 'Startups / ESA BIC'];
+  var REDES = ['Andalucía Aerospace', 'Aerópolis (Sevilla)', 'HEGAN (País Vasco)', 'Espai Aero CV (C. Valenciana)',
+    'Clúster gallego', 'AERA (Aragón)', 'CAAC (Canarias)', 'Castilla-La Mancha', 'CITT-Espacio', 'TEDAE', 'AESA Parte 145', 'AESA POA'];
+  // Las claves coinciden con los valores de mapa_data.js (en español); aquí solo se traduce lo que se muestra.
+  var ETIQUETA = {
+    'MRO / mantenimiento': 'MRO / maintenance', 'Ingeniería / I+D': 'Engineering / R&D', 'Estructuras y composites': 'Structures & composites',
+    'Motores y propulsión': 'Engines & propulsion', 'Mecanizado y componentes': 'Machining & components', 'Sistemas espaciales': 'Space systems',
+    'Ensayos e inspección': 'Testing & inspection', 'Aerópolis (Sevilla)': 'Aerópolis (Seville)', 'HEGAN (País Vasco)': 'HEGAN (Basque Country)',
+    'Espai Aero CV (C. Valenciana)': 'Espai Aero CV (Valencia)', 'Clúster gallego': 'Galician cluster', 'AERA (Aragón)': 'AERA (Aragon)',
+    'CAAC (Canarias)': 'CAAC (Canary Islands)', 'AESA Parte 145': 'AESA Part 145'
+  };
+  var CAMPOS = ['sectores', 'acts', 'redes'];
+  var sel = { sectores: {}, acts: {}, redes: {} };
+  var texto = '';
+
+  function claves(campo) { return Object.keys(sel[campo]).filter(function (k) { return sel[campo][k]; }); }
+  function hayFiltros() { return !!texto || CAMPOS.some(function (c) { return claves(c).length > 0; }); }
+  // "ignorar" permite contar cuántas fichas saldrían al activar una opción de ese grupo.
+  function pasa(emp, ignorar) {
+    if (!emp.sedes.length) return false;
+    if (ignorar !== 'q' && texto && emp._q.indexOf(texto) < 0) return false;
+    for (var i = 0; i < CAMPOS.length; i++) {
+      var c = CAMPOS[i];
+      if (c === ignorar) continue;
+      var a = claves(c);
+      if (a.length && !a.some(function (k) { return emp[c].indexOf(k) >= 0; })) return false;
+    }
+    return true;
+  }
+  /* ==FIN FILTROS== */
+
+  var controles = [];
+  var resumen = document.getElementById('mapa-resumen');
+  var botonLimpiar = document.getElementById('mapa-limpiar');
+  var insignia = document.getElementById('mapa-insignia');
+  var botonAplicar = document.getElementById('mapa-aplicar');
+
+  function actualizar() {
+    cerrarListaNodo();
+    cluster.clearLayers();
+    cluster.addLayers(markers.filter(function (m) { return pasa(m._empresa); }));
+    controles.forEach(function (c) {
+      var n = EMPRESAS.filter(function (e) { return pasa(e, c.campo) && e[c.campo].indexOf(c.clave) >= 0; }).length;
+      c.num.textContent = n;
+      c.btn.classList.toggle('vacio', n === 0 && !sel[c.campo][c.clave]);
+    });
+    var visibles = EMPRESAS.filter(function (e) { return pasa(e); }).length;
+    resumen.textContent = (hayFiltros()
+      ? visibles + ' of ' + conCoordenadas + ' companies'
+      : conCoordenadas + ' companies on the map');
+    botonAplicar.textContent = visibles === 1 ? 'Show 1 company' : 'Show ' + visibles + ' companies';
+    botonLimpiar.hidden = !hayFiltros();
+    var nActivos = CAMPOS.reduce(function (n, c) { return n + claves(c).length; }, 0) + (texto ? 1 : 0);
+    insignia.textContent = nActivos;
+    insignia.hidden = !nActivos;
+  }
+
+  function crearChip(contenedor, campo, clave, etiqueta, color) {
+    var total = EMPRESAS.filter(function (e) { return e.sedes.length && e[campo].indexOf(clave) >= 0; }).length;
+    if (!total) return;
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.setAttribute('aria-pressed', 'false');
+    if (color) { var punto = document.createElement('i'); punto.style.background = color; b.appendChild(punto); }
+    b.appendChild(document.createTextNode(etiqueta));
+    var num = document.createElement('small');
+    b.appendChild(num);
+    b.onclick = function () {
+      sel[campo][clave] = !sel[campo][clave];
+      b.classList.toggle('on', !!sel[campo][clave]);
+      b.setAttribute('aria-pressed', String(!!sel[campo][clave]));
+      actualizar();
+    };
+    contenedor.appendChild(b);
+    controles.push({ btn: b, num: num, campo: campo, clave: clave });
+  }
+
+  SECTORES.forEach(function (s) { crearChip(document.getElementById('mapa-sectores'), 'sectores', s[0], s[1], COLOR[s[0]]); });
+  ACTIVIDADES.forEach(function (a) { crearChip(document.getElementById('mapa-chips'), 'acts', a, ETIQUETA[a] || a); });
+  REDES.forEach(function (r) { crearChip(document.getElementById('mapa-redes'), 'redes', r, ETIQUETA[r] || r); });
+  // Si el mapa_data.js es antiguo y no trae actividades ni redes, se ocultan los grupos vacíos.
+  ['sectores:grupo-sector', 'chips:grupo-actividad', 'redes:grupo-redes'].forEach(function (par) {
+    var p = par.split(':');
+    if (!document.getElementById('mapa-' + p[0]).children.length) document.getElementById(p[1]).hidden = true;
+  });
+  var cuerpo = document.getElementById('mapa-cuerpo');
+  var botonFiltros = document.getElementById('mapa-toggle');
+  function cerrarFiltros() {
+    cuerpo.hidden = true;
+    botonFiltros.setAttribute('aria-expanded', 'false');
+  }
+  botonFiltros.addEventListener('click', function () {
+    var abrir = cuerpo.hidden;
+    if (abrir && MQ_HOJA.matches) { cerrar(); cerrarListaNodo(); }
+    cuerpo.hidden = !abrir;
+    botonFiltros.setAttribute('aria-expanded', String(abrir));
+  });
+  botonAplicar.addEventListener('click', function () {
+    cerrarFiltros();
+    ajustarVista();
+  });
+
+  var temporizador = null;
+  document.getElementById('mapa-buscar').addEventListener('input', function (e) {
+    var valor = norm(e.target.value.trim());
+    clearTimeout(temporizador);
+    temporizador = setTimeout(function () { texto = valor; actualizar(); }, 120);
+  });
+  document.getElementById('mapa-buscar').addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    clearTimeout(temporizador);
+    texto = norm(e.target.value.trim());
+    actualizar();
+    e.target.blur();
+    ajustarVista();
+  });
+  botonLimpiar.addEventListener('click', function () {
+    CAMPOS.forEach(function (c) { sel[c] = {}; });
+    texto = '';
+    document.getElementById('mapa-buscar').value = '';
+    controles.forEach(function (c) { c.btn.classList.remove('on'); c.btn.setAttribute('aria-pressed', 'false'); });
+    actualizar();
+  });
+  actualizar();
+
+  map.on('click', function () {
+    cerrar();
+    cerrarListaNodo();
+    if (MQ_HOJA.matches) cerrarFiltros();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      cerrar();
+      cerrarListaNodo();
+      if (typeof cluster.unspiderfy === 'function') cluster.unspiderfy();
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------
+# Archivos de trabajo que no hacen falta para la web publicada.
+# La web solo necesita: *.html, style.css, script.js, images/ y mapa_data.js
+# ---------------------------------------------------------------
+
+# Datos y herramientas del Mapa de Industria (se usan para generar mapa_data.js)
+*.xlsx
+*.xls
+*.csv
+*.py
+__pycache__/
+LEEME_mapa.txt
+Fuentes/
+
+# Copias de seguridad y notas personales
+Backups/
+UptdatePage.txt
+Nuevo documento de texto.txt
+*.bak
+*.zip
+
+# Archivos temporales de Office (se crean al tener el Excel abierto)
+~$*
+
+# Sistema y editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
