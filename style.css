@@ -1026,3 +1026,7 @@ html[lang="en"] [data-lang="es"] { display: none !important; }
   .lang-switch { margin-left: .3rem; }
   .lang-switch span { padding: .3rem .6rem; }
 }
+
+/* Logo with the mission patch (all pages) */
+.logo { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; }
+.logo img { width: 28px; height: 28px; flex: none; }

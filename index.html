@@ -5,9 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-es="Per aspera ad astra">Per aspera ad astra</title>
   <meta name="description" content="Personal aerospace engineering site: calculators, rocket theory, and lessons from the journey." data-es-content="Web personal de ingeniería aeroespacial: calculadoras, teoría de cohetes y lecciones del camino." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Per aspera ad astra" />
+  <meta property="og:title" content="Álvaro Casillas · Aerospace engineering" />
+  <meta property="og:description" content="Space engineering student at UC3M: satellite power &amp; thermal, propulsion and simulation. Calculators, rocket theory and lessons from the journey." />
+  <meta property="og:url" content="https://alvro237.github.io/KSPACE/" />
+  <meta property="og:image" content="https://alvro237.github.io/KSPACE/images/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="author" content="Álvaro Casillas Arias" />
   <link rel="stylesheet" href="style.css" />
   <script src="i18n.js"></script>
   <link rel="icon" type="image/png" href="images/Logo.png">
+  <style>
+    /* ---------- Calmer effects (index only) ---------- */
+    .logo { animation: none; display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; }
+    .logo img { width: 28px; height: 28px; flex: none; }
+    .badge::before { animation: none; opacity: .7; }
+    .card::before, .card::after { display: none; }
+    .card:hover { box-shadow: 0 10px 30px rgba(0,0,0,.35); transform: translateY(-2px); border-color: rgba(182,231,247,.22); }
+    .timeline-item::after { animation: none; box-shadow: 0 0 6px rgba(182,231,247,.45); }
+    .timeline-item:hover::after { transform: none; box-shadow: 0 0 6px rgba(182,231,247,.45); }
+    .timeline-content:hover { box-shadow: none; transform: none; border-color: rgba(182,231,247,.22); }
+
+    /* ---------- Hero links ---------- */
+    .hero-links { display: flex; gap: 1.4rem; margin: .4rem 0 0; animation: fadeInUp .8s .5s ease both; }
+    .hero-links a { color: var(--accent); text-decoration: none; font-size: .92rem; border-bottom: 1px solid rgba(182,231,247,.3); padding-bottom: 2px; }
+    .hero-links a:hover { border-bottom-color: var(--accent); }
+
+    /* ---------- Timeline tidy-up ---------- */
+    .tl-date { text-align: left; font-family: 'Orbitron', monospace; font-size: .65rem; color: var(--accent); letter-spacing: 2px; margin: 0 0 .4rem; }
+    .tl-intro { text-align: left; }
+    .timeline-content .tech-tags { margin-top: .8rem; }
+    .tl-img { display: block; margin: .8rem auto; border-radius: .6rem; max-width: 100%; height: auto; }
+    .timeline-item.tl-offset { margin-top: 5rem; }
+    @media (max-width: 760px) { .timeline-item.tl-offset { margin-top: 0; } }
+
+    /* ---------- Projects ---------- */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.2rem; }
+    .project { display: flex; flex-direction: column; }
+    .project h3 { margin-top: .2rem; }
+    .project ul { padding-left: 1.1rem; margin: .2rem 0 0; }
+    .project .tech-tags { margin-top: 1rem; }
+    .proj-fig { margin: -.4rem -.4rem 1.1rem; }
+    .proj-fig svg { display: block; width: 100%; height: auto; background: #070e22; border: 1px solid var(--border); border-radius: .8rem; padding: .6rem; box-sizing: border-box; }
+    .proj-fig figcaption { font-size: .74rem; color: #6c7ba0; margin-top: .45rem; }
+    .proj-meta { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; }
+    .proj-meta .badge { margin-bottom: 0; }
+    .proj-when { font-family: 'Orbitron', monospace; font-size: .62rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+    .project .proj-meta + h3 { margin-top: .9rem; }
+    .proj-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin: .9rem 0 0; }
+    .proj-links a { color: var(--accent); text-decoration: none; font-size: .88rem; border-bottom: 1px solid rgba(182,231,247,.3); }
+    .proj-links a:hover { border-bottom-color: var(--accent); }
+    /* diagram styles */
+    .proj-fig text { font: 500 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #c9d3ea; text-anchor: middle; }
+    .proj-fig .dg-s { font-size: 9.5px; fill: #8a9bc0; }
+    .proj-fig .dg-big { font-size: 14px; font-weight: 700; fill: #b6e7f7; }
+    .proj-fig .dg-l { text-anchor: start; }
+    .proj-fig .dg-v { fill: #4db8ff; font-weight: 700; }
+    .proj-fig .dg-w { fill: #e0905f; font-weight: 700; }
+    .proj-fig .dg-k { fill: #4db8ff; font-size: 9.5px; text-anchor: start; }
+    .proj-fig .dg-dim { fill: #66769c; }
+    .proj-fig .dg-sub { font-size: 8px; fill: #8a9bc0; }
+    .proj-fig .dg-box rect { fill: #0d1635; stroke: #2a3b63; stroke-width: 1; }
+    .proj-fig .dg-main rect { stroke: #4db8ff; stroke-opacity: .7; }
+    .proj-fig .dg-th rect { stroke: #e0905f; stroke-opacity: .6; stroke-dasharray: 4 3; }
+    .proj-fig .dg-p { fill: none; stroke: #4db8ff; stroke-width: 1.4; }
+    .proj-fig .dg-q { fill: none; stroke: #e0905f; stroke-width: 1.3; stroke-dasharray: 4 3; }
+    .proj-fig .dg-zone { fill: rgba(77,184,255,.04); stroke: #2a3b63; stroke-dasharray: 5 4; }
+    .proj-fig .dg-zl { fill: #66769c; font-size: 9px; }
+    .proj-fig .dg-w1 { fill: none; stroke: #b6c3de; stroke-width: 1.5; }
+    .proj-fig .dg-w2 { fill: none; stroke: #e7eaf6; stroke-width: 3; }
+    .proj-fig .dg-ar { stroke: #4db8ff; stroke-width: 1.3; }
+    .proj-fig .dg-arh { fill: #4db8ff; }
+    .proj-fig .dg-dot { fill: #b6c3de; }
+    .proj-fig .dg-src { fill: #0d1635; stroke: #b6c3de; stroke-width: 1.5; }
+    .proj-fig .dg-mot { fill: #0d1635; stroke: #8a9bc0; }
+    .proj-fig .dg-sh { fill: none; stroke: #8a9bc0; stroke-width: 1; stroke-dasharray: 3 3; }
+    .proj-fig .dg-ctl { fill: #0d1635; stroke: #2a3b63; }
+    .proj-fig .dg-tube { fill: rgba(182,231,247,.05); stroke: #6c7ba0; }
+    .proj-fig .dg-plasma { fill: #b48cff; opacity: .28; filter: blur(4px); }
+    .proj-fig .dg-coil { fill: none; stroke: #e0b06a; stroke-width: 2; }
+    @media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
+
+    /* ---------- Mars scene (index only) ---------- */
+    .hero-section { padding-bottom: 0; }
+    .mars-scene {
+      position: relative;
+      margin: 1.5rem 0 -1rem;
+      pointer-events: none;
+      overflow-x: clip;
+      overflow-y: visible;
+    }
+    .mars-svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .mars-svg .m-callout text {
+      font: 500 7.5px/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 1.4px;
+      fill: #6f7fa6;
+    }
+    .mars-svg .m-blink { animation: mBlink 2.4s steps(1, end) infinite; }
+    .mars-svg .m-blink-slow { animation-duration: 3.7s; }
+    .mars-svg .m-phobos { animation: mPhobos 170s linear infinite; animation-delay: -75s; }
+    .mars-svg .m-orbiter { animation: mOrbiter 75s linear infinite; animation-delay: -20s; }
+    .mars-svg .m-uplink { stroke-dasharray: 2 8; animation: mUplink 2.6s linear infinite; }
+    .mars-svg .m-dish { animation: mDish 14s ease-in-out infinite alternate; }
+    @keyframes mBlink   { 0%, 100% { opacity: 1; } 50% { opacity: .12; } }
+    @keyframes mPhobos  { from { transform: translate(1040px, 50px); } to { transform: translate(-60px, 30px); } }
+    @keyframes mOrbiter { from { transform: translate(-30px, 122px); } to { transform: translate(1030px, 78px); } }
+    @keyframes mUplink  { to { stroke-dashoffset: -20; } }
+    @keyframes mDish    { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+    .launch-fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+
+    @media (max-width: 760px) {
+      .mars-scene { margin: 1rem -1.4rem -1rem; }
+      .mars-svg { width: 160%; margin-left: -45%; }
+      .mars-svg .m-callout { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mars-svg * { animation: none !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -15,16 +133,17 @@
 <canvas id="star-canvas"></canvas>
 
 <div class="sidebar">
-  <h2>🚀 <span data-lang="en">Menu</span><span data-lang="es">Menú</span></h2>
+  <h2><span data-lang="en">Menu</span><span data-lang="es">Menú</span></h2>
   <a href="#About"><span data-lang="en">About</span><span data-lang="es">Sobre mí</span></a>
   <a href="#My education"><span data-lang="en">Education</span><span data-lang="es">Formación</span></a>
+  <a href="#projects"><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></a>
   <a href="#requirements-timeline"><span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
   <a href="#contact"><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a>
 </div>
 
 <header>
   <div class="container nav">
-    <div class="logo">✈️ Per aspera ad astra</div>
+    <a class="logo" href="index.html"><img src="images/Logo.png" alt="" width="28" height="28">Per aspera ad astra</a>
     <nav>
       <a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
       <a href="Isentropic_calculator.html"><span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></a>
@@ -44,7 +163,235 @@
     <p class="hero-description">
       <span data-lang="en">A personal space dedicated to aerospace engineering: from rocket propulsion theory to simulation work, calculators, and lessons learned along the way. Built from scratch, for the love of the craft.</span><span data-lang="es">Un espacio personal dedicado a la ingeniería aeroespacial: desde la teoría de propulsión de cohetes hasta el trabajo de simulación, calculadoras y lecciones aprendidas por el camino. Hecho desde cero, por amor al oficio.</span>
     </p>
-    <div class="orbit-deco"></div>
+    <p class="hero-links">
+      <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="#contact"><span data-lang="en">Get in touch</span><span data-lang="es">Contacto</span></a>
+    </p>
+    <!-- MARS SCENE: horizon, base and launch pad. The rocket lifts off as you scroll (see script at the end). -->
+    <div class="mars-scene" aria-hidden="true">
+      <svg class="mars-svg" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="mBlur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="mBlur1" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.4"/></filter>
+          <!-- Martian sunsets are blue near the Sun: fine dust scatters blue light forward -->
+          <radialGradient id="mSunset" cx="90" cy="206" r="320" gradientTransform="translate(90 206) scale(1 .22) translate(-90 -206)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#8fbfe6" stop-opacity=".30"/>
+            <stop offset=".35" stop-color="#6f8fb8" stop-opacity=".10"/>
+            <stop offset="1" stop-color="#6f8fb8" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="mHaze" x1="0" y1="140" x2="0" y2="215" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#c98a5e" stop-opacity="0"/>
+            <stop offset="1" stop-color="#c98a5e" stop-opacity=".10"/>
+          </linearGradient>
+          <linearGradient id="mMid" x1="0" y1="210" x2="0" y2="250" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#4a2a22"/><stop offset="1" stop-color="#341b17"/>
+          </linearGradient>
+          <linearGradient id="mFg" x1="0" y1="234" x2="0" y2="300" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#6b3526"/><stop offset=".45" stop-color="#4c2419"/><stop offset="1" stop-color="#2a1416"/>
+          </linearGradient>
+          <linearGradient id="mRim" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#d28a5c" stop-opacity=".55"/><stop offset=".55" stop-color="#d28a5c" stop-opacity=".08"/><stop offset="1" stop-color="#d28a5c" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="mDome" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#e6e8ee"/><stop offset=".55" stop-color="#b9bec9"/><stop offset="1" stop-color="#6e7381"/>
+          </linearGradient>
+          <!-- rocket -->
+          <linearGradient id="rkShade" x1="-7" y1="0" x2="7" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset=".22" stop-color="#fff" stop-opacity=".18"/>
+            <stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/>
+          </linearGradient>
+          <linearGradient id="rkNoz" x1="-6.5" y1="0" x2="6.5" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#20232c"/><stop offset=".35" stop-color="#666b78"/><stop offset="1" stop-color="#1c1f27"/>
+          </linearGradient>
+          <linearGradient id="rkHeat" x1="0" y1="-10" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#b0603a" stop-opacity="0"/><stop offset="1" stop-color="#b0603a" stop-opacity=".55"/>
+          </linearGradient>
+          <linearGradient id="rkFlameOut" x1="0" y1="0" x2="0" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffe2b0" stop-opacity=".95"/><stop offset=".35" stop-color="#ff9a55" stop-opacity=".55"/><stop offset="1" stop-color="#ff6a35" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="rkFlameCore" x1="0" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#d5ecff"/><stop offset="1" stop-color="#9fd2ff" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="rkPadGlow">
+            <stop offset="0" stop-color="#ffc58a" stop-opacity=".8"/><stop offset="1" stop-color="#ff8a4a" stop-opacity="0"/>
+          </radialGradient>
+          <!-- soft edges so the ground melts into the page -->
+          <linearGradient id="mFadeH" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#000"/><stop offset=".07" stop-color="#fff"/><stop offset=".93" stop-color="#fff"/><stop offset="1" stop-color="#000"/>
+          </linearGradient>
+          <linearGradient id="mFadeV" x1="0" y1="0" x2="0" y2="300" gradientUnits="userSpaceOnUse">
+            <stop offset=".80" stop-color="#fff"/><stop offset="1" stop-color="#000"/>
+          </linearGradient>
+          <mask id="mMaskH" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="300"><rect width="1000" height="300" fill="url(#mFadeH)"/></mask>
+          <mask id="mMaskV" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="300"><rect width="1000" height="300" fill="url(#mFadeV)"/></mask>
+        </defs>
+
+        <!-- ===== SKY ===== -->
+        <g mask="url(#mMaskH)">
+          <rect x="0" y="140" width="1000" height="80" fill="url(#mHaze)"/>
+          <ellipse cx="90" cy="206" rx="320" ry="70" fill="url(#mSunset)"/>
+          <!-- the Sun, setting: smaller and paler than from Earth -->
+          <circle cx="118" cy="196" r="22" fill="#9cc8ee" opacity=".45" filter="url(#mBlur3)"/>
+          <circle cx="118" cy="196" r="9" fill="#cfe4f7" opacity=".6" filter="url(#mBlur1)"/>
+          <circle cx="118" cy="196" r="5.6" fill="#f6f9ff"/>
+        </g>
+
+        <!-- Earth & Moon, seen from Mars: a bright blue dot -->
+        <g class="m-earth">
+          <circle cx="152" cy="62" r="6" fill="#7fb8ff" opacity=".35" filter="url(#mBlur1)"/>
+          <circle cx="152" cy="62" r="2.4" fill="#a9d4ff"/>
+          <circle cx="158.5" cy="58.5" r=".9" fill="#c9ccd4"/>
+        </g>
+        <!-- uplink from the base dish to Earth -->
+        <path class="m-uplink" d="M684 198 L156 64" stroke="#7fb8ff" stroke-width=".7" stroke-opacity=".16" fill="none"/>
+
+        <!-- Phobos (drifts across the sky) and Deimos -->
+        <g class="m-phobos">
+          <path d="M0 0 c3-3.2 9.5-3.4 12.5-.2 c2.2 3 .2 7-4 8 c-4.2 1-9.4 0-10.5-3 c-.8-2 .2-3.6 2-4.8z" fill="#8c7b6d"/>
+          <path d="M8 -2.6 c2 .4 4 1.6 4.5 2.6 c2 3-.2 7-4 8 c2-3 1.6-7-.5-10.6z" fill="#000" opacity=".28"/>
+          <circle cx="4" cy="2" r="1.3" fill="#000" opacity=".2"/>
+        </g>
+        <circle cx="822" cy="30" r="1.3" fill="#b8aa9b" opacity=".85"/>
+
+        <!-- an orbiter passing over -->
+        <g class="m-orbiter">
+          <rect x="-1" y="-.6" width="2" height="1.2" fill="#d9dde6"/>
+          <rect x="-4.5" y="-.3" width="3" height=".6" fill="#5a7bb5"/><rect x="1.5" y="-.3" width="3" height=".6" fill="#5a7bb5"/>
+          <circle class="m-blink" cx="0" cy="0" r=".7" fill="#ff5a4a"/>
+        </g>
+
+
+        <!-- ===== TERRAIN + BASE (edge-faded) ===== -->
+        <g mask="url(#mMaskH)"><g mask="url(#mMaskV)">
+          <!-- far crater rim & mesa -->
+          <path d="M290 197 L313 171 L371 169 L393 195 Z" fill="#22161c"/>
+          <path d="M0 206 C60 198 110 190 170 194 C230 198 260 186 320 186 C370 186 400 192 460 196 C520 200 560 190 620 192 C690 194 720 184 790 186 C850 188 900 196 1000 192 L1000 300 L0 300 Z" fill="#24171d"/>
+          <!-- dunes -->
+          <path d="M0 222 C80 214 150 210 230 216 C310 222 360 212 440 214 C520 216 560 226 640 224 C720 222 800 214 880 218 C930 220 970 222 1000 220 L1000 300 L0 300 Z" fill="url(#mMid)"/>
+          <path d="M0 222 C80 214 150 210 230 216 C310 222 360 212 440 214 C520 216 560 226 640 224" fill="none" stroke="url(#mRim)" stroke-width="1"/>
+          <!-- foreground regolith -->
+          <path d="M0 240 C120 234 220 236 330 240 C430 244 520 238 600 238 C700 238 800 236 900 240 C950 242 980 241 1000 240 L1000 300 L0 300 Z" fill="url(#mFg)"/>
+          <path d="M0 240 C120 234 220 236 330 240 C430 244 520 238 560 238" fill="none" stroke="#c07a52" stroke-opacity=".25" stroke-width=".8"/>
+
+          <!-- craters & rocks -->
+          <ellipse cx="205" cy="263" rx="27" ry="4" fill="#3b1c16"/>
+          <path d="M178 263 A27 4 0 0 1 232 263" fill="none" stroke="#8a4a32" stroke-opacity=".5" stroke-width=".8"/>
+          <ellipse cx="872" cy="272" rx="17" ry="2.6" fill="#3b1c16"/>
+          <path d="M855 272 A17 2.6 0 0 1 889 272" fill="none" stroke="#8a4a32" stroke-opacity=".45" stroke-width=".7"/>
+          <path d="M84 256 l5-5 7 1 3 5z" fill="#2b1411"/><path d="M84 256 l5-5 3 .4-4 4.6z" fill="#8a4a32" opacity=".55"/>
+          <path d="M318 270 l3-3 5 .5 2 2.5z" fill="#2b1411"/>
+          <path d="M520 252 l3.5-3.5 5 .6 2 2.9z" fill="#2b1411"/><path d="M520 252 l3.5-3.5 2 .3-3 3.2z" fill="#8a4a32" opacity=".5"/>
+          <path d="M954 258 l4-4 6 1 2 3z" fill="#2b1411"/>
+          <path d="M660 266 l2.5-2.5 4 .4 1.5 2.1z" fill="#2b1411"/>
+
+          <!-- rover tracks + rover -->
+          <path d="M405 247.5 C350 250 290 255 230 252 C190 250 150 252 110 257" fill="none" stroke="#2c1411" stroke-width="1.1" stroke-dasharray="1.4 2.2"/>
+          <path d="M405 250.5 C350 253 290 258 230 255 C190 253 150 255 110 260" fill="none" stroke="#2c1411" stroke-width="1.1" stroke-dasharray="1.4 2.2"/>
+          <g class="m-rover">
+            <rect x="404" y="232.6" width="44" height="2.4" rx=".6" fill="#22406f"/>
+            <rect x="408" y="235.6" width="36" height="7" rx="1.5" fill="#c6c9d1"/>
+            <rect x="408" y="240" width="36" height="2.6" fill="#8d93a0"/>
+            <line x1="440" y1="233" x2="440" y2="222" stroke="#c6c9d1" stroke-width="1.2"/>
+            <rect x="436.5" y="219" width="8" height="4" rx=".8" fill="#d6d9df"/>
+            <circle cx="443" cy="221" r=".8" fill="#2b2f3a"/>
+            <line x1="413" y1="233" x2="410.5" y2="224" stroke="#aab0bc" stroke-width=".6"/>
+            <circle cx="414" cy="246" r="3.2" fill="#1b1c22" stroke="#5a5f6b" stroke-width=".6"/>
+            <circle cx="426" cy="246" r="3.2" fill="#1b1c22" stroke="#5a5f6b" stroke-width=".6"/>
+            <circle cx="438" cy="246" r="3.2" fill="#1b1c22" stroke="#5a5f6b" stroke-width=".6"/>
+          </g>
+
+          <!-- launch pad + tower -->
+          <ellipse cx="600" cy="239.4" rx="40" ry="4.4" fill="#4d4c55"/>
+          <ellipse cx="600" cy="238.2" rx="40" ry="3.4" fill="#6c6b74"/>
+          <ellipse cx="600" cy="238.2" rx="26" ry="2.2" fill="none" stroke="#e0b24a" stroke-opacity=".45" stroke-width=".6" stroke-dasharray="3 3"/>
+          <g class="m-tower" stroke="#7d818d" stroke-width=".8" fill="none">
+            <line x1="636" y1="238" x2="636" y2="132"/><line x1="644" y1="238" x2="644" y2="132"/>
+            <path d="M636 238 L644 226 L636 214 L644 202 L636 190 L644 178 L636 166 L644 154 L636 142 L644 132" stroke-width=".5"/>
+            <line x1="640" y1="132" x2="640" y2="122" stroke-width=".6"/>
+          </g>
+          <circle class="m-blink" cx="640" cy="121.5" r="1.3" fill="#ff5a4a"/>
+          <ellipse id="pad-glow" cx="600" cy="238" rx="90" ry="12" fill="url(#rkPadGlow)" opacity="0"/>
+
+          <!-- comms dish (points at Earth) -->
+          <line x1="690" y1="238" x2="690" y2="206" stroke="#aeb3bf" stroke-width="1.4"/>
+          <path d="M684 238 L690 226 L696 238" fill="none" stroke="#8d929e" stroke-width=".8"/>
+          <g transform="translate(690 205)"><g class="m-dish"><g transform="rotate(-38)">
+            <path d="M-11 0 Q0 9.5 11 0 Z" fill="#dfe2e8" stroke="#9aa0ad" stroke-width=".5"/>
+            <line x1="0" y1="2" x2="0" y2="-8" stroke="#aeb3bf" stroke-width=".6"/><circle cx="0" cy="-8.4" r="1" fill="#cfd3db"/>
+          </g></g></g>
+
+          <!-- habitat -->
+          <rect x="711" y="227.5" width="17" height="10.5" rx="2" fill="#b4b9c4"/>
+          <rect x="715" y="230" width="6" height="8" rx="1" fill="#3b3f4b"/>
+          <path d="M726 238 A34 28 0 0 1 794 238 Z" fill="url(#mDome)"/>
+          <path d="M729.5 228 Q760 220 790.5 228" fill="none" stroke="#000" stroke-opacity=".16" stroke-width=".6"/>
+          <path d="M738 218 Q760 212 782 218" fill="none" stroke="#000" stroke-opacity=".14" stroke-width=".6"/>
+          <line x1="760" y1="210" x2="760" y2="238" stroke="#000" stroke-opacity=".12" stroke-width=".6"/>
+          <circle cx="752" cy="225" r="7" fill="#ffbf6e" opacity=".45" filter="url(#mBlur3)"/>
+          <rect x="746" y="223" width="12" height="4" rx="1" fill="#ffd28f"/>
+          <rect x="792" y="229" width="20" height="7" rx="3" fill="#a5aab6"/>
+          <path d="M810 238 A22 18 0 0 1 854 238 Z" fill="url(#mDome)"/>
+          <circle cx="832" cy="229" r="2.4" fill="#ffd28f"/>
+          <circle cx="832" cy="229" r="5" fill="#ffbf6e" opacity=".35" filter="url(#mBlur1)"/>
+          <line x1="858" y1="238" x2="858" y2="198" stroke="#9aa0ad" stroke-width=".8"/>
+          <circle class="m-blink m-blink-slow" cx="858" cy="197" r="1.3" fill="#ff5a4a"/>
+          <!-- solar array -->
+          <g>
+            <g transform="translate(870 0)"><line x1="13" y1="230" x2="13" y2="238" stroke="#8d929e" stroke-width=".8"/><path d="M0 230 H22 L26 218 H4 Z" fill="#1d3561" stroke="#3c5f99" stroke-width=".5"/><path d="M8 230 L11.4 218 M15 230 L18.6 218 M2 224 H24" stroke="#3c5f99" stroke-width=".35"/></g>
+            <g transform="translate(899 1)"><line x1="13" y1="230" x2="13" y2="238" stroke="#8d929e" stroke-width=".8"/><path d="M0 230 H22 L26 218 H4 Z" fill="#1d3561" stroke="#3c5f99" stroke-width=".5"/><path d="M8 230 L11.4 218 M15 230 L18.6 218 M2 224 H24" stroke="#3c5f99" stroke-width=".35"/></g>
+            <g transform="translate(928 2)"><line x1="13" y1="230" x2="13" y2="238" stroke="#8d929e" stroke-width=".8"/><path d="M0 230 H22 L26 218 H4 Z" fill="#1d3561" stroke="#3c5f99" stroke-width=".5"/><path d="M8 230 L11.4 218 M15 230 L18.6 218 M2 224 H24" stroke="#3c5f99" stroke-width=".35"/></g>
+          </g>
+        </g></g>
+
+
+        <!-- umbilical arm (swings away at ignition) -->
+        <g id="umb">
+          <rect x="607" y="163.4" width="29" height="3.2" fill="#8b8f9b"/>
+          <path d="M609 163.4 L613 166.6 L617 163.4 L621 166.6 L625 163.4 L629 166.6 L633 163.4" fill="none" stroke="#5d616c" stroke-width=".5"/>
+        </g>
+
+        <!-- ===== ROCKET ===== origin = nozzle exit, sits on the pad -->
+        <g id="rk" transform="translate(600 232)">
+          <g id="rk-body">
+            <g id="rk-flame" opacity="0">
+              <ellipse cx="0" cy="5" rx="11" ry="8" fill="#ffbf80" opacity=".35" filter="url(#mBlur3)"/>
+              <path d="M-6.2 0 C-10.5 14 -9.5 40 0 72 C9.5 40 10.5 14 6.2 0 Z" fill="url(#rkFlameOut)"/>
+              <path d="M-3.8 0 C-4.6 8 -3 22 0 40 C3 22 4.6 8 3.8 0 Z" fill="url(#rkFlameCore)"/>
+              <!-- Mach diamonds -->
+              <path d="M0 6 L2.1 10 L0 14 L-2.1 10 Z" fill="#fff" opacity=".75"/>
+              <path d="M0 18 L1.7 21.5 L0 25 L-1.7 21.5 Z" fill="#fff" opacity=".5"/>
+              <path d="M0 29 L1.3 31.8 L0 34.6 L-1.3 31.8 Z" fill="#fff" opacity=".3"/>
+            </g>
+            <!-- landing legs -->
+            <g id="rk-leg-l"><line x1="-7" y1="-15" x2="-17" y2="5.4" stroke="#9aa0ad" stroke-width="1.5" stroke-linecap="round"/><line x1="-19.6" y1="5.8" x2="-14.6" y2="5.8" stroke="#9aa0ad" stroke-width="1.4" stroke-linecap="round"/></g>
+            <g id="rk-leg-r"><line x1="7" y1="-15" x2="17" y2="5.4" stroke="#9aa0ad" stroke-width="1.5" stroke-linecap="round"/><line x1="19.6" y1="5.8" x2="14.6" y2="5.8" stroke="#9aa0ad" stroke-width="1.4" stroke-linecap="round"/></g>
+            <!-- nozzle -->
+            <path d="M-3 -10 L3 -10 C4 -6 5.5 -3 6.5 0 L-6.5 0 C-5.5 -3 -4 -6 -3 -10 Z" fill="url(#rkNoz)"/>
+            <path d="M-3 -10 L3 -10 C4 -6 5.5 -3 6.5 0 L-6.5 0 C-5.5 -3 -4 -6 -3 -10 Z" fill="url(#rkHeat)"/>
+            <!-- fins -->
+            <path d="M-7 -34 L-12.6 -16 L-12.6 -11 L-7 -17 Z" fill="#2c303c"/>
+            <path d="M7 -34 L12.6 -16 L12.6 -11 L7 -17 Z" fill="#1f222b"/>
+            <!-- skirt -->
+            <path d="M-7 -18.2 L7 -18.2 L8.6 -10 L-8.6 -10 Z" fill="#3a3e4a"/>
+            <!-- body, fairing -->
+            <rect x="-7" y="-92" width="14" height="74" fill="#e4e6eb"/>
+            <path d="M-7 -92 C-7 -104 -3.2 -114 0 -118.5 C3.2 -114 7 -104 7 -92 Z" fill="#e4e6eb"/>
+            <!-- markings: interstage band, roll pattern, flag -->
+            <rect x="-7" y="-63" width="14" height="3.2" fill="#2a2e38"/>
+            <rect x="-7" y="-57.5" width="7" height="5" fill="#23262f"/>
+            <rect x="0" y="-52.5" width="7" height="5" fill="#23262f"/>
+            <rect x="-7" y="-93" width="14" height="1.1" fill="#9aa0ad"/>
+            <rect x="-7" y="-19.4" width="14" height="1.2" fill="#9aa0ad"/>
+            <g transform="translate(-4.8 -82)"><rect width="4.2" height="3" fill="#c8102e"/><rect y=".75" width="4.2" height="1.5" fill="#f1bf00"/></g>
+            <line x1="1.6" y1="-116" x2="1.6" y2="-92.5" stroke="#000" stroke-opacity=".12" stroke-width=".35"/>
+            <!-- cylindrical shading over everything -->
+            <rect x="-7" y="-92" width="14" height="74" fill="url(#rkShade)"/>
+            <path d="M-7 -92 C-7 -104 -3.2 -114 0 -118.5 C3.2 -114 7 -104 7 -92 Z" fill="url(#rkShade)"/>
+            <circle id="rk-noz" cx="0" cy="2" r=".01" fill="none"/>
+          </g>
+        </g>
+      </svg>
+    </div>
     
   </section>
 
@@ -53,8 +400,8 @@
     <div class="section-header"><h2><span data-lang="en">About me</span><span data-lang="es">Sobre mí</span></h2></div>
     <div class="badge">Per aspera ad astra</div>
     <p>
-      <span data-lang="en">I just graduated from my bachelor in aerospace engineering, so I am officially an engineer. My college years were the most complicated yet fascinating of my life.
-      Each challenge brought the best of me and my classmates, and the lessons learned will follow me throughout my career.</span><span data-lang="es">Acabo de terminar el grado en Ingeniería Aeroespacial, así que ya soy oficialmente ingeniero. Mis años de universidad han sido los más complicados y, a la vez, los más fascinantes de mi vida. Cada reto sacó lo mejor de mí y de mis compañeros, y lo aprendido me acompañará durante toda mi carrera.</span>
+      <span data-lang="en">I graduated in Aerospace Engineering at UC3M and I am now doing the Master's in Space Engineering there. My college years have been the most complicated yet fascinating of my life.
+      Each challenge brought the best of me and my classmates, and the lessons learned will follow me throughout my career.</span><span data-lang="es">Me gradué en Ingeniería Aeroespacial en la UC3M y ahora curso allí el Máster en Ingeniería Espacial. Mis años de universidad han sido los más complicados y, a la vez, los más fascinantes de mi vida. Cada reto sacó lo mejor de mí y de mis compañeros, y lo aprendido me acompañará durante toda mi carrera.</span>
     </p>
     <p>
       <span data-lang="en">You may wonder where it leads. The name of this page gives a hint: <strong>"Through hardships to the stars."</strong>
@@ -102,39 +449,157 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="section-header"><h2><span data-lang="en">Projects</span><span data-lang="es">Proyectos</span></h2></div>
+    <div class="projects">
+
+      <!-- BIO-LUX -->
+      <article class="card project">
+        <figure class="proj-fig">
+          <svg viewBox="0 0 600 250" role="img" aria-label="BIO-LUX EPS and thermal architecture" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="pa" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#4db8ff"/></marker>
+              <marker id="pt" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#e0905f"/></marker>
+            </defs>
+            <g class="dg-box"><rect x="16" y="26" width="140" height="44" rx="6"/><rect x="16" y="86" width="140" height="44" rx="6"/></g>
+            <text class="dg-t" x="86" y="45">Deployable arrays</text><text class="dg-s" x="86" y="60">2 × 6U · GaAs 3J</text>
+            <text class="dg-t" x="86" y="105">Body-mounted</text><text class="dg-s" x="86" y="120">GaAs 3J · 30 % BOL</text>
+            <path class="dg-p" d="M156 48 H190 V70 H214" marker-end="url(#pa)"/><path class="dg-p" d="M156 108 H190 V90 H214" marker-end="url(#pa)"/>
+            <text class="dg-k" x="172" y="22">58 W peak</text>
+            <g class="dg-box dg-main"><rect x="216" y="40" width="150" height="80" rx="8"/></g>
+            <text class="dg-t dg-big" x="291" y="72">PCDU</text><text class="dg-s" x="291" y="90">MPPT · LCL · BCR/BDR</text><text class="dg-s" x="291" y="104">150 W</text>
+            <g class="dg-box"><rect x="436" y="18" width="148" height="32" rx="6"/><rect x="436" y="64" width="148" height="32" rx="6"/><rect x="436" y="110" width="148" height="32" rx="6"/></g>
+            <path class="dg-p" d="M366 58 H400 V34 H432" marker-end="url(#pa)"/><path class="dg-p" d="M366 80 H432" marker-end="url(#pa)"/><path class="dg-p" d="M366 102 H400 V126 H432" marker-end="url(#pa)"/>
+            <text class="dg-s dg-l" x="446" y="38"><tspan class="dg-v">3.3 V</tspan>  TT&amp;C · IMU</text>
+            <text class="dg-s dg-l" x="446" y="84"><tspan class="dg-v">5 V</tspan>  Payloads</text>
+            <text class="dg-s dg-l" x="446" y="130"><tspan class="dg-v">12 V</tspan>  Propulsion</text>
+            <g class="dg-box"><rect x="216" y="160" width="150" height="44" rx="6"/></g>
+            <text class="dg-t" x="291" y="179">Li-ion battery</text><text class="dg-s" x="291" y="194">4S1P · 45 Wh</text>
+            <path class="dg-p" d="M282 124 V156" marker-end="url(#pa)"/><path class="dg-p" d="M300 156 V124" marker-end="url(#pa)"/>
+            <g class="dg-box dg-th"><rect x="436" y="166" width="148" height="32" rx="6"/></g>
+            <text class="dg-s dg-l" x="446" y="186"><tspan class="dg-w">4 W</tspan>  battery heater</text>
+            <path class="dg-q" d="M432 182 H370" marker-end="url(#pt)"/>
+            <g class="dg-box dg-th"><rect x="16" y="160" width="140" height="44" rx="6"/></g>
+            <text class="dg-t" x="86" y="179">Radiator</text><text class="dg-s" x="86" y="194">VO₂ VEM coating</text>
+            <path class="dg-q" d="M200 230 H86 V208" marker-end="url(#pt)"/>
+            <text class="dg-s dg-l" x="206" y="234">Cu straps · OBC, bio payload</text>
+          </svg>
+          <figcaption><span data-lang="en">EPS &amp; thermal architecture (public mission data).</span><span data-lang="es">Arquitectura de potencia y térmica (datos públicos de la misión).</span></figcaption>
+        </figure>
+        <div class="proj-meta"><span class="badge"><span data-lang="en">Design phase</span><span data-lang="es">En diseño</span></span><span class="proj-when">MISE · 2025–2026</span></div>
+        <h3><span data-lang="en">BIO-LUX · 6U CubeSat demonstrator</span><span data-lang="es">BIO-LUX · Demostrador CubeSat 6U</span></h3>
+        <p><span data-lang="en">One 6U bus carrying three payloads (night-time light-pollution imaging, an in-orbit biology experiment and a variable-emittance coating) for three years in a 500–700 km sun-synchronous orbit. Seven students, one discipline each. I lead <strong>power and thermal</strong>.</span><span data-lang="es">Un único bus 6U con tres cargas útiles (observación nocturna de la contaminación lumínica, un experimento biológico en órbita y un recubrimiento de emisividad variable) durante tres años en una órbita heliosíncrona de 500–700 km. Siete estudiantes, una disciplina cada uno. Yo me encargo de <strong>potencia y térmico</strong>.</span></p>
+        <ul>
+          <li><span data-lang="en">Sized the power chain: 2 × 6U deployable GaAs arrays plus body panels (58 W peak), an MPPT PCDU and a 45 Wh Li-ion battery, with margin for the electric thruster and payloads running at the same time.</span><span data-lang="es">Dimensioné la cadena de potencia: dos paneles desplegables 6U de GaAs más paneles en el cuerpo (58 W de pico), una PCDU con MPPT y una batería de Li-ion de 45 Wh, con margen para el propulsor eléctrico y varias cargas útiles funcionando a la vez.</span></li>
+          <li><span data-lang="en">Passive-first thermal design: radiators, copper straps for the hottest units and a single 4 W heater that keeps the battery alive through long eclipses.</span><span data-lang="es">Diseño térmico pasivo siempre que se pueda: radiadores, trenzas de cobre para las unidades que más disipan y un único calentador de 4 W que protege la batería en los eclipses largos.</span></li>
+          <li><span data-lang="en">Going to bigger arrays rippled through the whole design, so I built a combined MATLAB + ESATAN-TMS tool to iterate power and thermal together.</span><span data-lang="es">Pasar a paneles más grandes afectó a todo el diseño, así que creé una herramienta combinada MATLAB + ESATAN-TMS para iterar potencia y térmico a la vez.</span></li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">ESATAN-TMS</span><span class="tech-tag">MATLAB</span><span class="tech-tag">ECSS</span>
+          <span class="tech-tag">EPS</span><span class="tech-tag"><span data-lang="en">Thermal control</span><span data-lang="es">Control térmico</span></span>
+        </div>
+        <p class="proj-links">
+          <a href="https://alvro237.github.io/BIO-LUX-DEMONSTRATOR/" target="_blank" rel="noopener"><span data-lang="en">Mission site ↗</span><span data-lang="es">Web de la misión ↗</span></a>
+          <a href="https://alvro237.github.io/BIO-LUX-DEMONSTRATOR/subsystems/eps-thermal.html" target="_blank" rel="noopener"><span data-lang="en">Power &amp; thermal ↗</span><span data-lang="es">Potencia y térmico ↗</span></a>
+        </p>
+      </article>
+
+      <!-- TFM: matching network -->
+      <article class="card project">
+        <figure class="proj-fig">
+          <svg viewBox="0 0 600 250" role="img" aria-label="Motorised L-type matching network feeding a Helicon antenna" xmlns="http://www.w3.org/2000/svg">
+            <!-- network boundary -->
+            <rect x="160" y="30" width="232" height="168" rx="10" class="dg-zone"/>
+            <text class="dg-s dg-zl" x="276" y="192">L-network · vacuum-compatible</text>
+            <!-- wires -->
+            <path class="dg-w1" d="M66 88 V70 H200 M240 70 H470"/>
+            <path class="dg-w1" d="M66 132 V170 H470"/>
+            <!-- RF source -->
+            <circle cx="66" cy="110" r="22" class="dg-src"/>
+            <path d="M52 110 q7 -12 14 0 t14 0" class="dg-w1" fill="none"/>
+            <text class="dg-t" x="66" y="200">RF generator</text>
+            <!-- series C -->
+            <path class="dg-w2" d="M212 54 V86 M228 54 V86"/>
+            <path class="dg-ar" d="M200 92 L240 48"/><path class="dg-arh" d="M240 48 l-9 2 l5 6z"/>
+            <text class="dg-t" x="220" y="108">C<tspan class="dg-sub" dy="3">series</tspan></text>
+            <!-- shunt C -->
+            <circle cx="330" cy="70" r="3" class="dg-dot"/><circle cx="330" cy="170" r="3" class="dg-dot"/>
+            <path class="dg-w1" d="M330 70 V112 M330 128 V170"/>
+            <path class="dg-w2" d="M312 112 H348 M312 128 H348"/>
+            <path class="dg-ar" d="M306 142 L354 98"/><path class="dg-arh" d="M354 98 l-9 2 l5 6z"/>
+            <text class="dg-t dg-l" x="358" y="150">C<tspan class="dg-sub" dy="3">shunt</tspan></text>
+            <!-- steppers -->
+            <rect x="200" y="0" width="40" height="22" rx="4" class="dg-mot"/><text class="dg-t" x="220" y="15">M</text>
+            <path class="dg-sh" d="M220 22 V48"/>
+            <rect x="262" y="128" width="40" height="22" rx="4" class="dg-mot"/><text class="dg-t" x="282" y="143">M</text>
+            <path class="dg-sh" d="M302 139 H318"/>
+            <!-- controller -->
+            <rect x="160" y="212" width="232" height="34" rx="6" class="dg-ctl"/>
+            <text class="dg-s" x="276" y="226">Arduino · DRV8825 stepper drivers</text>
+            <text class="dg-s dg-dim" x="276" y="239">homing · limit switches</text>
+            <path class="dg-sh" d="M200 11 H140 V229 H160 M282 150 V212"/>
+            <!-- helicon antenna around a discharge tube -->
+            <rect x="478" y="96" width="104" height="48" rx="8" class="dg-tube"/>
+            <ellipse cx="530" cy="120" rx="44" ry="14" class="dg-plasma"/>
+            <path class="dg-coil" d="M470 70 V98 M470 170 V142 M470 98 C480 98 486 92 492 98 S504 144 512 144 S524 96 532 96 S544 144 552 144 S564 98 572 98 V142 H470"/>
+            <text class="dg-t" x="530" y="186">Helicon antenna</text>
+            <text class="dg-s dg-dim" x="530" y="200">Z = R + jX</text><text class="dg-s dg-dim" x="530" y="213">varies with the plasma</text>
+          </svg>
+          <figcaption><span data-lang="en">Concept sketch. Topology only; values omitted while the work is ongoing.</span><span data-lang="es">Esquema conceptual. Solo la topología; los valores se omiten mientras el trabajo sigue en curso.</span></figcaption>
+        </figure>
+        <div class="proj-meta"><span class="badge"><span data-lang="en">In progress</span><span data-lang="es">En curso</span></span><span class="proj-when"><span data-lang="en">Master's thesis · EP2, UC3M</span><span data-lang="es">TFM · EP2, UC3M</span></span></div>
+        <h3><span data-lang="en">Motorised matching network for a Helicon plasma thruster</span><span data-lang="es">Red de adaptación motorizada para un propulsor de plasma Helicon</span></h3>
+        <p><span data-lang="en">A Helicon thruster ionises its propellant with an RF antenna. The antenna's impedance shifts as the plasma forms and changes regime, and every bit of mismatch is power reflected back to the generator instead of going into the plasma. My thesis is the network that sits in between and keeps them matched.</span><span data-lang="es">Un propulsor Helicon ioniza el propulsante con una antena de RF. La impedancia de la antena cambia cuando se forma el plasma y cuando este cambia de régimen, y cualquier desadaptación es potencia que vuelve al generador en lugar de ir al plasma. Mi TFM es la red que va entre ambos y los mantiene adaptados.</span></p>
+        <ul>
+          <li><span data-lang="en">Electrical design of an L-type network with series and shunt variable capacitors, built to work in vacuum.</span><span data-lang="es">Diseño eléctrico de una red en L con condensadores variables en serie y en paralelo, pensada para trabajar en vacío.</span></li>
+          <li><span data-lang="en">Mechanical design and a custom PCB: each capacitor is driven by its own stepper motor, so the match can be retuned without opening the chamber.</span><span data-lang="es">Diseño mecánico y una PCB propia: cada condensador lo mueve su propio motor paso a paso, así que la adaptación se puede reajustar sin abrir la cámara.</span></li>
+          <li><span data-lang="en">Control firmware on Arduino with homing, limit switches and safe recovery moves, debugged on the bench.</span><span data-lang="es">Firmware de control en Arduino con homing, finales de carrera y movimientos de escape seguros, depurado en banco.</span></li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag"><span data-lang="en">RF design</span><span data-lang="es">Diseño RF</span></span>
+          <span class="tech-tag"><span data-lang="en">Impedance matching</span><span data-lang="es">Adaptación de impedancias</span></span>
+          <span class="tech-tag"><span data-lang="en">PCB design</span><span data-lang="es">Diseño de PCB</span></span>
+          <span class="tech-tag">Arduino</span>
+          <span class="tech-tag"><span data-lang="en">Vacuum hardware</span><span data-lang="es">Hardware para vacío</span></span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- TIMELINE -->
   <section id="requirements-timeline">
     <div class="section-header"><h2><span data-lang="en">My Experience</span><span data-lang="es">Mi experiencia</span></h2></div>
     <ul class="timeline">
       <div class="timeline-arrow"></div>
 
-      <li class="timeline-item right reveal-right" style="margin-top:0;">
+      <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2025–2026</p>
+          <p class="tl-date">2025–2026</p>
           <h3><span data-lang="en">ARQUIMEA · Process Engineering Intern</span><span data-lang="es">ARQUIMEA · Ingeniero de procesos en prácticas</span></h3>
-          <p style="text-align:center;"><span data-lang="en">Arquimea is a company with many areas of expertise. The space division specializes in HDRM systems, panels, heat pipes and satellite integration.</span><span data-lang="es">Arquimea es una empresa con muchas áreas de especialización. La división espacial está especializada en sistemas HDRM, paneles, heat pipes e integración de satélites.</span></p>
+          <p class="tl-intro"><span data-lang="en">Arquimea is a company with many areas of expertise. The space division specializes in HDRM systems, panels, heat pipes and satellite integration.</span><span data-lang="es">Arquimea es una empresa con muchas áreas de especialización. La división espacial está especializada en sistemas HDRM, paneles, heat pipes e integración de satélites.</span></p>
           <ul>
             <li><span data-lang="en">Worked as a process engineer, understanding the manufacturing methods of the company, finding bottlenecks, creating digital twins of the factory and finding new machines to improve production times.</span><span data-lang="es">Trabajé como ingeniero de procesos: entendiendo los métodos de fabricación de la empresa, detectando cuellos de botella, creando gemelos digitales de la fábrica y buscando nuevas máquinas para reducir los tiempos de producción.</span></li>
             <li><span data-lang="en">Worked in configuration control and documentation. I prepared several RFI based on the company requirements and got to know SAP and TeamCenter.</span><span data-lang="es">Trabajé en control de configuración y documentación. Preparé varias RFI a partir de los requisitos de la empresa y aprendí a manejar SAP y TeamCenter.</span></li>
           </ul>
-          <div class="tech-tags" style="margin-top:.8rem;">
+          <div class="tech-tags">
             <span class="tech-tag">TeamCenter/SAP/PLM</span>
             <span class="tech-tag">AnyLogic</span>
           </div>
         </div>
       </li>
 
-
-      <li class="timeline-item left reveal-left" style="margin-top:0;">
+      <li class="timeline-item left reveal-left tl-offset">
         <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2025–2026</p>
+          <p class="tl-date">2025–2026</p>
           <h3><span data-lang="en">EP2 · Research Scholarship @UC3M</span><span data-lang="es">EP2 · Beca de investigación @UC3M</span></h3>
-          <p style="text-align:center;"><span data-lang="en">EP2 is the plasma propulsion research team at UC3M. Granted the collaboration scholarship to research plasma generation.</span><span data-lang="es">EP2 es el grupo de investigación en propulsión por plasma de la UC3M. Me concedieron la beca de colaboración para investigar la generación de plasma.</span></p>
+          <p class="tl-intro"><span data-lang="en">EP2 is the plasma propulsion research team at UC3M. Granted the collaboration scholarship to research plasma generation.</span><span data-lang="es">EP2 es el grupo de investigación en propulsión por plasma de la UC3M. Me concedieron la beca de colaboración para investigar la generación de plasma.</span></p>
           <ul>
             <li><span data-lang="en">Designed a power PCB to centralize vacuum control (valves, mass flow controllers, pressure sensors → LabVIEW).</span><span data-lang="es">Diseñé una PCB de potencia para centralizar el control del vacío (válvulas, controladores de caudal másico, sensores de presión → LabVIEW).</span></li>
             <li><span data-lang="en">Designed a vacuum compatible L-type matching network to match the impedance of an antenna in a Helicon thruster. The process involved Electrical and mechanical design.</span><span data-lang="es">Diseñé una red de adaptación en L compatible con vacío para adaptar la impedancia de la antena de un propulsor Helicon. El proceso incluyó diseño eléctrico y mecánico.</span></li>
           </ul>
-          <div class="tech-tags" style="margin-top:.8rem;">
+          <div class="tech-tags">
             <span class="tech-tag"><span data-lang="en">PCB Design</span><span data-lang="es">Diseño de PCB</span></span>
             <span class="tech-tag">LabVIEW</span>
             <span class="tech-tag"><span data-lang="en">RF Antennas</span><span data-lang="es">Antenas RF</span></span>
@@ -143,21 +608,21 @@
         </div>
       </li>
 
-      <li class="timeline-item left reveal-left" style="margin-top:4rem;">
+      <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
-          <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
+          <p class="tl-date">2024–2025</p>
           <h3><span data-lang="en">Simulations Engineer @Madrid Space Europe</span><span data-lang="es">Ingeniero de simulación @Madrid Space Europe</span></h3>
-          <p style="text-align:center;"><span data-lang="en">Space cluster consultant solving thermal, structural, and fluid problems.</span><span data-lang="es">Consultora del clúster espacial que resuelve problemas térmicos, estructurales y de fluidos.</span></p>
+          <p class="tl-intro"><span data-lang="en">Space cluster consultant solving thermal, structural, and fluid problems.</span><span data-lang="es">Consultora del clúster espacial que resuelve problemas térmicos, estructurales y de fluidos.</span></p>
           <ul>
             <li><span data-lang="en">CFD with Hypermesh CFD and OpenFOAM</span><span data-lang="es">CFD con HyperMesh CFD y OpenFOAM</span></li>
             <li><span data-lang="en">Thermal analyses with ESATAN</span><span data-lang="es">Análisis térmicos con ESATAN</span></li>
             <li><span data-lang="en">Structural analyses with Hypermesh (FEM)</span><span data-lang="es">Análisis estructurales con HyperMesh (FEM)</span></li>
             <li><span data-lang="en">Started as intern → junior engineer contract after 4 months!</span><span data-lang="es">Empecé en prácticas → contrato de ingeniero junior a los 4 meses.</span></li>
           </ul>
-          <p style="text-align:center; margin-top:.8rem;"><span data-lang="en">Defended final year thesis: <strong>9.6 / 10</strong> design and simulation of a micronozzle for in-space propulsion.</span><span data-lang="es">Defendí mi TFG con un <strong>9,6 / 10</strong>: diseño y simulación de una microtobera para propulsión espacial.</span></p>
-          <img src="images/Portada_TFG.png" alt="Thesis" data-es-alt="Trabajo de fin de grado" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
-          <img src="images/Speed_TFG.png" alt="CFD result" data-es-alt="Resultado de CFD" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
-          <div class="tech-tags" style="margin-top:.8rem;">
+          <p class="tl-intro"><span data-lang="en">Defended final year thesis: <strong>9.6 / 10</strong> design and simulation of a micronozzle for in-space propulsion.</span><span data-lang="es">Defendí mi TFG con un <strong>9,6 / 10</strong>: diseño y simulación de una microtobera para propulsión espacial.</span></p>
+          <img class="tl-img" src="images/Portada_TFG.png" alt="Thesis" data-es-alt="Trabajo de fin de grado" width="260" loading="lazy">
+          <img class="tl-img" src="images/Speed_TFG.png" alt="CFD result" data-es-alt="Resultado de CFD" width="260" loading="lazy">
+          <div class="tech-tags">
             <span class="tech-tag">OpenFOAM</span>
             <span class="tech-tag">ESATAN</span>
             <span class="tech-tag">HyperMesh</span>
@@ -166,9 +631,9 @@
         </div>
       </li>
 
-      <li class="timeline-item right reveal-right">
+      <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2022–2025</p>
+          <p class="tl-date">2022–2025</p>
           <h3><span data-lang="en">SAETA UC3M · Student UAV Club</span><span data-lang="es">SAETA UC3M · Asociación universitaria de UAV</span></h3>
           <ul>
             <li><span data-lang="en">Participated in the first XtraChallenge (UPV) with a flying wing design.</span><span data-lang="es">Participé en la primera XtraChallenge (UPV) con un diseño de ala volante.</span></li>
@@ -177,9 +642,9 @@
             <li><span data-lang="en">Designed the Motor Integration Part in CatiaV5 and 3D printed for competition.</span><span data-lang="es">Diseñé la pieza de integración del motor en CATIA V5 y la imprimí en 3D para la competición.</span></li>
             <li><span data-lang="en">Member of Propulsion & Systems team.</span><span data-lang="es">Miembro del equipo de Propulsión y Sistemas.</span></li>
           </ul>
-          <img src="images/Vencejo2.png" alt="Vencejo" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
-          <img src="images/MIP.PNG" alt="MIP" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
-          <div class="tech-tags" style="margin-top:.8rem;">
+          <img class="tl-img" src="images/Vencejo2.png" alt="Vencejo" width="260" loading="lazy">
+          <img class="tl-img" src="images/MIP.PNG" alt="MIP" width="260" loading="lazy">
+          <div class="tech-tags">
             <span class="tech-tag">CatiaV5</span>
             <span class="tech-tag">OpenFOAM</span>
             <span class="tech-tag"><span data-lang="en">3D Printing</span><span data-lang="es">Impresión 3D</span></span>
@@ -187,26 +652,28 @@
         </div>
       </li>
 
-      <li class="timeline-item left reveal-left">
+      <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
-          <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
-          <h3><span data-lang="en">Private Tutor · Physics & Maths</span><span data-lang="es">Profesor particular · Física y Matemáticas</span></h3>
+          <p class="tl-date">2024</p>
+          <h3><span data-lang="en">Purdue · Research Project with OpenVSP</span><span data-lang="es">Purdue · Proyecto de investigación con OpenVSP</span></h3>
           <ul>
-            <li><span data-lang="en">Individual classes to high school students preparing for the EVAU.</span><span data-lang="es">Clases individuales a estudiantes de bachillerato que preparaban la EVAU.</span></li>
+            <li><span data-lang="en">Used OpenVSP within a research team to assess UAV winglet simulation capabilities.</span><span data-lang="es">Usé OpenVSP en un equipo de investigación para evaluar la capacidad de simular winglets de UAV.</span></li>
+            <li><span data-lang="en">3D printed the flying wing prototype.</span><span data-lang="es">Imprimí en 3D el prototipo de ala volante.</span></li>
           </ul>
+          <img class="tl-img" src="images/OVSP.PNG" alt="OpenVSP" width="260" loading="lazy">
         </div>
       </li>
 
       <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023–2024</p>
+          <p class="tl-date">2023–2024</p>
           <h3><span data-lang="en">PSP Student Launch · Rocket Design (SRM)</span><span data-lang="es">PSP Student Launch · Diseño de cohetes (SRM)</span></h3>
           <ul>
             <li><span data-lang="en">NASA requirements competition for rocket design.</span><span data-lang="es">Competición de diseño de cohetes con requisitos de la NASA.</span></li>
             <li><span data-lang="en">Designed the deployable quadcopter payload that separates and lands autonomously.</span><span data-lang="es">Diseñé la carga útil: un cuadricóptero desplegable que se separa y aterriza de forma autónoma.</span></li>
             <li><span data-lang="en">Electronics selection and integration; acted as Structures Engineer.</span><span data-lang="es">Selección e integración de la electrónica; también hice de ingeniero de estructuras.</span></li>
           </ul>
-          <div class="tech-tags" style="margin-top:.8rem;">
+          <div class="tech-tags">
             <span class="tech-tag">SRM</span>
             <span class="tech-tag"><span data-lang="en">Payload Design</span><span data-lang="es">Diseño de carga útil</span></span>
             <span class="tech-tag"><span data-lang="en">Avionics</span><span data-lang="es">Aviónica</span></span>
@@ -214,37 +681,16 @@
         </div>
       </li>
 
-      <li class="timeline-item left reveal-left">
-        <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024</p>
-          <h3><span data-lang="en">Purdue · Research Project with OpenVSP</span><span data-lang="es">Purdue · Proyecto de investigación con OpenVSP</span></h3>
-          <ul>
-            <li><span data-lang="en">Used OpenVSP within a research team to assess UAV winglet simulation capabilities.</span><span data-lang="es">Usé OpenVSP en un equipo de investigación para evaluar la capacidad de simular winglets de UAV.</span></li>
-            <li><span data-lang="en">3D printed the flying wing prototype.</span><span data-lang="es">Imprimí en 3D el prototipo de ala volante.</span></li>
-          </ul>
-          <img src="images/OVSP.PNG" alt="OpenVSP" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
-        </div>
-      </li>
-
       <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023</p>
-          <h3><span data-lang="en">Valentin Sailing School · Instructor</span><span data-lang="es">Escuela de vela Valentin · Monitor</span></h3>
+          <p class="tl-date">2018–2025</p>
+          <h3><span data-lang="en">Other experience</span><span data-lang="es">Otra experiencia</span></h3>
           <ul>
-            <li><span data-lang="en">Taught advanced meteorology, sailing, and navigation to diverse age groups.</span><span data-lang="es">Enseñé meteorología avanzada, vela y navegación a grupos de edades muy distintas.</span></li>
-            <li><span data-lang="en">Led groups at sea; developed leadership and communication skills.</span><span data-lang="es">Dirigí grupos en el mar; desarrollé liderazgo y habilidades de comunicación.</span></li>
+            <li><span data-lang="en"><strong>Private Tutor · Physics &amp; Maths</strong> (2024–2025): individual classes to high school students preparing for the EVAU.</span><span data-lang="es"><strong>Profesor particular · Física y Matemáticas</strong> (2024–2025): clases individuales a estudiantes de bachillerato que preparaban la EVAU.</span></li>
+            <li><span data-lang="en"><strong>Valentin Sailing School · Instructor</strong> (2023): taught advanced meteorology, sailing, and navigation to diverse age groups. Led groups at sea; developed leadership and communication skills.</span><span data-lang="es"><strong>Escuela de vela Valentin · Monitor</strong> (2023): enseñé meteorología avanzada, vela y navegación a grupos de edades muy distintas. Dirigí grupos en el mar; desarrollé liderazgo y habilidades de comunicación.</span></li>
+            <li><span data-lang="en"><strong>Typsa S.A. &amp; VMAWRE · High School Internships</strong> (2018 &amp; 2019): first real contacts with the corporate sector during high school.</span><span data-lang="es"><strong>Typsa S.A. y VMAWRE · Prácticas en bachillerato</strong> (2018 y 2019): primeros contactos reales con el mundo de la empresa durante el bachillerato.</span></li>
           </ul>
-          <img src="images/Sailing.png" alt="Sailing" data-es-alt="Vela" width="180" style="display:block;margin:1rem auto;border-radius:.6rem;">
-        </div>
-      </li>
-
-      <li class="timeline-item left reveal-left">
-        <div class="timeline-content card">
-          <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2018 &amp; 2019</p>
-          <h3><span data-lang="en">Typsa.SA &amp; VMAWRE · High School Internships</span><span data-lang="es">Typsa S.A. y VMAWRE · Prácticas en bachillerato</span></h3>
-          <ul>
-            <li><span data-lang="en">First real contacts with the corporate sector during high school.</span><span data-lang="es">Primeros contactos reales con el mundo de la empresa durante el bachillerato.</span></li>
-          </ul>
+          <img class="tl-img" src="images/Sailing.jpg" alt="Sailing" data-es-alt="Vela" width="180" loading="lazy">
         </div>
       </li>
 
@@ -255,7 +701,7 @@
   <section id="contact" class="reveal">
     <div class="section-header"><h2><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h2></div>
     <p><span data-lang="en">Feel free to reach out via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></span><span data-lang="es">Puedes escribirme por correo: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></span></p>
-    <p><span data-lang="en">Or check my LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></span><span data-lang="es">O echar un vistazo a mi LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></span></p>
+    <p><span data-lang="en">Or check my LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank" rel="noopener">Álvaro Casillas</a></span><span data-lang="es">O echar un vistazo a mi LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank" rel="noopener">Álvaro Casillas</a></span></p>
 
     <form action="https://api.web3forms.com/submit" method="POST" style="margin-top:1.5rem; max-width:560px;">
       <input type="hidden" name="access_key" value="168fb0ac-0517-4516-9edb-733023e860a2">
@@ -267,16 +713,126 @@
       <label for="message"><span data-lang="en">Message</span><span data-lang="es">Mensaje</span></label>
       <textarea name="message" id="message" required></textarea>
       <input type="checkbox" name="botcheck" style="display:none;">
-      <button type="submit"><span data-lang="en">Send Message ✉️</span><span data-lang="es">Enviar mensaje ✉️</span></button>
+      <button type="submit"><span data-lang="en">Send message</span><span data-lang="es">Enviar mensaje</span></button>
     </form>
   </section>
 
 </main>
 
 <footer>
-  <div class="container">© <span id="year"></span> Alvaro Casillas · <span data-lang="en">Built from scratch</span><span data-lang="es">Hecho desde cero</span> · <span class="gradient-text">Per aspera ad astra</span></div>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · <span data-lang="en">Built from scratch</span><span data-lang="es">Hecho desde cero</span> · <span class="gradient-text">Per aspera ad astra</span> · <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank" rel="noopener">LinkedIn</a></div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* ===========================================================
+   Mars launch: the rocket sits on the pad and lifts off with scroll.
+   Scroll 0 → ~110px: ignition (umbilical swings away, plume grows, dust).
+   Beyond that: liftoff with accelerating climb, legs fold, slight pitch-over.
+   Fully reversible: scroll back up and it lands again.
+   =========================================================== */
+(function marsLaunch() {
+  var scene = document.querySelector('.mars-scene');
+  if (!scene) return;
+  var svg = scene.querySelector('.mars-svg');
+  function $(id) { return svg.querySelector('#' + id); }
+  var body = $('rk-body'), flame = $('rk-flame'), legL = $('rk-leg-l'), legR = $('rk-leg-r'),
+      arm = $('umb'), padGlow = $('pad-glow'), noz = $('rk-noz');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var cv = document.createElement('canvas');
+  cv.className = 'launch-fx';
+  document.body.appendChild(cv);
+  var ctx = cv.getContext('2d'), W = 0, H = 0, P = [];
+  function size() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  size();
+  window.addEventListener('resize', size);
+
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function smooth(a, b, v) { var t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
+  var pt = svg.createSVGPoint();
+  function screenOf(el, x, y) {
+    var m = el.getScreenCTM(); if (!m) return null;
+    pt.x = x; pt.y = y; return pt.matrixTransform(m);
+  }
+  function jitter(a) { return reduce ? 1 : 1 - a + Math.random() * 2 * a; }
+
+  function spawn(x, y, vx, vy, r, grow, decay, kind) {
+    if (P.length < 420) P.push({ x: x, y: y + window.scrollY, vx: vx, vy: vy, r: r, g: grow, d: decay, k: kind, l: 1 });
+  }
+
+  function tick() {
+    var s = window.scrollY, vh = window.innerHeight;
+    var scale = (svg.getBoundingClientRect().width / 1000) || 1;
+
+    var ign  = smooth(15, 110, s);                       // 0..1 engine start
+    var t    = Math.max(0, (s - 110) / (vh * 0.9));      // flight time
+    var alt  = (t * t * vh * 1.5) / scale;               // altitude in SVG units
+    var pitch = Math.pow(Math.min(t, 1.3), 2) * 6;       // gentle gravity turn
+    var fold = smooth(0.02, 0.18, t);
+    var thr  = ign * (0.5 + 0.5 * Math.min(1, t * 4));   // throttle
+
+    body.setAttribute('transform', 'translate(0 ' + (-alt).toFixed(2) + ') rotate(' + pitch.toFixed(2) + ' 0 -50)');
+    legL.setAttribute('transform', 'rotate(' + (-24 * fold).toFixed(2) + ' -7 -15)');
+    legR.setAttribute('transform', 'rotate(' + (24 * fold).toFixed(2) + ' 7 -15)');
+    arm.setAttribute('transform', 'rotate(' + (70 * smooth(10, 80, s)).toFixed(2) + ' 636 165)');
+    flame.setAttribute('opacity', thr > 0.02 ? 1 : 0);
+    flame.setAttribute('transform', 'scale(' + ((0.85 + 0.25 * thr) * jitter(0.03)).toFixed(3) + ' ' + (thr * jitter(0.1)).toFixed(3) + ')');
+    padGlow.setAttribute('opacity', (ign * clamp(1 - alt / 140, 0, 1) * jitter(0.12)).toFixed(3));
+
+    if (!reduce) {
+      var pad = screenOf(svg, 600, 238);
+      var n = screenOf(noz, 0, 0);
+      var onScreen = pad && pad.y > -200 && pad.y < vh + 200;
+      // dust kicked up off the pad
+      if (onScreen && ign > 0.15 && alt < 90) {
+        var k = Math.round(1 + 3 * ign * (1 - alt / 90));
+        for (var i = 0; i < k; i++) {
+          var dir = Math.random() < 0.5 ? -1 : 1;
+          spawn(pad.x + dir * Math.random() * 10 * scale, pad.y - Math.random() * 3 * scale,
+                dir * (0.8 + Math.random() * 2.6) * scale, -Math.random() * 0.5 * scale,
+                (2 + Math.random() * 3) * scale, 0.3 * scale, 0.010 + Math.random() * 0.01, 0);
+        }
+      }
+      // thin exhaust trail in flight
+      if (n && thr > 0.05 && alt > 8 && n.y > -40 && n.y < vh + 40 && Math.random() < 0.8) {
+        spawn(n.x + (Math.random() - 0.5) * 4 * scale, n.y + 30 * scale * thr,
+              (Math.random() - 0.5) * 0.5, 0.8 + Math.random() * 0.8,
+              2 * scale, 0.22 * scale, 0.028, 1);
+      }
+      // boil-off venting while it waits on the pad
+      if (onScreen && ign === 0 && Math.random() < 0.05) {
+        var v = screenOf(body, 7, -66);
+        if (v) spawn(v.x, v.y, (0.25 + Math.random() * 0.3) * scale, -0.12 * scale, 1.2 * scale, 0.07 * scale, 0.011, 2);
+      }
+    }
+
+    ctx.clearRect(0, 0, W, H);
+    var sy = window.scrollY;
+    for (var j = P.length - 1; j >= 0; j--) {
+      var p = P[j];
+      p.x += p.vx; p.y += p.vy; p.r += p.g; p.l -= p.d;
+      p.vx *= 0.985;
+      if (p.l <= 0) { P.splice(j, 1); continue; }
+      var y = p.y - sy;
+      if (y < -60 || y > H + 60) continue;
+      var a = p.k === 0 ? 0.30 * p.l : p.k === 1 ? 0.20 * p.l : 0.26 * p.l;
+      var c = p.k === 0 ? '170,108,76' : p.k === 1 ? '196,206,226' : '226,233,246';
+      var g = ctx.createRadialGradient(p.x, y, 0, p.x, y, p.r);
+      g.addColorStop(0, 'rgba(' + c + ',' + a + ')');
+      g.addColorStop(1, 'rgba(' + c + ',0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(p.x, y, p.r, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
