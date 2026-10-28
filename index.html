@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Per aspera ad astra</title>
-  <meta name="description" content="Personal aerospace engineering site: calculators, rocket theory, and lessons from the journey." />
+  <title data-es="Per aspera ad astra">Per aspera ad astra</title>
+  <meta name="description" content="Personal aerospace engineering site: calculators, rocket theory, and lessons from the journey." data-es-content="Web personal de ingeniería aeroespacial: calculadoras, teoría de cohetes y lecciones del camino." />
   <link rel="stylesheet" href="style.css" />
+  <script src="i18n.js"></script>
   <link rel="icon" type="image/png" href="images/Logo.png">
 </head>
 <body>
@@ -14,22 +15,22 @@
 <canvas id="star-canvas"></canvas>
 
 <div class="sidebar">
-  <h2>🚀 Menu</h2>
-  <a href="#About">About</a>
-  <a href="#My education">Education</a>
-  <a href="#requirements-timeline">Experience</a>
-  <a href="#contact">Contact</a>
+  <h2>🚀 <span data-lang="en">Menu</span><span data-lang="es">Menú</span></h2>
+  <a href="#About"><span data-lang="en">About</span><span data-lang="es">Sobre mí</span></a>
+  <a href="#My education"><span data-lang="en">Education</span><span data-lang="es">Formación</span></a>
+  <a href="#requirements-timeline"><span data-lang="en">Experience</span><span data-lang="es">Experiencia</span></a>
+  <a href="#contact"><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></a>
 </div>
 
 <header>
   <div class="container nav">
     <div class="logo">✈️ Per aspera ad astra</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="Isentropic_calculator.html">Calculators</a>
-      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+      <a href="Isentropic_calculator.html"><span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></a>
+      <a href="Rocket_Theory.html"><span data-lang="en">Rocket Theory</span><span data-lang="es">Teoría de cohetes</span></a>
       <a href="Newsletter.html">Newsletter</a>
-      <a href="mapa.html">Industry Map</a>
+      <a href="mapa.html"><span data-lang="en">Industry Map</span><span data-lang="es">Mapa de industria</span></a>
     </nav>
   </div>
 </header>
@@ -38,10 +39,10 @@
 
   <!-- HERO -->
   <section id="Introduction" class="hero-section" style="border-bottom:none; padding-top:5rem;">
-    <div class="hero-eyebrow">Aerospace Engineer · MA & Propulsion · Simulations · EPS & TH</div>
-    <h1 id="typewriter-title" data-text="Hello there. Welcome to my site.">Hello there. Welcome to my site.</h1>
+    <div class="hero-eyebrow"><span data-lang="en">Aerospace Engineer · MA &amp; Propulsion · Simulations · EPS &amp; TH</span><span data-lang="es">Ingeniero aeroespacial · MA y propulsión · Simulación · EPS y térmico</span></div>
+    <h1 id="typewriter-title" data-text="Hello there. Welcome to my site." data-text-es="Hola. Bienvenido a mi web.">Hello there. Welcome to my site.</h1>
     <p class="hero-description">
-      A personal space dedicated to aerospace engineering: from rocket propulsion theory to simulation work, calculators, and lessons learned along the way. Built from scratch, for the love of the craft.
+      <span data-lang="en">A personal space dedicated to aerospace engineering: from rocket propulsion theory to simulation work, calculators, and lessons learned along the way. Built from scratch, for the love of the craft.</span><span data-lang="es">Un espacio personal dedicado a la ingeniería aeroespacial: desde la teoría de propulsión de cohetes hasta el trabajo de simulación, calculadoras y lecciones aprendidas por el camino. Hecho desde cero, por amor al oficio.</span>
     </p>
     <div class="orbit-deco"></div>
     
@@ -49,53 +50,53 @@
 
   <!-- ABOUT -->
   <section id="About" class="reveal">
-    <div class="section-header"><h2>About me</h2></div>
+    <div class="section-header"><h2><span data-lang="en">About me</span><span data-lang="es">Sobre mí</span></h2></div>
     <div class="badge">Per aspera ad astra</div>
     <p>
-      I just graduated from my bachelor in aerospace engineering, so I am officially an engineer. My college years were the most complicated yet fascinating of my life.
-      Each challenge brought the best of me and my classmates, and the lessons learned will follow me throughout my career.
+      <span data-lang="en">I just graduated from my bachelor in aerospace engineering, so I am officially an engineer. My college years were the most complicated yet fascinating of my life.
+      Each challenge brought the best of me and my classmates, and the lessons learned will follow me throughout my career.</span><span data-lang="es">Acabo de terminar el grado en Ingeniería Aeroespacial, así que ya soy oficialmente ingeniero. Mis años de universidad han sido los más complicados y, a la vez, los más fascinantes de mi vida. Cada reto sacó lo mejor de mí y de mis compañeros, y lo aprendido me acompañará durante toda mi carrera.</span>
     </p>
     <p>
-      You may wonder where it leads. The name of this page gives a hint: <strong>"Through hardships to the stars."</strong>
+      <span data-lang="en">You may wonder where it leads. The name of this page gives a hint: <strong>"Through hardships to the stars."</strong>
       This journey started when I decided to become an astronaut, over 15 years ago. Over time I've met brilliant minds, discovered new branches of engineering, and my reasons to pursue this career have evolved.
-      Now, the will to contribute to humanity's knowledge and secure our place among the stars drives me forward.
+      Now, the will to contribute to humanity's knowledge and secure our place among the stars drives me forward.</span><span data-lang="es">Quizá te preguntes adónde lleva todo esto. El nombre de esta página da una pista: <strong>«A través de las dificultades, hasta las estrellas».</strong> Este viaje empezó cuando decidí ser astronauta, hace más de 15 años. Con el tiempo he conocido mentes brillantes, he descubierto nuevas ramas de la ingeniería y mis motivos para seguir esta carrera han evolucionado. Hoy me impulsa la voluntad de contribuir al conocimiento de la humanidad y asegurar nuestro lugar entre las estrellas.</span>
     </p>
     <p>
-      I am not an astronaut yet. But my passion for engineering is still there: rocket propulsion, astrophysics, satellites, launches, space vehicles, and programming. Because no matter how incredible the destination, the aerospace journey still fascinates me every single day.
+      <span data-lang="en">I am not an astronaut yet. But my passion for engineering is still there: rocket propulsion, astrophysics, satellites, launches, space vehicles, and programming. Because no matter how incredible the destination, the aerospace journey still fascinates me every single day.</span><span data-lang="es">Todavía no soy astronauta. Pero mi pasión por la ingeniería sigue ahí: propulsión de cohetes, astrofísica, satélites, lanzamientos, vehículos espaciales y programación. Porque, por increíble que sea el destino, el viaje aeroespacial me sigue fascinando cada día.</span>
     </p>
   </section>
 
   <!-- EDUCATION -->
   <section id="My education" class="reveal">
-    <div class="section-header"><h2>My education</h2></div>
+    <div class="section-header"><h2><span data-lang="en">My education</span><span data-lang="es">Mi formación</span></h2></div>
     <div class="grid">
       <article class="card reveal-left delay-1">
         <div class="badge">B.Sc.</div>
-        <h3>Aerospace Engineering @UC3M</h3>
-        <p>Completed my aerospace engineering degree at Universidad Carlos III de Madrid. Learned about aircraft, rockets, and the fundamentals of propulsion. After all, <strong>it is</strong> rocket science.</p>
+        <h3><span data-lang="en">Aerospace Engineering @UC3M</span><span data-lang="es">Ingeniería Aeroespacial @UC3M</span></h3>
+        <p><span data-lang="en">Completed my aerospace engineering degree at Universidad Carlos III de Madrid. Learned about aircraft, rockets, and the fundamentals of propulsion. After all, <strong>it is</strong> rocket science.</span><span data-lang="es">Terminé el grado en Ingeniería Aeroespacial en la Universidad Carlos III de Madrid. Aprendí sobre aviones, cohetes y los fundamentos de la propulsión. Al fin y al cabo, <strong>sí que es</strong> ciencia de cohetes.</span></p>
         <div class="tech-tags">
-          <span class="tech-tag">Propulsion</span>
-          <span class="tech-tag">Aerodynamics</span>
-          <span class="tech-tag">Structures</span>
+          <span class="tech-tag"><span data-lang="en">Propulsion</span><span data-lang="es">Propulsión</span></span>
+          <span class="tech-tag"><span data-lang="en">Aerodynamics</span><span data-lang="es">Aerodinámica</span></span>
+          <span class="tech-tag"><span data-lang="en">Structures</span><span data-lang="es">Estructuras</span></span>
         </div>
       </article>
       <article class="card reveal delay-2">
-        <div class="badge">Exchange</div>
+        <div class="badge"><span data-lang="en">Exchange</span><span data-lang="es">Intercambio</span></div>
         <h3>Purdue University</h3>
-        <p>Student exchange program at Purdue University, building solid foundations in Propulsion and Orbital Mechanics. One of the best aerospace programs in the world.</p>
+        <p><span data-lang="en">Student exchange program at Purdue University, building solid foundations in Propulsion and Orbital Mechanics. One of the best aerospace programs in the world.</span><span data-lang="es">Programa de intercambio en Purdue University, donde construí una base sólida en propulsión y mecánica orbital. Uno de los mejores programas aeroespaciales del mundo.</span></p>
         <div class="tech-tags">
-          <span class="tech-tag">Orbital Mechanics</span>
-          <span class="tech-tag">Advanced Propulsion</span>
+          <span class="tech-tag"><span data-lang="en">Orbital Mechanics</span><span data-lang="es">Mecánica orbital</span></span>
+          <span class="tech-tag"><span data-lang="en">Advanced Propulsion</span><span data-lang="es">Propulsión avanzada</span></span>
         </div>
       </article>
       <article class="card reveal-right delay-3">
         <div class="badge">M.Sc.</div>
-        <h3>Space Engineering Master @UC3M</h3>
-        <p>Currently pursuing a Master's in Space Engineering: satellite subsystems, launchers, space communications, and space missions design.</p>
+        <h3><span data-lang="en">Space Engineering Master @UC3M</span><span data-lang="es">Máster en Ingeniería Espacial @UC3M</span></h3>
+        <p><span data-lang="en">Currently pursuing a Master's in Space Engineering: satellite subsystems, launchers, space communications, and space missions design.</span><span data-lang="es">Actualmente curso el Máster en Ingeniería Espacial: subsistemas de satélite, lanzadores, comunicaciones espaciales y diseño de misiones espaciales.</span></p>
         <div class="tech-tags">
-          <span class="tech-tag">Satellites</span>
-          <span class="tech-tag">Launchers</span>
-          <span class="tech-tag">Space Comms</span>
+          <span class="tech-tag"><span data-lang="en">Satellites</span><span data-lang="es">Satélites</span></span>
+          <span class="tech-tag"><span data-lang="en">Launchers</span><span data-lang="es">Lanzadores</span></span>
+          <span class="tech-tag"><span data-lang="en">Space Comms</span><span data-lang="es">Comunicaciones espaciales</span></span>
         </div>
       </article>
     </div>
@@ -103,18 +104,18 @@
 
   <!-- TIMELINE -->
   <section id="requirements-timeline">
-    <div class="section-header"><h2>My Experience</h2></div>
+    <div class="section-header"><h2><span data-lang="en">My Experience</span><span data-lang="es">Mi experiencia</span></h2></div>
     <ul class="timeline">
       <div class="timeline-arrow"></div>
 
       <li class="timeline-item right reveal-right" style="margin-top:0;">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2025–2026</p>
-          <h3>ARQUIMEA · Process Enginnering Intern</h3>
-          <p style="text-align:center;">Arquimea is an company with many areas of expertise. The space division specalizes in HDRM systesms, pannels, heat pipes and satellite integration</p>
+          <h3><span data-lang="en">ARQUIMEA · Process Engineering Intern</span><span data-lang="es">ARQUIMEA · Ingeniero de procesos en prácticas</span></h3>
+          <p style="text-align:center;"><span data-lang="en">Arquimea is a company with many areas of expertise. The space division specializes in HDRM systems, panels, heat pipes and satellite integration.</span><span data-lang="es">Arquimea es una empresa con muchas áreas de especialización. La división espacial está especializada en sistemas HDRM, paneles, heat pipes e integración de satélites.</span></p>
           <ul>
-            <li>Worked as a process engineer, understanding the manufacturing methods of the company, finding bottlenecks, creating digital twins of the factory and finding new machines to improve production times.</li>
-            <li>Worked in configuration control and documentation. I prepared several RFI based on the company requirements and got to know SAP and TeamCenter.</li>
+            <li><span data-lang="en">Worked as a process engineer, understanding the manufacturing methods of the company, finding bottlenecks, creating digital twins of the factory and finding new machines to improve production times.</span><span data-lang="es">Trabajé como ingeniero de procesos: entendiendo los métodos de fabricación de la empresa, detectando cuellos de botella, creando gemelos digitales de la fábrica y buscando nuevas máquinas para reducir los tiempos de producción.</span></li>
+            <li><span data-lang="en">Worked in configuration control and documentation. I prepared several RFI based on the company requirements and got to know SAP and TeamCenter.</span><span data-lang="es">Trabajé en control de configuración y documentación. Preparé varias RFI a partir de los requisitos de la empresa y aprendí a manejar SAP y TeamCenter.</span></li>
           </ul>
           <div class="tech-tags" style="margin-top:.8rem;">
             <span class="tech-tag">TeamCenter/SAP/PLM</span>
@@ -127,17 +128,17 @@
       <li class="timeline-item left reveal-left" style="margin-top:0;">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2025–2026</p>
-          <h3>EP2 · Research Scholarship @UC3M</h3>
-          <p style="text-align:center;">EP2 is the plasma propulsion research team at UC3M. Granted the collaboration scholarship to research plasma generation.</p>
+          <h3><span data-lang="en">EP2 · Research Scholarship @UC3M</span><span data-lang="es">EP2 · Beca de investigación @UC3M</span></h3>
+          <p style="text-align:center;"><span data-lang="en">EP2 is the plasma propulsion research team at UC3M. Granted the collaboration scholarship to research plasma generation.</span><span data-lang="es">EP2 es el grupo de investigación en propulsión por plasma de la UC3M. Me concedieron la beca de colaboración para investigar la generación de plasma.</span></p>
           <ul>
-            <li>Designed a power PCB to centralize vacuum control (valves, mass flow controllers, pressure sensors → LabVIEW).</li>
-            <li>Designed a vacuum compatible L-type matching network to match the impedance of an antenna in a Helicon thruster. The process involved Electrical and mechanical design.</li>
+            <li><span data-lang="en">Designed a power PCB to centralize vacuum control (valves, mass flow controllers, pressure sensors → LabVIEW).</span><span data-lang="es">Diseñé una PCB de potencia para centralizar el control del vacío (válvulas, controladores de caudal másico, sensores de presión → LabVIEW).</span></li>
+            <li><span data-lang="en">Designed a vacuum compatible L-type matching network to match the impedance of an antenna in a Helicon thruster. The process involved Electrical and mechanical design.</span><span data-lang="es">Diseñé una red de adaptación en L compatible con vacío para adaptar la impedancia de la antena de un propulsor Helicon. El proceso incluyó diseño eléctrico y mecánico.</span></li>
           </ul>
           <div class="tech-tags" style="margin-top:.8rem;">
-            <span class="tech-tag">PCB Design</span>
+            <span class="tech-tag"><span data-lang="en">PCB Design</span><span data-lang="es">Diseño de PCB</span></span>
             <span class="tech-tag">LabVIEW</span>
-            <span class="tech-tag">RF Antennas</span>
-            <span class="tech-tag">Plasma</span>
+            <span class="tech-tag"><span data-lang="en">RF Antennas</span><span data-lang="es">Antenas RF</span></span>
+            <span class="tech-tag"><span data-lang="en">Plasma</span><span data-lang="es">Plasma</span></span>
           </div>
         </div>
       </li>
@@ -145,17 +146,17 @@
       <li class="timeline-item left reveal-left" style="margin-top:4rem;">
         <div class="timeline-content card">
           <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
-          <h3>Simulations Engineer @Madrid Space Europe</h3>
-          <p style="text-align:center;">Space cluster consultant solving thermal, structural, and fluid problems.</p>
+          <h3><span data-lang="en">Simulations Engineer @Madrid Space Europe</span><span data-lang="es">Ingeniero de simulación @Madrid Space Europe</span></h3>
+          <p style="text-align:center;"><span data-lang="en">Space cluster consultant solving thermal, structural, and fluid problems.</span><span data-lang="es">Consultora del clúster espacial que resuelve problemas térmicos, estructurales y de fluidos.</span></p>
           <ul>
-            <li>CFD with Hypermesh CFD and OpenFOAM</li>
-            <li>Thermal analyses with ESATAN</li>
-            <li>Structural analyses with Hypermesh (FEM)</li>
-            <li>Started as intern → junior engineer contract after 4 months!</li>
+            <li><span data-lang="en">CFD with Hypermesh CFD and OpenFOAM</span><span data-lang="es">CFD con HyperMesh CFD y OpenFOAM</span></li>
+            <li><span data-lang="en">Thermal analyses with ESATAN</span><span data-lang="es">Análisis térmicos con ESATAN</span></li>
+            <li><span data-lang="en">Structural analyses with Hypermesh (FEM)</span><span data-lang="es">Análisis estructurales con HyperMesh (FEM)</span></li>
+            <li><span data-lang="en">Started as intern → junior engineer contract after 4 months!</span><span data-lang="es">Empecé en prácticas → contrato de ingeniero junior a los 4 meses.</span></li>
           </ul>
-          <p style="text-align:center; margin-top:.8rem;">Defended final year thesis: <strong>9.6 / 10</strong> design and simulation of a micronozzle for in-space propulsion.</p>
-          <img src="images/Portada_TFG.png" alt="Thesis" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
-          <img src="images/Speed_TFG.png" alt="CFD result" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
+          <p style="text-align:center; margin-top:.8rem;"><span data-lang="en">Defended final year thesis: <strong>9.6 / 10</strong> design and simulation of a micronozzle for in-space propulsion.</span><span data-lang="es">Defendí mi TFG con un <strong>9,6 / 10</strong>: diseño y simulación de una microtobera para propulsión espacial.</span></p>
+          <img src="images/Portada_TFG.png" alt="Thesis" data-es-alt="Trabajo de fin de grado" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
+          <img src="images/Speed_TFG.png" alt="CFD result" data-es-alt="Resultado de CFD" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
           <div class="tech-tags" style="margin-top:.8rem;">
             <span class="tech-tag">OpenFOAM</span>
             <span class="tech-tag">ESATAN</span>
@@ -168,20 +169,20 @@
       <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2022–2025</p>
-          <h3>SAETA UC3M · Student UAV Club</h3>
+          <h3><span data-lang="en">SAETA UC3M · Student UAV Club</span><span data-lang="es">SAETA UC3M · Asociación universitaria de UAV</span></h3>
           <ul>
-            <li>Participated in the first XtraChallenge (UPV) with a flying wing design.</li>
-            <li>CFD experience with Simscale and OpenFOAM.</li>
-            <li>Funded by Aernnova, Airbus, Fuvex, and others.</li>
-            <li>Designed the Motor Integration Part in CatiaV5 and 3D printed for competition.</li>
-            <li>Member of Propulsion & Systems team.</li>
+            <li><span data-lang="en">Participated in the first XtraChallenge (UPV) with a flying wing design.</span><span data-lang="es">Participé en la primera XtraChallenge (UPV) con un diseño de ala volante.</span></li>
+            <li><span data-lang="en">CFD experience with Simscale and OpenFOAM.</span><span data-lang="es">Experiencia en CFD con SimScale y OpenFOAM.</span></li>
+            <li><span data-lang="en">Funded by Aernnova, Airbus, Fuvex, and others.</span><span data-lang="es">Financiado por Aernnova, Airbus, Fuvex y otros.</span></li>
+            <li><span data-lang="en">Designed the Motor Integration Part in CatiaV5 and 3D printed for competition.</span><span data-lang="es">Diseñé la pieza de integración del motor en CATIA V5 y la imprimí en 3D para la competición.</span></li>
+            <li><span data-lang="en">Member of Propulsion & Systems team.</span><span data-lang="es">Miembro del equipo de Propulsión y Sistemas.</span></li>
           </ul>
           <img src="images/Vencejo2.png" alt="Vencejo" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
           <img src="images/MIP.PNG" alt="MIP" width="260" style="display:block;margin:.5rem auto;border-radius:.6rem;">
           <div class="tech-tags" style="margin-top:.8rem;">
             <span class="tech-tag">CatiaV5</span>
             <span class="tech-tag">OpenFOAM</span>
-            <span class="tech-tag">3D Printing</span>
+            <span class="tech-tag"><span data-lang="en">3D Printing</span><span data-lang="es">Impresión 3D</span></span>
           </div>
         </div>
       </li>
@@ -189,9 +190,9 @@
       <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
           <p style="text-align:right; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024–2025</p>
-          <h3>Private Tutor · Physics & Maths</h3>
+          <h3><span data-lang="en">Private Tutor · Physics & Maths</span><span data-lang="es">Profesor particular · Física y Matemáticas</span></h3>
           <ul>
-            <li>Individual classes to high school students preparing for the EVAU.</li>
+            <li><span data-lang="en">Individual classes to high school students preparing for the EVAU.</span><span data-lang="es">Clases individuales a estudiantes de bachillerato que preparaban la EVAU.</span></li>
           </ul>
         </div>
       </li>
@@ -199,16 +200,16 @@
       <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023–2024</p>
-          <h3>PSP Student Launch · Rocket Design (SRM)</h3>
+          <h3><span data-lang="en">PSP Student Launch · Rocket Design (SRM)</span><span data-lang="es">PSP Student Launch · Diseño de cohetes (SRM)</span></h3>
           <ul>
-            <li>NASA requirements competition for rocket design.</li>
-            <li>Designed the deployable quadcopter payload that separates and lands autonomously.</li>
-            <li>Electronics selection and integration; acted as Structures Engineer.</li>
+            <li><span data-lang="en">NASA requirements competition for rocket design.</span><span data-lang="es">Competición de diseño de cohetes con requisitos de la NASA.</span></li>
+            <li><span data-lang="en">Designed the deployable quadcopter payload that separates and lands autonomously.</span><span data-lang="es">Diseñé la carga útil: un cuadricóptero desplegable que se separa y aterriza de forma autónoma.</span></li>
+            <li><span data-lang="en">Electronics selection and integration; acted as Structures Engineer.</span><span data-lang="es">Selección e integración de la electrónica; también hice de ingeniero de estructuras.</span></li>
           </ul>
           <div class="tech-tags" style="margin-top:.8rem;">
             <span class="tech-tag">SRM</span>
-            <span class="tech-tag">Payload Design</span>
-            <span class="tech-tag">Avionics</span>
+            <span class="tech-tag"><span data-lang="en">Payload Design</span><span data-lang="es">Diseño de carga útil</span></span>
+            <span class="tech-tag"><span data-lang="en">Avionics</span><span data-lang="es">Aviónica</span></span>
           </div>
         </div>
       </li>
@@ -216,10 +217,10 @@
       <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2024</p>
-          <h3>Purdue · Research Project with OpenVSP</h3>
+          <h3><span data-lang="en">Purdue · Research Project with OpenVSP</span><span data-lang="es">Purdue · Proyecto de investigación con OpenVSP</span></h3>
           <ul>
-            <li>Used OpenVSP within a research team to assess UAV winglet simulation capabilities.</li>
-            <li>3D printed the flying wing prototype.</li>
+            <li><span data-lang="en">Used OpenVSP within a research team to assess UAV winglet simulation capabilities.</span><span data-lang="es">Usé OpenVSP en un equipo de investigación para evaluar la capacidad de simular winglets de UAV.</span></li>
+            <li><span data-lang="en">3D printed the flying wing prototype.</span><span data-lang="es">Imprimí en 3D el prototipo de ala volante.</span></li>
           </ul>
           <img src="images/OVSP.PNG" alt="OpenVSP" width="260" style="display:block;margin:1rem auto;border-radius:.6rem;">
         </div>
@@ -228,21 +229,21 @@
       <li class="timeline-item right reveal-right">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2023</p>
-          <h3>Valentin Sailing School · Instructor</h3>
+          <h3><span data-lang="en">Valentin Sailing School · Instructor</span><span data-lang="es">Escuela de vela Valentin · Monitor</span></h3>
           <ul>
-            <li>Taught advanced meteorology, sailing, and navigation to diverse age groups.</li>
-            <li>Led groups at sea; developed leadership and communication skills.</li>
+            <li><span data-lang="en">Taught advanced meteorology, sailing, and navigation to diverse age groups.</span><span data-lang="es">Enseñé meteorología avanzada, vela y navegación a grupos de edades muy distintas.</span></li>
+            <li><span data-lang="en">Led groups at sea; developed leadership and communication skills.</span><span data-lang="es">Dirigí grupos en el mar; desarrollé liderazgo y habilidades de comunicación.</span></li>
           </ul>
-          <img src="images/Sailing.png" alt="Sailing" width="180" style="display:block;margin:1rem auto;border-radius:.6rem;">
+          <img src="images/Sailing.png" alt="Sailing" data-es-alt="Vela" width="180" style="display:block;margin:1rem auto;border-radius:.6rem;">
         </div>
       </li>
 
       <li class="timeline-item left reveal-left">
         <div class="timeline-content card">
           <p style="text-align:left; font-family:'Orbitron',monospace; font-size:.65rem; color:var(--accent); letter-spacing:2px;">2018 &amp; 2019</p>
-          <h3>Typsa.SA &amp; VMAWRE · High School Internships</h3>
+          <h3><span data-lang="en">Typsa.SA &amp; VMAWRE · High School Internships</span><span data-lang="es">Typsa S.A. y VMAWRE · Prácticas en bachillerato</span></h3>
           <ul>
-            <li>First real contacts with the corporate sector during high school.</li>
+            <li><span data-lang="en">First real contacts with the corporate sector during high school.</span><span data-lang="es">Primeros contactos reales con el mundo de la empresa durante el bachillerato.</span></li>
           </ul>
         </div>
       </li>
@@ -252,28 +253,28 @@
 
   <!-- CONTACT -->
   <section id="contact" class="reveal">
-    <div class="section-header"><h2>Contact</h2></div>
-    <p>Feel free to reach out via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></p>
-    <p>Or check my LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></p>
+    <div class="section-header"><h2><span data-lang="en">Contact</span><span data-lang="es">Contacto</span></h2></div>
+    <p><span data-lang="en">Feel free to reach out via email: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></span><span data-lang="es">Puedes escribirme por correo: <a href="mailto:alvaro.cas.contact@gmail.com">alvaro.cas.contact@gmail.com</a></span></p>
+    <p><span data-lang="en">Or check my LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></span><span data-lang="es">O echar un vistazo a mi LinkedIn: <a href="https://www.linkedin.com/in/álvaro-casillas-arias-068a71230" target="_blank">Alvaro Casillas</a></span></p>
 
     <form action="https://api.web3forms.com/submit" method="POST" style="margin-top:1.5rem; max-width:560px;">
       <input type="hidden" name="access_key" value="168fb0ac-0517-4516-9edb-733023e860a2">
       <input type="hidden" name="email_to"   value="alvaro.cas.contact@gmail.com">
-      <label for="name">Name</label>
+      <label for="name"><span data-lang="en">Name</span><span data-lang="es">Nombre</span></label>
       <input type="text"  name="name"    id="name"    required>
-      <label for="email">Email</label>
+      <label for="email"><span data-lang="en">Email</span><span data-lang="es">Correo electrónico</span></label>
       <input type="email" name="email"   id="email"   required>
-      <label for="message">Message</label>
+      <label for="message"><span data-lang="en">Message</span><span data-lang="es">Mensaje</span></label>
       <textarea name="message" id="message" required></textarea>
       <input type="checkbox" name="botcheck" style="display:none;">
-      <button type="submit">Send Message ✉️</button>
+      <button type="submit"><span data-lang="en">Send Message ✉️</span><span data-lang="es">Enviar mensaje ✉️</span></button>
     </form>
   </section>
 
 </main>
 
 <footer>
-  <div class="container">© <span id="year"></span> Alvaro Casillas · Built from scratch · <span class="gradient-text">Per aspera ad astra</span></div>
+  <div class="container">© <span id="year"></span> Alvaro Casillas · <span data-lang="en">Built from scratch</span><span data-lang="es">Hecho desde cero</span> · <span class="gradient-text">Per aspera ad astra</span></div>
 </footer>
 
 <script src="script.js"></script>

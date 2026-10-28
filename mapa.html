@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Industry Map · Per aspera ad astra</title>
-  <meta name="description" content="Interactive map of the aeronautics, space and defence companies in Spain." />
+  <title data-es="Mapa de industria · Per aspera ad astra">Industry Map · Per aspera ad astra</title>
+  <meta name="description" content="Interactive map of the aeronautics, space and defence companies in Spain." data-es-content="Mapa interactivo de las empresas aeronáuticas, espaciales y de defensa en España." />
   <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
   <link rel="icon" type="image/png" href="images/Logo.png">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
@@ -202,57 +203,57 @@
 <body class="pagina-mapa">
 <header>
   <div class="container nav">
-    <div class="logo">✈️ Industry Map</div>
+    <div class="logo">✈️ <span data-lang="en">Industry Map</span><span data-lang="es">Mapa de industria</span></div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="Isentropic_calculator.html">Calculators</a>
-      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+      <a href="Isentropic_calculator.html"><span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></a>
+      <a href="Rocket_Theory.html"><span data-lang="en">Rocket Theory</span><span data-lang="es">Teoría de cohetes</span></a>
       <a href="Newsletter.html">Newsletter</a>
-      <a href="mapa.html" aria-current="page">Industry Map</a>
+      <a href="mapa.html" aria-current="page"><span data-lang="en">Industry Map</span><span data-lang="es">Mapa de industria</span></a>
     </nav>
   </div>
 </header>
 
 <div id="mapa-app">
-  <div id="mapa" aria-label="Map of aerospace companies in Spain"></div>
-  <div class="mapa-leyenda" role="group" aria-label="Map filters">
+  <div id="mapa" aria-label="Map of aerospace companies in Spain" data-es-aria-label="Mapa de empresas aeroespaciales en España"></div>
+  <div class="mapa-leyenda" role="group" aria-label="Map filters" data-es-aria-label="Filtros del mapa">
     <div class="mapa-barra">
       <button type="button" id="mapa-toggle" aria-expanded="false" aria-controls="mapa-cuerpo">
-        Filters <span class="mapa-insignia" id="mapa-insignia" hidden>0</span><span class="flecha" aria-hidden="true">▼</span>
+        <span data-lang="en">Filters</span><span data-lang="es">Filtros</span> <span class="mapa-insignia" id="mapa-insignia" hidden>0</span><span class="flecha" aria-hidden="true">▼</span>
       </button>
-      <input type="search" id="mapa-buscar" class="mapa-buscar" placeholder="Search company or city" aria-label="Search company or city" autocomplete="off" />
+      <input type="search" id="mapa-buscar" class="mapa-buscar" placeholder="Search company or city" aria-label="Search company or city" data-es-placeholder="Buscar empresa o ciudad" data-es-aria-label="Buscar empresa o ciudad" autocomplete="off" />
     </div>
     <div class="mapa-resumen-fila">
-      <span id="mapa-resumen" role="status" aria-live="polite">Loading companies…</span>
-      <button type="button" class="mapa-limpiar" id="mapa-limpiar" hidden>Clear filters</button>
-      <a class="mapa-info" href="The_Aerospace_Industry_In_Spain.html">About the map</a>
+      <span id="mapa-resumen" role="status" aria-live="polite"><span data-lang="en">Loading companies…</span><span data-lang="es">Cargando empresas…</span></span>
+      <button type="button" class="mapa-limpiar" id="mapa-limpiar" hidden><span data-lang="en">Clear filters</span><span data-lang="es">Quitar filtros</span></button>
+      <a class="mapa-info" href="The_Aerospace_Industry_In_Spain.html"><span data-lang="en">About the map</span><span data-lang="es">Sobre el mapa</span></a>
     </div>
     <div id="mapa-cuerpo" hidden>
-      <section class="mapa-grupo" id="grupo-sector" aria-label="Filter by sector">
+      <section class="mapa-grupo" id="grupo-sector" aria-label="Filter by sector" data-es-aria-label="Filtrar por sector">
         <h3>Sector</h3>
         <div class="mapa-chips-fila" id="mapa-sectores"></div>
-        <p>A multi-coloured pin belongs to several sectors.</p>
+        <p><span data-lang="en">A multi-coloured pin belongs to several sectors.</span><span data-lang="es">Un pin de varios colores pertenece a varios sectores.</span></p>
       </section>
-      <section class="mapa-grupo" id="grupo-actividad" aria-label="Filter by activity">
-        <h3>Activity</h3>
+      <section class="mapa-grupo" id="grupo-actividad" aria-label="Filter by activity" data-es-aria-label="Filtrar por actividad">
+        <h3><span data-lang="en">Activity</span><span data-lang="es">Actividad</span></h3>
         <div class="mapa-chips-fila" id="mapa-chips"></div>
       </section>
-      <section class="mapa-grupo" id="grupo-redes" aria-label="Filter by network or cluster">
-        <h3>Network or cluster</h3>
+      <section class="mapa-grupo" id="grupo-redes" aria-label="Filter by network or cluster" data-es-aria-label="Filtrar por red o clúster">
+        <h3><span data-lang="en">Network or cluster</span><span data-lang="es">Red o clúster</span></h3>
         <div class="mapa-chips-fila" id="mapa-redes"></div>
-        <p>The company appears in that cluster or registry. Its sites may be in another region.</p>
+        <p><span data-lang="en">The company appears in that cluster or registry. Its sites may be in another region.</span><span data-lang="es">La empresa figura en ese clúster o registro. Sus sedes pueden estar en otra región.</span></p>
       </section>
       <button type="button" class="mapa-aplicar" id="mapa-aplicar">Show companies</button>
     </div>
   </div>
   <aside id="mapa-panel" aria-live="polite"></aside>
-  <aside id="mapa-lista-nodo" aria-label="Companies in the expanded group" aria-hidden="true">
+  <aside id="mapa-lista-nodo" aria-label="Companies in the expanded group" data-es-aria-label="Empresas del grupo desplegado" aria-hidden="true">
     <div class="mapa-lista-cabecera">
       <div>
-        <h2>Companies at this spot</h2>
+        <h2><span data-lang="en">Companies at this spot</span><span data-lang="es">Empresas en este punto</span></h2>
         <p id="mapa-lista-contador">Select a company to see its card.</p>
       </div>
-      <button class="mapa-lista-cerrar" id="mapa-lista-cerrar" type="button" aria-label="Close list">✕</button>
+      <button class="mapa-lista-cerrar" id="mapa-lista-cerrar" type="button" aria-label="Close list" data-es-aria-label="Cerrar lista">✕</button>
     </div>
     <ul id="mapa-lista-empresas"></ul>
   </aside>
@@ -271,7 +272,9 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   var COLOR = { aero: '#2f7de1', espacial: '#f08a24', defensa: '#c0392b' };
-  var NOMBRE = { aero: 'Aeronautics', espacial: 'Space', defensa: 'Defence' };
+  // Idioma (i18n.js): tx('inglés', 'español') devuelve el texto del idioma activo.
+  function tx(en, es) { return window.SiteLang && SiteLang.get() === 'es' ? es : en; }
+  var NOMBRE = { aero: ['Aeronautics', 'Aeronáutica'], espacial: ['Space', 'Espacio'], defensa: ['Defence', 'Defensa'] };
   var COLOR_SIN_SECTOR = '#7f8c8d';
   // Fichas de un mapa_data.js antiguo (sin campo "sectores"): se deriva del sector único.
   var SECTOR_ANTIGUO = { aero: ['aero'], espacial: ['espacial'], defensa: ['defensa'], ambos: ['aero', 'espacial'] };
@@ -357,7 +360,7 @@
     }).join(', ') + ')';
   }
   function nombreSectores(emp) {
-    return emp.sectores.length ? emp.sectores.map(function (s) { return NOMBRE[s]; }).join(' · ') : 'Sector not determined';
+    return emp.sectores.length ? emp.sectores.map(function (s) { return tx(NOMBRE[s][0], NOMBRE[s][1]); }).join(' · ') : tx('Sector not determined', 'Sector sin determinar');
   }
 
   // Normaliza y valida datos aunque el Excel haya dejado algún campo vacío.
@@ -369,8 +372,8 @@
     if (!Array.isArray(emp.sedes)) emp.sedes = [];
     emp.sedes = emp.sedes.filter(coordValida);
     emp.web = urlSegura(emp.web);
-    emp.desc = emp.desc || 'Description pending.';
-    emp.tipo = emp.tipo || 'Activity type pending.';
+    emp.desc = emp.desc || '';
+    emp.tipo = emp.tipo || '';
     emp._q = norm(emp.nombre + ' ' + emp.sedes.map(function (s) { return s[0]; }).join(' '));
   });
 
@@ -387,28 +390,33 @@
       var na = a._empresa ? a._empresa.nombre : '', nb = b._empresa ? b._empresa.nombre : '';
       return String(na).localeCompare(String(nb), 'es', { sensitivity: 'base', numeric: true }) || (a._sedeIndex || 0) - (b._sedeIndex || 0);
     });
-    listaEmpresas.innerHTML = '';
-
-    if (!desplegados.length) {
-      listaEmpresas.innerHTML = '<li class="mapa-lista-vacia">No companies found at this spot.</li>';
-      listaContador.textContent = '0 companies';
-    } else {
-      listaContador.textContent = desplegados.length + (desplegados.length === 1 ? ' location' : ' locations') + ' · alphabetical';
-      listaEmpresas.innerHTML = desplegados.map(function (m, i) {
-        var emp = m._empresa;
-        var sede = emp && emp.sedes[m._sedeIndex] ? emp.sedes[m._sedeIndex][0] : '';
-        return '<li><button type="button" class="mapa-empresa-btn" data-marker-index="' + i + '">' +
-          '<span class="mapa-empresa-nombre">' + esc(emp ? emp.nombre : 'Unnamed company') + '</span>' +
-          (sede ? '<span class="mapa-empresa-sede">' + esc(sede) + '</span>' : '') +
-          '</button></li>';
-      }).join('');
-    }
-
+    pintarLista();
     listaNodo.classList.add('abierto');
     listaNodo.setAttribute('aria-hidden', 'false');
   }
 
+  function pintarLista() {
+    listaEmpresas.innerHTML = '';
+
+    if (!desplegados.length) {
+      listaEmpresas.innerHTML = '<li class="mapa-lista-vacia">' + tx('No companies found at this spot.', 'No hay empresas en este punto.') + '</li>';
+      listaContador.textContent = tx('0 companies', '0 empresas');
+    } else {
+      listaContador.textContent = desplegados.length + (desplegados.length === 1 ? tx(' location', ' ubicación') : tx(' locations', ' ubicaciones')) + tx(' · alphabetical', ' · por orden alfabético');
+      listaEmpresas.innerHTML = desplegados.map(function (m, i) {
+        var emp = m._empresa;
+        var sede = emp && emp.sedes[m._sedeIndex] ? emp.sedes[m._sedeIndex][0] : '';
+        return '<li><button type="button" class="mapa-empresa-btn" data-marker-index="' + i + '">' +
+          '<span class="mapa-empresa-nombre">' + esc(emp ? emp.nombre : tx('Unnamed company', 'Empresa sin nombre')) + '</span>' +
+          (sede ? '<span class="mapa-empresa-sede">' + esc(sede) + '</span>' : '') +
+          '</button></li>';
+      }).join('');
+    }
+  }
+
+  var actual = null;   // ficha abierta { emp, idx }, para repintarla al cambiar de idioma
   function cerrar() {
+    actual = null;
     panel.classList.remove('abierto');
     if (selEl) selEl.classList.remove('sel');
     selEl = null;
@@ -417,24 +425,29 @@
   function abrir(emp, idx) {
     cerrarListaNodo();
     if (MQ_HOJA.matches) cerrarFiltros();
-    var s = emp.sedes[idx];
+    pintarFicha(emp, idx);
+    panel.classList.add('abierto');
+    panel.scrollTop = 0;
+  }
+
+  function pintarFicha(emp, idx) {
+    actual = { emp: emp, idx: idx };
     var web = emp.web
-      ? '<p><a class="mapa-web" href="' + escAttr(emp.web) + '" target="_blank" rel="noopener noreferrer">Website ↗</a></p>'
-      : '<p class="mapa-sin-web">Website not available or not yet confirmed.</p>';
+      ? '<p><a class="mapa-web" href="' + escAttr(emp.web) + '" target="_blank" rel="noopener noreferrer">' + tx('Website ↗', 'Web ↗') + '</a></p>'
+      : '<p class="mapa-sin-web">' + tx('Website not available or not yet confirmed.', 'Web no disponible o pendiente de confirmar.') + '</p>';
     panel.innerHTML =
-      '<button class="mapa-cerrar" aria-label="Close panel">✕</button>' +
+      '<button class="mapa-cerrar" aria-label="' + escAttr(tx('Close panel', 'Cerrar panel')) + '">✕</button>' +
       '<h2>' + esc(emp.nombre) + '</h2>' +
-      '<p class="mapa-meta">' + esc(nombreSectores(emp)) + ' · ' + esc(emp.tipo) + '</p>' +
-      '<p>' + esc(emp.desc) + '</p>' +
+      '<p class="mapa-meta">' + esc(nombreSectores(emp)) + ' · ' + esc(emp.tipo || tx('Activity type pending.', 'Tipo pendiente de verificar.')) + '</p>' +
+      '<p>' + esc(emp.desc || tx('Description pending.', 'Descripción pendiente de completar.')) + '</p>' +
       '<div class="mapa-tags">' + emp.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
-      '<strong>' + (emp.sedes.length === 1 ? 'Site' : 'Sites') + ' (' + emp.sedes.length + ')</strong>' +
+      '<strong>' + (emp.sedes.length === 1 ? tx('Site', 'Sede') : tx('Sites', 'Sedes')) + ' (' + emp.sedes.length + ')</strong>' +
       '<ul class="mapa-sedes">' + emp.sedes.map(function (x, i) {
         return '<li><button class="mapa-sede' + (i === idx ? ' act' : '') + '" data-i="' + i + '">' + esc(x[0]) + '</button></li>';
       }).join('') + '</ul>' +
       web +
-      '<p class="mapa-nota">Coordinates may point to the municipality rather than the exact facility. Company details are kept in their original Spanish.</p>';
-    panel.classList.add('abierto');
-    panel.scrollTop = 0;
+      '<p class="mapa-nota">' + tx('Coordinates may point to the municipality rather than the exact facility. Company details are kept in their original Spanish.',
+        'Las coordenadas pueden corresponder al municipio y no necesariamente a la instalación exacta.') + '</p>';
     panel.querySelector('.mapa-cerrar').onclick = cerrar;
     panel.querySelectorAll('.mapa-sede').forEach(function (b) {
       b.onclick = function () {
@@ -509,7 +522,7 @@
   /* ==FILTROS== */
   // Cada grupo combina sus opciones con "o" (cualquiera); los grupos se combinan entre sí con "y".
   // Sin nada seleccionado, el grupo no filtra.
-  var SECTORES = [['aero', 'Aeronautics'], ['espacial', 'Space'], ['defensa', 'Defence']];
+  var SECTORES = [['aero', 'Aeronautics', 'Aeronáutica'], ['espacial', 'Space', 'Espacio'], ['defensa', 'Defence', 'Defensa']];
   var ACTIVIDADES = ['MRO / mantenimiento', 'Drones / UAS', 'Ingeniería / I+D', 'Estructuras y composites',
     'Motores y propulsión', 'Mecanizado y componentes', 'Sistemas espaciales', 'Ensayos e inspección', 'Startups / ESA BIC'];
   var REDES = ['Andalucía Aerospace', 'Aerópolis (Sevilla)', 'HEGAN (País Vasco)', 'Espai Aero CV (C. Valenciana)',
@@ -557,24 +570,30 @@
       c.num.textContent = n;
       c.btn.classList.toggle('vacio', n === 0 && !sel[c.campo][c.clave]);
     });
-    var visibles = EMPRESAS.filter(function (e) { return pasa(e); }).length;
-    resumen.textContent = (hayFiltros()
-      ? visibles + ' of ' + conCoordenadas + ' companies'
-      : conCoordenadas + ' companies on the map');
-    botonAplicar.textContent = visibles === 1 ? 'Show 1 company' : 'Show ' + visibles + ' companies';
+    pintarResumen();
     botonLimpiar.hidden = !hayFiltros();
     var nActivos = CAMPOS.reduce(function (n, c) { return n + claves(c).length; }, 0) + (texto ? 1 : 0);
     insignia.textContent = nActivos;
     insignia.hidden = !nActivos;
   }
 
+  function pintarResumen() {
+    var visibles = EMPRESAS.filter(function (e) { return pasa(e); }).length;
+    resumen.textContent = hayFiltros()
+      ? visibles + tx(' of ', ' de ') + conCoordenadas + tx(' companies', ' empresas')
+      : conCoordenadas + tx(' companies on the map', ' empresas en el mapa');
+    botonAplicar.textContent = visibles === 1 ? tx('Show 1 company', 'Ver 1 empresa') : tx('Show ', 'Ver ') + visibles + tx(' companies', ' empresas');
+  }
+
+  // etiqueta: función que devuelve el texto del chip en el idioma activo.
   function crearChip(contenedor, campo, clave, etiqueta, color) {
     var total = EMPRESAS.filter(function (e) { return e.sedes.length && e[campo].indexOf(clave) >= 0; }).length;
     if (!total) return;
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'chip'; b.setAttribute('aria-pressed', 'false');
     if (color) { var punto = document.createElement('i'); punto.style.background = color; b.appendChild(punto); }
-    b.appendChild(document.createTextNode(etiqueta));
+    var nodoTexto = document.createTextNode(etiqueta());
+    b.appendChild(nodoTexto);
     var num = document.createElement('small');
     b.appendChild(num);
     b.onclick = function () {
@@ -584,12 +603,13 @@
       actualizar();
     };
     contenedor.appendChild(b);
-    controles.push({ btn: b, num: num, campo: campo, clave: clave });
+    controles.push({ btn: b, num: num, campo: campo, clave: clave, texto: nodoTexto, etiqueta: etiqueta });
   }
 
-  SECTORES.forEach(function (s) { crearChip(document.getElementById('mapa-sectores'), 'sectores', s[0], s[1], COLOR[s[0]]); });
-  ACTIVIDADES.forEach(function (a) { crearChip(document.getElementById('mapa-chips'), 'acts', a, ETIQUETA[a] || a); });
-  REDES.forEach(function (r) { crearChip(document.getElementById('mapa-redes'), 'redes', r, ETIQUETA[r] || r); });
+  // En español se muestran las claves tal cual (son los valores de mapa_data.js); en inglés, su traducción.
+  SECTORES.forEach(function (s) { crearChip(document.getElementById('mapa-sectores'), 'sectores', s[0], function () { return tx(s[1], s[2]); }, COLOR[s[0]]); });
+  ACTIVIDADES.forEach(function (a) { crearChip(document.getElementById('mapa-chips'), 'acts', a, function () { return tx(ETIQUETA[a] || a, a); }); });
+  REDES.forEach(function (r) { crearChip(document.getElementById('mapa-redes'), 'redes', r, function () { return tx(ETIQUETA[r] || r, r); }); });
   // Si el mapa_data.js es antiguo y no trae actividades ni redes, se ocultan los grupos vacíos.
   ['sectores:grupo-sector', 'chips:grupo-actividad', 'redes:grupo-redes'].forEach(function (par) {
     var p = par.split(':');
@@ -635,6 +655,16 @@
     actualizar();
   });
   actualizar();
+  listaContador.textContent = tx('Select a company to see its card.', 'Selecciona una empresa para ver su ficha.');
+
+  // Cambio de idioma: se repintan los textos generados por JavaScript sin tocar filtros ni vista.
+  document.addEventListener('sitelangchange', function () {
+    controles.forEach(function (c) { c.texto.nodeValue = c.etiqueta(); });
+    pintarResumen();
+    if (actual && panel.classList.contains('abierto')) pintarFicha(actual.emp, actual.idx);
+    if (listaNodo.classList.contains('abierto')) pintarLista();
+    else listaContador.textContent = tx('Select a company to see its card.', 'Selecciona una empresa para ver su ficha.');
+  });
 
   map.on('click', function () {
     cerrar();

@@ -122,7 +122,8 @@ function typeWriter(el, text, speed = 55) {
   el.textContent = '';
   el.classList.add('typewriter-cursor');
   let i = 0;
-  const timer = setInterval(() => {
+  clearInterval(el._twInterval);
+  const timer = el._twInterval = setInterval(() => {
     el.textContent += text[i++];
     if (i >= text.length) {
       clearInterval(timer);
@@ -131,11 +132,21 @@ function typeWriter(el, text, speed = 55) {
   }, speed);
 }
 
+// Texto según el idioma activo (i18n.js); en inglés si no está cargado.
+function tr(en, es) { return window.SiteLang && SiteLang.get() === 'es' ? es : en; }
+
 const twEl = document.getElementById('typewriter-title');
 if (twEl) {
-  const text = twEl.dataset.text || twEl.textContent;
+  const textoTitulo = () => tr(twEl.dataset.text || twEl.textContent, twEl.dataset.textEs || twEl.dataset.text || twEl.textContent);
   twEl.textContent = '';
-  setTimeout(() => typeWriter(twEl, text, 50), 400);
+  let twTimer = setTimeout(() => typeWriter(twEl, textoTitulo(), 50), 400);
+  // Al cambiar de idioma se muestra el título completo en el nuevo idioma (sin repetir la animación).
+  document.addEventListener('sitelangchange', () => {
+    clearTimeout(twTimer);
+    clearInterval(twEl._twInterval);
+    twEl.classList.remove('typewriter-cursor');
+    twEl.textContent = textoTitulo();
+  });
 }
 
 // ===========================
@@ -236,7 +247,7 @@ function calculateIsPerf() {
   document.querySelectorAll('.results td').forEach(cell => cell.textContent = '—');
 
   if (!Number.isFinite(expansionRatio) || !Number.isFinite(gamma)) {
-    alert('Please provide at least the expansion ratio and specific heat ratio.');
+    alert(tr('Please provide at least the expansion ratio and specific heat ratio.', 'Introduce al menos la relación de expansión y la relación de calores específicos.'));
     return;
   }
 
@@ -322,14 +333,14 @@ function fillIsentropicTable() {
   const g = parseFloat(document.getElementById('gamma').value);
   const param = document.getElementById('knownParam').value;
   const val = parseFloat(document.getElementById('paramValue').value);
-  if (!Number.isFinite(g) || !Number.isFinite(val)) { alert('Please enter valid inputs.'); return; }
+  if (!Number.isFinite(g) || !Number.isFinite(val)) { alert(tr('Please enter valid inputs.', 'Introduce valores válidos.')); return; }
   let M;
   if (param === 'Ma')       M = val;
   if (param === 'T0T')      M = machFromT0T(val, g);
   if (param === 'p0p')      M = machFromP0P(val, g);
   if (param === 'rho0rho')  M = machFromRho0Rho(val, g);
   if (param === 'AAstar')   M = machFromARHelper(val, g);
-  if (!Number.isFinite(M)) { alert('Could not determine Mach number.'); return; }
+  if (!Number.isFinite(M)) { alert(tr('Could not determine Mach number.', 'No se ha podido determinar el número de Mach.')); return; }
   const r = ratiosFromMach(M, g);
   document.getElementById('res-gamma').textContent    = fmt(g);
   document.getElementById('res-Ma').textContent       = fmt(M);
@@ -380,7 +391,7 @@ function computeObliqueShock() {
   const Mn1 = M1 * Math.sin(betaRad);
   if (Mn1 <= 1) {
     ids.forEach(id => document.getElementById(id).textContent = '—');
-    alert('Normal component of Mach must be > 1 for a shock.'); return;
+    alert(tr('Normal component of Mach must be > 1 for a shock.', 'La componente normal del Mach debe ser > 1 para que haya onda de choque.')); return;
   }
   const pRatio   = ((2 * gamma) / (gamma + 1)) * Mn1 * Mn1 - ((gamma - 1) / (gamma + 1));
   const rhoRatio = ((gamma + 1) * Mn1 * Mn1) / ((gamma - 1) * Mn1 * Mn1 + 2);

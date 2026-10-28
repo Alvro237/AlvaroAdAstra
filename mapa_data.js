@@ -8397,14 +8397,66 @@ var EMPRESAS = [
     "tags": [
       "Estructuras",
       "Ingeniería",
-      "Componentes aeronáuticos"
+      "Componentes aeronáuticos",
+      "Miembro de Andalucía Aerospace",
+      "Ecosistema aeroespacial"
     ],
-    "desc": "Diseño y fabricación de aeroestructuras para fabricantes de aeronaves; el grupo opera con plantas y capacidades de fabricación y montaje en varias localidades de España.",
+    "desc": "Grupo de aeroestructuras (diseño, fabricación y servicios) con sede en Miñano (Parque Tecnológico de Álava). En España tiene 11 centros: Miñano, Berantevilla, Vitoria-Gasteiz, Zamudio y Deba (País Vasco); Illescas y Toledo (Castilla-La Mancha); Madrid (ingeniería); Tarazona (Aragón); San Cibrao das Viñas (Ourense) y Cádiz.",
     "sedes": [
+      [
+        "Miñano (Parque Tecnológico de Álava)",
+        42.882,
+        -2.668
+      ],
+      [
+        "Berantevilla",
+        42.68,
+        -2.87
+      ],
       [
         "Vitoria-Gasteiz",
         42.847,
         -2.673
+      ],
+      [
+        "Zamudio",
+        43.292,
+        -2.863
+      ],
+      [
+        "Deba",
+        43.295,
+        -2.353
+      ],
+      [
+        "Illescas",
+        40.123,
+        -3.842
+      ],
+      [
+        "Toledo",
+        39.863,
+        -4.027
+      ],
+      [
+        "Madrid (Vía de los Poblados)",
+        40.466,
+        -3.646
+      ],
+      [
+        "Tarazona",
+        41.904,
+        -1.726
+      ],
+      [
+        "San Cibrao das Viñas (Ourense)",
+        42.3,
+        -7.86
+      ],
+      [
+        "Cádiz (Zona Franca)",
+        36.527,
+        -6.289
       ]
     ],
     "sectores": [
@@ -8415,7 +8467,9 @@ var EMPRESAS = [
       "Estructuras y composites",
       "Mecanizado y componentes"
     ],
-    "redes": []
+    "redes": [
+      "Andalucía Aerospace"
+    ]
   },
   {
     "nombre": "AIRBUS HELICOPTERS ESPAÑA",
@@ -8426,9 +8480,11 @@ var EMPRESAS = [
       "Helicópteros",
       "Estructuras",
       "MRO",
-      "Defensa"
+      "Defensa",
+      "Miembro de Clúster Aeronáutico de Castilla-La Mancha",
+      "Ecosistema aeroespacial"
     ],
-    "desc": "Actividades en España de diseño, fabricación, mantenimiento y soporte de helicópteros civiles y militares; Albacete es un centro de fabricación de estructuras traseras y soporte industrial.",
+    "desc": "Airbus Helicopters en España: Albacete es el centro principal (diseño, fabricación, mantenimiento y ventas), centro mundial de excelencia en fuselajes traseros, secciones del NH90 y montaje y mantenimiento de NH90 y Tigre para el Ejército de Tierra. Getafe da soporte de ingeniería.",
     "sedes": [
       [
         "Albacete",
@@ -8450,7 +8506,9 @@ var EMPRESAS = [
       "MRO / mantenimiento",
       "Estructuras y composites"
     ],
-    "redes": []
+    "redes": [
+      "Castilla-La Mancha"
+    ]
   },
   {
     "nombre": "INDUSTRIA DE TURBO PROPULSORES",
@@ -8546,9 +8604,11 @@ var EMPRESAS = [
       "Defensa",
       "Aeronaves militares",
       "Integración final",
-      "Sistemas espaciales"
+      "Sistemas espaciales",
+      "Miembro de CITT-Espacio",
+      "Ecosistema aeroespacial"
     ],
-    "desc": "Airbus en España participa en programas de defensa y espacio, con actividades de montaje final, conversión y mantenimiento de aeronaves militares, y sistemas satelitales.",
+    "desc": "Airbus Defence and Space en España: montaje final del Eurofighter, conversión A330 MRTT, mantenimiento del A400M, satélites y estructuras de fibra de carbono para Ariane 6 y Vega-C en Getafe; líneas de montaje final del A400M y C295 y centro de formación en Sevilla (San Pablo); componentes de material compuesto en Cádiz; inteligencia geoespacial e I+D en Barcelona. La electrónica espacial de Tres Cantos figura aparte como Airbus Crisa.",
     "sedes": [
       [
         "Getafe",
@@ -8556,9 +8616,9 @@ var EMPRESAS = [
         -3.732
       ],
       [
-        "Sevilla",
-        37.389,
-        -5.984
+        "Sevilla (San Pablo)",
+        37.413,
+        -5.9
       ],
       [
         "Cádiz",
@@ -8569,11 +8629,6 @@ var EMPRESAS = [
         "Barcelona",
         41.387,
         2.169
-      ],
-      [
-        "Tres Cantos",
-        40.6,
-        -3.707
       ]
     ],
     "sectores": [
@@ -8584,7 +8639,9 @@ var EMPRESAS = [
     "acts": [
       "Sistemas espaciales"
     ],
-    "redes": []
+    "redes": [
+      "CITT-Espacio"
+    ]
   },
   {
     "nombre": "Andalucía Aerospace",
@@ -9846,24 +9903,28 @@ var EMPRESAS = [
   {
     "nombre": "OPEN COSMOS",
     "sector": "espacial",
-    "tipo": "Miembro de clúster aeroespacial",
+    "tipo": "Misiones de satélites pequeños",
     "web": "https://www.open-cosmos.com",
     "tags": [
       "Miembro de Andalucía Aerospace",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Sistemas espaciales",
+      "Satélites"
     ],
-    "desc": "Figura en el listado público consultado de Andalucía Aerospace. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Diseña, fabrica y opera misiones de satélites pequeños; instalaciones de Open Cosmos Europe en Barcelona. Miembro de Andalucía Aerospace.",
     "sedes": [
       [
-        "Málaga",
-        36.721,
-        -4.421
+        "Barcelona",
+        41.387,
+        2.169
       ]
     ],
     "sectores": [
       "espacial"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
       "Andalucía Aerospace"
     ]
@@ -9896,25 +9957,38 @@ var EMPRESAS = [
   {
     "nombre": "ALTER TECHNOLOGY",
     "sector": "ambos",
-    "tipo": "Miembro de clúster aeroespacial",
+    "tipo": "Ensayos e ingeniería de componentes electrónicos para espacio",
     "web": "",
     "tags": [
       "Miembro de Andalucía Aerospace",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Ensayos",
+      "Sistemas espaciales",
+      "Componentes"
     ],
-    "desc": "Figura en el listado público consultado de Andalucía Aerospace. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Ingeniería, ensayos y suministro de componentes electrónicos para el sector espacial (grupo TÜV NORD). Sede en Sevilla (Cartuja) y centro en Tres Cantos (Madrid).",
     "sedes": [
       [
-        "Sevilla",
+        "Sevilla (Cartuja)",
         37.389,
         -5.984
+      ],
+      [
+        "Tres Cantos",
+        40.6,
+        -3.707
       ]
     ],
     "sectores": [
       "aero",
       "espacial"
     ],
-    "acts": [],
+    "acts": [
+      "Ingeniería / I+D",
+      "Mecanizado y componentes",
+      "Sistemas espaciales",
+      "Ensayos e inspección"
+    ],
     "redes": [
       "Andalucía Aerospace"
     ]
@@ -10968,24 +11042,35 @@ var EMPRESAS = [
   {
     "nombre": "ITP AERO",
     "sector": "aero",
-    "tipo": "Miembro de clúster aeroespacial",
-    "web": "",
+    "tipo": "Motores aeronáuticos: diseño, fabricación y mantenimiento",
+    "web": "https://www.itpaero.com",
     "tags": [
       "Miembro de HEGAN",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Motores",
+      "Propulsión",
+      "MRO"
     ],
-    "desc": "Figura en el listado público consultado de HEGAN. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Fabricante de componentes de motores aeronáuticos con sede, diseño y fabricación en Zamudio (Bizkaia) y planta de mantenimiento de motores en Ajalvir (Madrid).",
     "sedes": [
       [
         "Zamudio",
         43.292,
         -2.863
+      ],
+      [
+        "Ajalvir",
+        40.534,
+        -3.479
       ]
     ],
     "sectores": [
       "aero"
     ],
-    "acts": [],
+    "acts": [
+      "MRO / mantenimiento",
+      "Motores y propulsión"
+    ],
     "redes": [
       "HEGAN (País Vasco)"
     ]
@@ -10993,13 +11078,16 @@ var EMPRESAS = [
   {
     "nombre": "SENER",
     "sector": "ambos",
-    "tipo": "Miembro de clúster aeroespacial",
-    "web": "",
+    "tipo": "Ingeniería y sistemas aeroespaciales y de defensa",
+    "web": "https://www.group.sener",
     "tags": [
       "Miembro de HEGAN",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Ingeniería",
+      "Sistemas espaciales",
+      "Defensa"
     ],
-    "desc": "Figura en el listado público consultado de HEGAN. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Grupo de ingeniería con sede en Getxo (Bizkaia). Su área de Aeroespacial y Defensa produce en Tres Cantos (Madrid), Cerdanyola del Vallès (Barcelona) y Zamudio (Bizkaia, nuevas instalaciones), y tiene una oficina de guiado, navegación y control (GNC) en Sevilla.",
     "sedes": [
       [
         "Getxo",
@@ -11010,13 +11098,32 @@ var EMPRESAS = [
         "Tres Cantos",
         40.6,
         -3.707
+      ],
+      [
+        "Cerdanyola del Vallès",
+        41.491,
+        2.141
+      ],
+      [
+        "Zamudio",
+        43.292,
+        -2.863
+      ],
+      [
+        "Sevilla",
+        37.389,
+        -5.984
       ]
     ],
     "sectores": [
       "aero",
-      "espacial"
+      "espacial",
+      "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Ingeniería / I+D",
+      "Sistemas espaciales"
+    ],
     "redes": [
       "HEGAN (País Vasco)"
     ]
@@ -12026,24 +12133,28 @@ var EMPRESAS = [
   {
     "nombre": "SATLANTIS MICROSATS",
     "sector": "espacial",
-    "tipo": "Miembro de clúster aeroespacial",
-    "web": "",
+    "tipo": "Cámaras para satélites de observación de la Tierra",
+    "web": "https://satlantis.com",
     "tags": [
       "Miembro de HEGAN",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Sistemas espaciales",
+      "Observación de la Tierra"
     ],
-    "desc": "Figura en el listado público consultado de HEGAN. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Diseña cámaras de alta resolución para satélites de observación de la Tierra y opera misiones desde Leioa (Bizkaia). Miembro de HEGAN.",
     "sedes": [
       [
-        "Bilbao",
-        43.263,
-        -2.935
+        "Leioa",
+        43.329,
+        -2.987
       ]
     ],
     "sectores": [
       "espacial"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
       "HEGAN (País Vasco)"
     ]
@@ -13727,40 +13838,17 @@ var EMPRESAS = [
     ]
   },
   {
-    "nombre": "Airbus",
-    "sector": "espacial",
-    "tipo": "Startup / miembro de ecosistema espacial",
-    "web": "",
-    "tags": [
-      "Miembro de CITT-Espacio",
-      "Ecosistema aeroespacial"
-    ],
-    "desc": "Figura en el listado público consultado de CITT-Espacio. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
-    "sedes": [
-      [
-        "Getafe",
-        40.308,
-        -3.732
-      ]
-    ],
-    "sectores": [
-      "espacial"
-    ],
-    "acts": [],
-    "redes": [
-      "CITT-Espacio"
-    ]
-  },
-  {
     "nombre": "Airbus Crisa",
     "sector": "espacial",
-    "tipo": "Startup / miembro de ecosistema espacial",
-    "web": "",
+    "tipo": "Electrónica espacial",
+    "web": "https://www.airbus.com",
     "tags": [
       "Miembro de CITT-Espacio",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Sistemas espaciales",
+      "Electrónica"
     ],
-    "desc": "Figura en el listado público consultado de CITT-Espacio. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Filial de Airbus Defence and Space en Tres Cantos: componentes para satélites de observación de la Tierra, plataformas de espacio profundo, aviónica y unidades de potencia.",
     "sedes": [
       [
         "Tres Cantos",
@@ -13771,7 +13859,9 @@ var EMPRESAS = [
     "sectores": [
       "espacial"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
       "CITT-Espacio"
     ]
@@ -13822,13 +13912,15 @@ var EMPRESAS = [
   {
     "nombre": "Thales Alenia Space",
     "sector": "espacial",
-    "tipo": "Startup / miembro de ecosistema espacial",
-    "web": "",
+    "tipo": "Sistemas espaciales: cargas útiles y equipos de comunicaciones",
+    "web": "https://www.thalesaleniaspace.com",
     "tags": [
       "Miembro de CITT-Espacio",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Sistemas espaciales",
+      "Telecomunicaciones"
     ],
-    "desc": "Figura en el listado público consultado de CITT-Espacio. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Filial española de Thales Alenia Space en el Parque Tecnológico de Madrid (Tres Cantos): cargas útiles y equipos de comunicaciones por satélite, con sala de integración de satélites (participa, por ejemplo, en SpainSat NG).",
     "sedes": [
       [
         "Tres Cantos",
@@ -13874,13 +13966,16 @@ var EMPRESAS = [
   {
     "nombre": "Hisdesat",
     "sector": "espacial",
-    "tipo": "Startup / miembro de ecosistema espacial",
+    "tipo": "Operador de satélites gubernamentales",
     "web": "",
     "tags": [
       "Miembro de CITT-Espacio",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Satélites",
+      "Defensa",
+      "Observación de la Tierra"
     ],
-    "desc": "Figura en el listado público consultado de CITT-Espacio. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Operador de servicios por satélite para la Administración y la Defensa (SpainSat NG, PAZ). Sede en Madrid; control de satélites en Arganda del Rey (instalaciones de Hispasat) y nuevo centro de control en Hoyo de Manzanares.",
     "sedes": [
       [
         "Madrid",
@@ -13888,48 +13983,55 @@ var EMPRESAS = [
         -3.704
       ],
       [
-        "Hoyo de Manzanares",
-        40.633,
-        -3.867
-      ],
-      [
         "Arganda del Rey",
         40.3005,
         -3.4375
       ],
       [
-        "Maspalomas",
-        27.76,
-        -15.586
+        "Hoyo de Manzanares",
+        40.633,
+        -3.867
       ]
     ],
     "sectores": [
-      "espacial"
+      "espacial",
+      "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
       "CITT-Espacio"
     ]
   },
   {
-    "nombre": "Tecnobit",
-    "sector": "espacial",
-    "tipo": "Startup / miembro de ecosistema espacial",
+    "nombre": "Tecnobit (Grupo Oesía)",
+    "sector": "defensa",
+    "tipo": "Aviónica, simulación y sistemas de defensa",
     "web": "",
     "tags": [
       "Miembro de CITT-Espacio",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Defensa",
+      "Aviónica",
+      "Electrónica"
     ],
-    "desc": "Figura en el listado público consultado de CITT-Espacio. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
+    "desc": "Empresa de Grupo Oesía: aviónica, sistemas electroópticos, simulación y comunicaciones para defensa. Centro tecnológico en Valdepeñas (Ciudad Real), en ampliación, e instalaciones en la Zona Franca de Cádiz.",
     "sedes": [
       [
         "Valdepeñas",
         38.76,
         -3.39
+      ],
+      [
+        "Cádiz (Zona Franca)",
+        36.527,
+        -6.289
       ]
     ],
     "sectores": [
-      "espacial"
+      "aero",
+      "defensa"
     ],
     "acts": [],
     "redes": [
@@ -15032,19 +15134,21 @@ var EMPRESAS = [
     "web": "",
     "tags": [
       "Miembro de Clúster Aeronáutico de Castilla-La Mancha",
-      "Ecosistema aeroespacial"
+      "Ecosistema aeroespacial",
+      "Defensa"
     ],
-    "desc": "Figura en el listado público consultado de Clúster Aeronáutico de Castilla-La Mancha. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema. El listado procede de una fuente histórica; confirmar la pertenencia actual.",
+    "desc": "Grupo francés de defensa, aeroespacial y seguridad con presencia en España (sede en Madrid). Su filial espacial figura aparte como Thales Alenia Space (Tres Cantos).",
     "sedes": [
       [
-        "Las Rozas de Madrid",
-        40.493,
-        -3.874
+        "Madrid",
+        40.417,
+        -3.704
       ]
     ],
     "sectores": [
       "aero",
-      "espacial"
+      "espacial",
+      "defensa"
     ],
     "acts": [],
     "redes": [
@@ -15581,32 +15685,6 @@ var EMPRESAS = [
   },
   {
     "nombre": "3JI&T",
-    "sector": "ambos",
-    "tipo": "Empresa instalada en parque aeroespacial",
-    "web": "",
-    "tags": [
-      "Miembro de Empresas instaladas en Aerópolis",
-      "Ecosistema aeroespacial"
-    ],
-    "desc": "Figura en el listado público consultado de Empresas instaladas en Aerópolis. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
-    "sedes": [
-      [
-        "Aerópolis / La Rinconada",
-        37.486,
-        -5.982
-      ]
-    ],
-    "sectores": [
-      "aero",
-      "espacial"
-    ],
-    "acts": [],
-    "redes": [
-      "Aerópolis (Sevilla)"
-    ]
-  },
-  {
-    "nombre": "Aciturri",
     "sector": "ambos",
     "tipo": "Empresa instalada en parque aeroespacial",
     "web": "",
@@ -17104,9 +17182,9 @@ var EMPRESAS = [
     "desc": "Figura en el directorio eInforma CNAE 3032 como entidad de construcción aeronáutica y espacial militar y su maquinaria. La clasificación CNAE no confirma por sí sola un producto o contrato militar concreto. Municipio de origen informado: Vitoria-Gasteiz, ÁLAVA; coordenadas municipales aproximadas.",
     "sedes": [
       [
-        "Vitoria-Gasteiz",
-        42.847,
-        -2.673
+        "Miñano (Parque Tecnológico de Álava)",
+        42.882,
+        -2.668
       ]
     ],
     "sectores": [
@@ -17119,26 +17197,36 @@ var EMPRESAS = [
   {
     "nombre": "COMPAÑIA ESPAÑOLA DE SISTEMAS AERONAUTICOS SA",
     "sector": "defensa",
-    "tipo": "Registro en CNAE 3032 – construcción aeronáutica y espacial militar",
+    "tipo": "Sistemas de actuación, hidráulicos y trenes de aterrizaje",
     "web": "https://www.cesa.aero",
     "tags": [
       "CNAE 3032",
       "Aeronáutica militar",
-      "Actividad por confirmar"
+      "Actividad por confirmar",
+      "Componentes aeronáuticos",
+      "Sistemas hidráulicos",
+      "Defensa"
     ],
-    "desc": "Figura en el directorio eInforma CNAE 3032 como entidad de construcción aeronáutica y espacial militar y su maquinaria. La clasificación CNAE no confirma por sí sola un producto o contrato militar concreto. Municipio de origen informado: Getafe, MADRID; coordenadas municipales aproximadas.",
+    "desc": "CESA (Héroux-Devtek, ahora HD Spain): sistemas de actuación, hidráulicos y de tren de aterrizaje para aviones civiles y militares. Centros en Getafe (Madrid) y Aerópolis (La Rinconada, Sevilla).",
     "sedes": [
       [
         "Getafe",
         40.308,
         -3.732
+      ],
+      [
+        "Aerópolis / La Rinconada",
+        37.486,
+        -5.982
       ]
     ],
     "sectores": [
       "aero",
       "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Mecanizado y componentes"
+    ],
     "redes": []
   },
   {
@@ -17181,12 +17269,47 @@ var EMPRESAS = [
       "Espacio",
       "Defensa"
     ],
-    "desc": "Organismo público de investigación y servicios tecnológicos, con actividad dual en ámbitos aeroespaciales, aeronáuticos, defensa y seguridad.",
+    "desc": "Organismo público de investigación y ensayos aeroespaciales y de defensa. Sede en Torrejón de Ardoz; campus de La Marañosa (San Martín de la Vega) y El Pardo; Centro de Investigación Aeroportada de Rozas (Lugo); centros de ensayos de Torregorda (Cádiz) y El Arenosillo (Huelva); estación de Maspalomas (Gran Canaria) y complejo de espacio profundo de Robledo de Chavela, con la NASA.",
     "sedes": [
       [
         "Torrejón de Ardoz",
         40.456,
         -3.48
+      ],
+      [
+        "San Martín de la Vega (La Marañosa)",
+        40.209,
+        -3.571
+      ],
+      [
+        "El Pardo (Madrid)",
+        40.519,
+        -3.775
+      ],
+      [
+        "Castro de Rei (CIAR, Lugo)",
+        43.117,
+        -7.47
+      ],
+      [
+        "Cádiz (Torregorda)",
+        36.47,
+        -6.255
+      ],
+      [
+        "El Arenosillo (Moguer, Huelva)",
+        37.1,
+        -6.73
+      ],
+      [
+        "Maspalomas",
+        27.76,
+        -15.586
+      ],
+      [
+        "Robledo de Chavela",
+        40.43,
+        -4.25
       ]
     ],
     "sectores": [
@@ -17831,7 +17954,7 @@ var EMPRESAS = [
   {
     "nombre": "ALESTIS AEROSPACE, S.L.",
     "sector": "aero",
-    "tipo": "Mantenimiento / MRO aeronáutico",
+    "tipo": "Fabricante de aeroestructuras (Tier 1)",
     "web": "",
     "tags": [
       "AESA Parte 145",
@@ -17841,21 +17964,34 @@ var EMPRESAS = [
       "Fabricación aeronáutica",
       "Vigencia por confirmar",
       "AESA POA (2023)",
-      "Vigencia POA no confirmada"
+      "Vigencia POA no confirmada",
+      "Estructuras",
+      "Materiales compuestos"
     ],
-    "desc": "Figura en la lista AESA de organizaciones de mantenimiento Parte 145 fechada 07/08/2026; el alcance aprobado debe comprobarse en la ficha y sede exacta. Figura en un listado AESA de organizaciones de producción publicado el 01/02/2023 (Componentes aeroespaciales); vigencia actual no confirmada. Fuentes de incorporación: AESA Parte 145 ES.145.270, AESA POA ES.21G.0019 (listado 01/02/2023).",
+    "desc": "Fabricante Tier 1 de aeroestructuras con plantas en Sevilla y en la Bahía de Cádiz (Puerto Real y El Puerto de Santa María). Figura en la lista AESA de organizaciones de mantenimiento Parte 145 (07/08/2026) y en el listado AESA de organizaciones de producción (2023).",
     "sedes": [
       [
-        "La Rinconada",
+        "Aerópolis / La Rinconada",
         37.486,
         -5.982
+      ],
+      [
+        "Puerto Real",
+        36.528,
+        -6.19
+      ],
+      [
+        "El Puerto de Santa María",
+        36.594,
+        -6.229
       ]
     ],
     "sectores": [
       "aero"
     ],
     "acts": [
-      "MRO / mantenimiento"
+      "MRO / mantenimiento",
+      "Estructuras y composites"
     ],
     "redes": [
       "AESA Parte 145",
@@ -19381,25 +19517,75 @@ var EMPRESAS = [
   {
     "nombre": "EM&E Group",
     "sector": "defensa",
-    "tipo": "Empresa asociada a TEDAE / cadena de valor aeroespacial y defensa",
-    "web": "",
+    "tipo": "Sistemas de defensa y aeroespaciales",
+    "web": "https://eme-es.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
-      "Actividad por verificar"
+      "Actividad por verificar",
+      "Defensa",
+      "Electrónica",
+      "Ingeniería"
     ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa.",
+    "desc": "Grupo industrial de defensa (Escribano Mechanical & Engineering) con sede en Alcalá de Henares. Plantas en Pinto (Madrid), Córdoba, Binéfar (Huesca), Linares y Bedmar (Jaén); I+D en Avilés, software en Barcelona, oficina técnica en El Puerto de Santa María y fotónica en Valencia. Construye una gran planta en Alovera (Guadalajara).",
     "sedes": [
       [
         "Alcalá de Henares",
         40.482,
         -3.364
+      ],
+      [
+        "Pinto",
+        40.241,
+        -3.699
+      ],
+      [
+        "Córdoba",
+        37.888,
+        -4.779
+      ],
+      [
+        "Binéfar",
+        41.851,
+        0.295
+      ],
+      [
+        "Linares",
+        38.093,
+        -3.636
+      ],
+      [
+        "Bedmar (Jaén)",
+        37.82,
+        -3.41
+      ],
+      [
+        "Avilés",
+        43.556,
+        -5.925
+      ],
+      [
+        "Barcelona",
+        41.387,
+        2.169
+      ],
+      [
+        "El Puerto de Santa María",
+        36.594,
+        -6.229
+      ],
+      [
+        "Valencia",
+        39.47,
+        -0.376
       ]
     ],
     "sectores": [
       "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Ingeniería / I+D"
+    ],
     "redes": [
       "TEDAE"
     ]
@@ -19832,25 +20018,69 @@ var EMPRESAS = [
   {
     "nombre": "GMV",
     "sector": "espacial",
-    "tipo": "Empresa asociada a TEDAE / cadena de valor aeroespacial y defensa",
-    "web": "",
+    "tipo": "Sistemas espaciales, navegación por satélite y defensa",
+    "web": "https://www.gmv.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
-      "Actividad por verificar"
+      "Actividad por verificar",
+      "Sistemas espaciales",
+      "Segmento terreno",
+      "Navegación por satélite",
+      "Ingeniería",
+      "Defensa"
     ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa.",
+    "desc": "Grupo tecnológico con sede en Tres Cantos (Madrid): segmento terreno y control de satélites, navegación por satélite y sistemas de defensa. Oficinas en Boecillo (Valladolid), Sevilla, L'Ametlla del Vallès y L'Hospitalet de Llobregat (Barcelona), Valencia, Zaragoza y Nigrán (Pontevedra).",
     "sedes": [
       [
         "Tres Cantos",
         40.6,
         -3.707
+      ],
+      [
+        "Boecillo (Valladolid)",
+        41.53,
+        -4.71
+      ],
+      [
+        "Sevilla",
+        37.389,
+        -5.984
+      ],
+      [
+        "L'Ametlla del Vallès",
+        41.667,
+        2.262
+      ],
+      [
+        "L'Hospitalet de Llobregat",
+        41.359,
+        2.1
+      ],
+      [
+        "Valencia",
+        39.47,
+        -0.376
+      ],
+      [
+        "Zaragoza",
+        41.649,
+        -0.889
+      ],
+      [
+        "Nigrán (Pontevedra)",
+        42.141,
+        -8.806
       ]
     ],
     "sectores": [
-      "espacial"
+      "espacial",
+      "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Ingeniería / I+D",
+      "Sistemas espaciales"
+    ],
     "redes": [
       "TEDAE"
     ]
@@ -19948,14 +20178,16 @@ var EMPRESAS = [
   {
     "nombre": "Hispasat",
     "sector": "espacial",
-    "tipo": "Empresa asociada a TEDAE / cadena de valor aeroespacial y defensa",
-    "web": "",
+    "tipo": "Operador de satélites de comunicaciones",
+    "web": "https://www.hispasat.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
-      "Actividad por verificar"
+      "Actividad por verificar",
+      "Satélites",
+      "Telecomunicaciones"
     ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa.",
+    "desc": "Operador español de satélites de comunicaciones. Sede en Madrid y centro de control de satélites en Arganda del Rey.",
     "sedes": [
       [
         "Madrid",
@@ -19966,22 +20198,14 @@ var EMPRESAS = [
         "Arganda del Rey",
         40.3005,
         -3.4375
-      ],
-      [
-        "Tres Cantos",
-        40.6,
-        -3.707
-      ],
-      [
-        "Maspalomas",
-        27.76,
-        -15.586
       ]
     ],
     "sectores": [
       "espacial"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
       "TEDAE"
     ]
@@ -20131,80 +20355,95 @@ var EMPRESAS = [
   {
     "nombre": "Indra Group",
     "sector": "ambos",
-    "tipo": "Empresa asociada a TEDAE / cadena de valor aeroespacial y defensa",
-    "web": "",
+    "tipo": "Defensa, radar, gestión del tráfico aéreo y espacio",
+    "web": "https://www.indragroup.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
-      "Actividad por verificar"
-    ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa.",
-    "sedes": [
-      [
-        "Alcobendas",
-        40.541,
-        -3.64
-      ]
-    ],
-    "sectores": [
-      "aero",
-      "espacial"
-    ],
-    "acts": [],
-    "redes": [
-      "TEDAE"
-    ]
-  },
-  {
-    "nombre": "INDRA SISTEMAS, S.A.",
-    "sector": "aero",
-    "tipo": "Fabricante / organización de producción (vigencia AESA por verificar)",
-    "web": "",
-    "tags": [
+      "Actividad por verificar",
+      "Defensa",
+      "Radar",
+      "Electrónica",
+      "Gestión del tráfico aéreo",
+      "Sistemas espaciales",
       "AESA POA",
       "Fabricación aeronáutica",
       "Vigencia por confirmar",
       "AESA POA (2023)",
       "Vigencia POA no confirmada"
     ],
-    "desc": "Figura en un listado AESA de organizaciones de producción publicado el 01/02/2023 (Transpondedor); vigencia actual no confirmada.",
+    "desc": "Grupo tecnológico de defensa, tráfico aéreo y espacio con sede en Alcobendas. Fábrica de radares civiles y militares en San Fernando de Henares y centro de trabajo en Torrejón de Ardoz.",
     "sedes": [
       [
         "Alcobendas",
         40.541,
         -3.64
+      ],
+      [
+        "San Fernando de Henares",
+        40.425,
+        -3.535
+      ],
+      [
+        "Torrejón de Ardoz",
+        40.456,
+        -3.48
       ]
     ],
     "sectores": [
-      "aero"
+      "aero",
+      "espacial",
+      "defensa"
     ],
-    "acts": [],
+    "acts": [
+      "Sistemas espaciales"
+    ],
     "redes": [
+      "TEDAE",
       "AESA POA"
     ]
   },
   {
-    "nombre": "Indra Space",
+    "nombre": "Indra Space (incluye Deimos)",
     "sector": "espacial",
-    "tipo": "Empresa asociada a TEDAE / cadena de valor aeroespacial y defensa",
-    "web": "",
+    "tipo": "Sistemas espaciales: satélites, segmento terreno y vigilancia espacial",
+    "web": "https://www.indragroup.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
-      "Actividad por verificar"
+      "Actividad por verificar",
+      "Sistemas espaciales",
+      "Ingeniería",
+      "Segmento terreno"
     ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa.",
+    "desc": "Negocio espacial de Indra Group. En 2024 Indra compró Deimos a Elecnor y lo integró en su división espacial: análisis de misión, satélites pequeños, segmento terreno, software de misión y vigilancia espacial. Centros de Deimos en Tres Cantos (Madrid), Puertollano (integración y operación de satélites) y Boecillo (Valladolid).",
     "sedes": [
       [
-        "Alcobendas",
+        "Alcobendas (sede de Indra)",
         40.541,
         -3.64
+      ],
+      [
+        "Tres Cantos",
+        40.6,
+        -3.707
+      ],
+      [
+        "Puertollano",
+        38.687,
+        -4.107
+      ],
+      [
+        "Boecillo (Valladolid)",
+        41.53,
+        -4.71
       ]
     ],
     "sectores": [
       "espacial"
     ],
     "acts": [
+      "Ingeniería / I+D",
       "Sistemas espaciales"
     ],
     "redes": [
@@ -21383,15 +21622,18 @@ var EMPRESAS = [
   {
     "nombre": "PLD Space",
     "sector": "espacial",
-    "tipo": "Startup / tecnología espacial",
-    "web": "",
+    "tipo": "Lanzadores espaciales",
+    "web": "https://www.pldspace.com",
     "tags": [
       "TEDAE",
       "Cadena de valor aeroespacial/defensa",
       "Espai Aero CV",
-      "Cadena de valor aeroespacial valenciana"
+      "Cadena de valor aeroespacial valenciana",
+      "Lanzadores",
+      "Sistemas espaciales",
+      "Propulsión"
     ],
-    "desc": "Figura en el listado público de asociados de TEDAE; la actividad concreta, las capacidades y las instalaciones deben validarse en la ficha corporativa. Figura como socio de Espai Aero CV; actividad y sede operativa deben contrastarse con fuentes corporativas. Fuentes de incorporación: Asociados actuales de TEDAE, Socios públicos de Espai Aero CV.",
+    "desc": "Desarrollador de lanzadores espaciales (Miura 5) con sede en Elche y banco de ensayos de motores en el aeropuerto de Teruel. Figura en TEDAE y Espai Aero CV.",
     "sedes": [
       [
         "Elche",
@@ -21399,15 +21641,16 @@ var EMPRESAS = [
         -0.713
       ],
       [
-        "Teruel",
-        40.345,
-        -1.107
+        "Teruel (aeropuerto)",
+        40.412,
+        -1.218
       ]
     ],
     "sectores": [
       "espacial"
     ],
     "acts": [
+      "Motores y propulsión",
       "Sistemas espaciales"
     ],
     "redes": [
@@ -22942,85 +23185,89 @@ var EMPRESAS = [
     "redes": []
   },
   {
-    "nombre": "Aernnova",
-    "sector": "aero",
-    "tipo": "Miembro de clúster aeroespacial",
-    "web": "",
-    "tags": [
-      "Miembro de Andalucía Aerospace",
-      "Ecosistema aeroespacial"
-    ],
-    "desc": "Figura en el listado público consultado de Andalucía Aerospace. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema.",
-    "sedes": [
-      [
-        "Vitoria-Gasteiz",
-        42.847,
-        -2.673
-      ]
-    ],
-    "sectores": [
-      "aero"
-    ],
-    "acts": [],
-    "redes": [
-      "Andalucía Aerospace"
-    ]
-  },
-  {
-    "nombre": "Airbus Helicopters",
-    "sector": "aero",
-    "tipo": "Miembro de clúster aeroespacial",
-    "web": "",
-    "tags": [
-      "Miembro de Clúster Aeronáutico de Castilla-La Mancha",
-      "Ecosistema aeroespacial"
-    ],
-    "desc": "Figura en el listado público consultado de Clúster Aeronáutico de Castilla-La Mancha. La actividad detallada y la sede individual no se atribuyen solo por su pertenencia al ecosistema. El listado procede de una fuente histórica; confirmar la pertenencia actual.",
-    "sedes": [
-      [
-        "Albacete",
-        38.994,
-        -1.856
-      ],
-      [
-        "Getafe",
-        40.308,
-        -3.732
-      ]
-    ],
-    "sectores": [
-      "aero"
-    ],
-    "acts": [],
-    "redes": [
-      "Castilla-La Mancha"
-    ]
-  },
-  {
     "nombre": "ACITURRI AERONÁUTICA, S.L.",
     "sector": "aero",
-    "tipo": "Fabricante / organización de producción (vigencia AESA por verificar)",
-    "web": "",
+    "tipo": "Aeroestructuras y componentes (Tier 1)",
+    "web": "https://www.aciturri.com",
     "tags": [
       "AESA POA",
       "Fabricación aeronáutica",
       "Vigencia por confirmar",
       "AESA POA (2023)",
-      "Vigencia POA no confirmada"
+      "Vigencia POA no confirmada",
+      "Estructuras",
+      "Materiales compuestos",
+      "Componentes aeronáuticos",
+      "Miembro de Empresas instaladas en Aerópolis",
+      "Ecosistema aeroespacial"
     ],
-    "desc": "Figura en un listado AESA de organizaciones de producción publicado el 01/02/2023 (Estructuras y sistemas aeronáuticos); vigencia actual no confirmada.",
+    "desc": "Proveedor Tier 1 de aeroestructuras con sede en Miranda de Ebro (Burgos). Plantas en Boecillo (Valladolid), Getafe y Tres Cantos (Madrid), Vitoria y Berantevilla (Álava), Sevilla (aeropuerto), Mairena del Aljarafe y Aerópolis (Sevilla), y Puerto Real y Tecnobahía (Cádiz). Su negocio de aeroestructuras está participado mayoritariamente por la belga Sonaca.",
     "sedes": [
       [
         "Miranda de Ebro",
         42.687,
         -2.948
+      ],
+      [
+        "Boecillo (Valladolid)",
+        41.53,
+        -4.71
+      ],
+      [
+        "Getafe",
+        40.308,
+        -3.732
+      ],
+      [
+        "Tres Cantos",
+        40.6,
+        -3.707
+      ],
+      [
+        "Vitoria-Gasteiz",
+        42.847,
+        -2.673
+      ],
+      [
+        "Berantevilla",
+        42.68,
+        -2.87
+      ],
+      [
+        "Sevilla (aeropuerto)",
+        37.413,
+        -5.9
+      ],
+      [
+        "Mairena del Aljarafe",
+        37.345,
+        -6.065
+      ],
+      [
+        "Aerópolis / La Rinconada",
+        37.486,
+        -5.982
+      ],
+      [
+        "Puerto Real",
+        36.528,
+        -6.19
+      ],
+      [
+        "El Puerto de Santa María (Tecnobahía)",
+        36.594,
+        -6.229
       ]
     ],
     "sectores": [
       "aero"
     ],
-    "acts": [],
+    "acts": [
+      "Estructuras y composites",
+      "Mecanizado y componentes"
+    ],
     "redes": [
+      "Aerópolis (Sevilla)",
       "AESA POA"
     ]
   },
@@ -23775,8 +24022,8 @@ var EMPRESAS = [
 ];
 
 var MAPA_STATS = {
-  "totalEmpresas": 945,
-  "empresasConCoordenadas": 944,
+  "totalEmpresas": 940,
+  "empresasConCoordenadas": 939,
   "empresasSinCoordenadas": 1,
-  "sedesConCoordenadas": 987
+  "sedesConCoordenadas": 1034
 };

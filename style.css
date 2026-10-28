@@ -1004,3 +1004,25 @@ input[type="email"] {
   .stats-bar { grid-template-columns: 1fr 1fr; }
   .result { grid-template-columns: 1fr; }
 }
+/* ===========================
+  Idioma (ES / EN) — ver i18n.js
+  =========================== */
+html[lang="es"] [data-lang="en"],
+html[lang="en"] [data-lang="es"] { display: none !important; }
+
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 0; margin-left: 1rem; padding: 2px;
+  border: 1px solid var(--border); border-radius: 999px; background: rgba(13, 22, 53, .7);
+  cursor: pointer; font: inherit; vertical-align: middle;
+}
+.lang-switch span {
+  padding: .22rem .55rem; border-radius: 999px; font-size: .7rem; letter-spacing: 1px;
+  color: var(--muted); font-family: 'Orbitron', monospace; transition: background .2s, color .2s;
+}
+.lang-switch span.on { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: var(--bg); font-weight: 700; }
+.lang-switch:hover { border-color: var(--accent-2); }
+.lang-switch:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+@media (max-width: 760px) {
+  .lang-switch { margin-left: .3rem; }
+  .lang-switch span { padding: .3rem .6rem; }
+}

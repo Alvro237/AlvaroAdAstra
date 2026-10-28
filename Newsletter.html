@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Newsletter</title>
+  <title data-es="Newsletter">Newsletter</title>
   <link rel="stylesheet" href="style.css">
+  <script src="i18n.js"></script>
   <link rel="icon" type="image/png" href="images/Logo.png">
 </head>
 <body>
@@ -13,20 +14,20 @@
 <canvas id="star-canvas"></canvas>
 
 <div class="sidebar">
-  <h2>🚀 Menu</h2>
-  <a href="#IndustryMap">Oct. 2026</a>
-  <a href="#SimsEng">Sep. 2025</a>
+  <h2>🚀 <span data-lang="en">Menu</span><span data-lang="es">Menú</span></h2>
+  <a href="#IndustryMap"><span data-lang="en">Oct. 2026</span><span data-lang="es">Oct. 2026</span></a>
+  <a href="#SimsEng"><span data-lang="en">Sep. 2025</span><span data-lang="es">Sep. 2025</span></a>
 </div>
 
 <header>
   <div class="container nav">
     <div class="logo">✈️ Newsletter</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="Isentropic_calculator.html">Calculators</a>
-      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+      <a href="Isentropic_calculator.html"><span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></a>
+      <a href="Rocket_Theory.html"><span data-lang="en">Rocket Theory</span><span data-lang="es">Teoría de cohetes</span></a>
       <a href="Newsletter.html">Newsletter</a>
-      <a href="mapa.html">Industry Map</a>
+      <a href="mapa.html"><span data-lang="en">Industry Map</span><span data-lang="es">Mapa de industria</span></a>
     </nav>
   </div>
 </header>
@@ -34,50 +35,50 @@
 <main class="container">
 
   <section style="padding-top:3rem; border-bottom:none;">
-    <div class="hero-eyebrow">Articles · Reflections · Experience</div>
+    <div class="hero-eyebrow"><span data-lang="en">Articles · Reflections · Experience</span><span data-lang="es">Artículos · Reflexiones · Experiencia</span></div>
     <h1>Newsletter</h1>
-    <p>Longer-form articles about aerospace engineering, simulation work, and lessons from the field.</p>
+    <p><span data-lang="en">Longer-form articles about aerospace engineering, simulation work, and lessons from the field.</span><span data-lang="es">Artículos más largos sobre ingeniería aeroespacial, trabajo de simulación y lecciones aprendidas sobre el terreno.</span></p>
   </section>
 
-  <a class="card-link" href="The_Aerospace_Industry_In_Spain.html" aria-label="Article: The aerospace industry in Spain, on one map">
+  <a class="card-link" href="The_Aerospace_Industry_In_Spain.html" aria-label="Article: The aerospace industry in Spain, on one map" data-es-aria-label="Artículo: La industria aeroespacial española, en un mapa">
     <section class="card reveal" id="IndustryMap" style="margin: 1.5rem 0; max-width:900px;">
       <div class="article-date">Oct. 2026</div>
-      <h2 style="text-align:center;">The aerospace industry in Spain, on one map</h2>
+      <h2 style="text-align:center;"><span data-lang="en">The aerospace industry in Spain, on one map</span><span data-lang="es">La industria aeroespacial española, en un mapa</span></h2>
       <p>
-        Looking for an internship, a first job or simply curious about who builds aircraft and spacecraft in Spain? There was no single place to see it all, so I built one.
-        This article presents the new Industry Map: more than 900 aeronautics, space and defence companies, filterable by sector, activity and cluster, and what you can do with it.
+        <span data-lang="en">Looking for an internship, a first job or simply curious about who builds aircraft and spacecraft in Spain? There was no single place to see it all, so I built one.
+        This article presents the new Industry Map: more than 900 aeronautics, space and defence companies, filterable by sector, activity and cluster, and what you can do with it.</span><span data-lang="es">¿Buscas prácticas, tu primer empleo o simplemente tienes curiosidad por saber quién construye aviones y naves espaciales en España? No había un único sitio donde verlo todo, así que lo he creado. Este artículo presenta el nuevo Mapa de industria: más de 900 empresas aeronáuticas, espaciales y de defensa, filtrables por sector, actividad y clúster, y todo lo que puedes hacer con él.</span>
       </p>
-      <img src="images/Industry_Map.jpg" alt="Preview of the interactive Industry Map of aerospace companies in Spain" width="500" loading="lazy" style="display:block; margin:1.2rem auto; border-radius:.8rem; box-shadow:0 0 30px rgba(0,245,212,0.07);">
+      <img src="images/Industry_Map.jpg" alt="Preview of the interactive Industry Map of aerospace companies in Spain" data-es-alt="Vista previa del mapa interactivo de la industria aeroespacial en España" width="500" loading="lazy" style="display:block; margin:1.2rem auto; border-radius:.8rem; box-shadow:0 0 30px rgba(0,245,212,0.07);">
       <div class="tech-tags" style="justify-content:center; margin:.8rem 0;">
-        <span class="tech-tag">Aeronautics</span>
-        <span class="tech-tag">Space</span>
-        <span class="tech-tag">Defence</span>
-        <span class="tech-tag">Spain</span>
-        <span class="tech-tag">Careers</span>
-        <span class="tech-tag">Interactive map</span>
+        <span class="tech-tag"><span data-lang="en">Aeronautics</span><span data-lang="es">Aeronáutica</span></span>
+        <span class="tech-tag"><span data-lang="en">Space</span><span data-lang="es">Espacio</span></span>
+        <span class="tech-tag"><span data-lang="en">Defence</span><span data-lang="es">Defensa</span></span>
+        <span class="tech-tag"><span data-lang="en">Spain</span><span data-lang="es">España</span></span>
+        <span class="tech-tag"><span data-lang="en">Careers</span><span data-lang="es">Empleo</span></span>
+        <span class="tech-tag"><span data-lang="en">Interactive map</span><span data-lang="es">Mapa interactivo</span></span>
       </div>
-      <p style="text-align:center; color:var(--accent); font-family:'Orbitron',monospace; font-size:.72rem; letter-spacing:2px; margin-top:.8rem;">READ ARTICLE →</p>
+      <p style="text-align:center; color:var(--accent); font-family:'Orbitron',monospace; font-size:.72rem; letter-spacing:2px; margin-top:.8rem;"><span data-lang="en">READ ARTICLE →</span><span data-lang="es">LEER ARTÍCULO →</span></p>
     </section>
   </a>
 
-  <a class="card-link" href="Working_as_a_simulations_engineer.html" aria-label="Article: What to expect as a simulations engineer?">
+  <a class="card-link" href="Working_as_a_simulations_engineer.html" aria-label="Article: What to expect as a simulations engineer?" data-es-aria-label="Artículo: ¿Qué esperar como ingeniero de simulación?">
     <section class="card reveal" id="SimsEng" style="margin: 1.5rem 0; max-width:900px;">
       <div class="article-date">Sep. 2025</div>
-      <h2 style="text-align:center;">What to expect as a simulations engineer?</h2>
+      <h2 style="text-align:center;"><span data-lang="en">What to expect as a simulations engineer?</span><span data-lang="es">¿Qué esperar como ingeniero de simulación?</span></h2>
       <p>
-        Have you ever wondered what being a simulations engineer is really like? Passionate about CFD, thermal analyses, or structural problems?
-        This article shares 11 months of hands-on experience across three simulation disciplines, revealing what the job looks and feels like from the inside.
+        <span data-lang="en">Have you ever wondered what being a simulations engineer is really like? Passionate about CFD, thermal analyses, or structural problems?
+        This article shares 11 months of hands-on experience across three simulation disciplines, revealing what the job looks and feels like from the inside.</span><span data-lang="es">¿Alguna vez te has preguntado cómo es de verdad ser ingeniero de simulación? ¿Te apasiona el CFD, el análisis térmico o los problemas estructurales? Este artículo comparte 11 meses de experiencia práctica en tres disciplinas de simulación y muestra cómo es el trabajo desde dentro.</span>
       </p>
-      <img src="images/Simulations.png" alt="Simulations" width="500" style="display:block; margin:1.2rem auto; border-radius:.8rem; box-shadow:0 0 30px rgba(0,245,212,0.07);">
+      <img src="images/Simulations.png" alt="Simulations" data-es-alt="Simulaciones" width="500" style="display:block; margin:1.2rem auto; border-radius:.8rem; box-shadow:0 0 30px rgba(0,245,212,0.07);">
       <div class="tech-tags" style="justify-content:center; margin:.8rem 0;">
         <span class="tech-tag">CFD</span>
         <span class="tech-tag">FEM</span>
-        <span class="tech-tag">Thermal</span>
+        <span class="tech-tag"><span data-lang="en">Thermal</span><span data-lang="es">Térmico</span></span>
         <span class="tech-tag">OpenFOAM</span>
         <span class="tech-tag">ESATAN</span>
         <span class="tech-tag">HyperMesh</span>
       </div>
-      <p style="text-align:center; color:var(--accent); font-family:'Orbitron',monospace; font-size:.72rem; letter-spacing:2px; margin-top:.8rem;">READ ARTICLE →</p>
+      <p style="text-align:center; color:var(--accent); font-family:'Orbitron',monospace; font-size:.72rem; letter-spacing:2px; margin-top:.8rem;"><span data-lang="en">READ ARTICLE →</span><span data-lang="es">LEER ARTÍCULO →</span></p>
     </section>
   </a>
 

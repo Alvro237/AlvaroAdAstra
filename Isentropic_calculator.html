@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aerospace Calculators</title>
+  <title data-es="Calculadoras aeroespaciales">Aerospace Calculators</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="i18n.js"></script>
   <link rel="icon" type="image/png" href="images/Logo.png">
 </head>
 <body>
@@ -13,22 +14,22 @@
 <canvas id="star-canvas"></canvas>
 
 <div class="sidebar">
-  <h2>🚀 Menu</h2>
-  <a href="#IsentropicRocket">Rocket Perf.</a>
-  <a href="#IsentropicFlow">Isentropic Flow</a>
-  <a href="#ShockCalculator">Shock Waves</a>
-  <a href="#DragCalculator">Drag &amp; Lift</a>
+  <h2>🚀 <span data-lang="en">Menu</span><span data-lang="es">Menú</span></h2>
+  <a href="#IsentropicRocket"><span data-lang="en">Rocket Perf.</span><span data-lang="es">Rendimiento cohete</span></a>
+  <a href="#IsentropicFlow"><span data-lang="en">Isentropic Flow</span><span data-lang="es">Flujo isentrópico</span></a>
+  <a href="#ShockCalculator"><span data-lang="en">Shock Waves</span><span data-lang="es">Ondas de choque</span></a>
+  <a href="#DragCalculator"><span data-lang="en">Drag &amp; Lift</span><span data-lang="es">Resistencia y sustentación</span></a>
 </div>
 
 <header>
   <div class="container nav">
-    <div class="logo">✈️ Calculators</div>
+    <div class="logo">✈️ <span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="Isentropic_calculator.html">Calculators</a>
-      <a href="Rocket_Theory.html">Rocket Theory</a>
+      <a href="index.html"><span data-lang="en">Home</span><span data-lang="es">Inicio</span></a>
+      <a href="Isentropic_calculator.html"><span data-lang="en">Calculators</span><span data-lang="es">Calculadoras</span></a>
+      <a href="Rocket_Theory.html"><span data-lang="en">Rocket Theory</span><span data-lang="es">Teoría de cohetes</span></a>
       <a href="Newsletter.html">Newsletter</a>
-      <a href="mapa.html">Industry Map</a>
+      <a href="mapa.html"><span data-lang="en">Industry Map</span><span data-lang="es">Mapa de industria</span></a>
     </nav>
   </div>
 </header>
@@ -36,44 +37,44 @@
 <main class="container">
 
   <section style="padding-top:3rem; border-bottom:none;">
-    <div class="hero-eyebrow">Interactive Tools</div>
-    <h1>Online Calculators</h1>
+    <div class="hero-eyebrow"><span data-lang="en">Interactive Tools</span><span data-lang="es">Herramientas interactivas</span></div>
+    <h1><span data-lang="en">Online Calculators</span><span data-lang="es">Calculadoras online</span></h1>
     <p style="max-width:640px;">
-      Interactive tools for the calculations aerospace engineers perform every day. Enter your parameters and get instant results: no tables required.
+      <span data-lang="en">Interactive tools for the calculations aerospace engineers perform every day. Enter your parameters and get instant results: no tables required.</span><span data-lang="es">Herramientas interactivas para los cálculos que un ingeniero aeroespacial hace a diario. Introduce tus parámetros y obtén resultados al instante: sin tablas.</span>
     </p>
   </section>
 
   <!-- ROCKET PERFORMANCE -->
   <section id="IsentropicRocket" class="reveal">
-    <div class="section-header"><h2>Isentropic Rocket Performance</h2></div>
-    <p>Compute nozzle exit conditions and thrust parameters. Partial inputs give partial results. Assume isentropic flow (no shocks, no boundary layer separation).</p>
+    <div class="section-header"><h2><span data-lang="en">Isentropic Rocket Performance</span><span data-lang="es">Rendimiento isentrópico de un cohete</span></h2></div>
+    <p><span data-lang="en">Compute nozzle exit conditions and thrust parameters. Partial inputs give partial results. Assume isentropic flow (no shocks, no boundary layer separation).</span><span data-lang="es">Calcula las condiciones a la salida de la tobera y los parámetros de empuje. Con datos parciales obtendrás resultados parciales. Se supone flujo isentrópico (sin ondas de choque ni desprendimiento de la capa límite).</span></p>
     <div class="card" style="margin-top:1.2rem;">
       <div class="calc-layout">
         <div class="inputs">
-          <label>Expansion Ratio  (Ae/At):<input type="number" id="expansionRatio" placeholder="e.g. 8" /></label><br>
-          <label>Specific Heat Ratio γ:<input type="number" id="specificHeatRatio" placeholder="e.g. 1.4" /></label><br>
-          <label>Gas Molecular Weight (g/mol):<input type="number" id="molarMass" placeholder="e.g. 22" /></label><br>
-          <label>Throat Area (m²):<input type="number" id="throatArea" placeholder="e.g. 0.005" /></label><br>
-          <label>Chamber Pressure (MPa):<input type="number" id="chamberPressure" placeholder="e.g. 3.5" /></label><br>
-          <label>Chamber Temperature (K):<input type="number" id="chamberTemperature" placeholder="e.g. 3200" /></label><br>
-          <label>Ambient Pressure (MPa):<input type="number" id="ambientPressure" placeholder="e.g. 0.101" /></label><br>
+          <label><span data-lang="en">Expansion Ratio  (Ae/At):</span><span data-lang="es">Relación de expansión (Ae/At):</span><input type="number" id="expansionRatio" placeholder="e.g. 8" data-es-placeholder="p. ej. 8" /></label><br>
+          <label><span data-lang="en">Specific Heat Ratio γ:</span><span data-lang="es">Relación de calores específicos γ:</span><input type="number" id="specificHeatRatio" placeholder="e.g. 1.4" data-es-placeholder="p. ej. 1.4" /></label><br>
+          <label><span data-lang="en">Gas Molecular Weight (g/mol):</span><span data-lang="es">Masa molecular del gas (g/mol):</span><input type="number" id="molarMass" placeholder="e.g. 22" data-es-placeholder="p. ej. 22" /></label><br>
+          <label><span data-lang="en">Throat Area (m²):</span><span data-lang="es">Área de garganta (m²):</span><input type="number" id="throatArea" placeholder="e.g. 0.005" data-es-placeholder="p. ej. 0.005" /></label><br>
+          <label><span data-lang="en">Chamber Pressure (MPa):</span><span data-lang="es">Presión de cámara (MPa):</span><input type="number" id="chamberPressure" placeholder="e.g. 3.5" data-es-placeholder="p. ej. 3.5" /></label><br>
+          <label><span data-lang="en">Chamber Temperature (K):</span><span data-lang="es">Temperatura de cámara (K):</span><input type="number" id="chamberTemperature" placeholder="e.g. 3200" data-es-placeholder="p. ej. 3200" /></label><br>
+          <label><span data-lang="en">Ambient Pressure (MPa):</span><span data-lang="es">Presión ambiente (MPa):</span><input type="number" id="ambientPressure" placeholder="e.g. 0.101" data-es-placeholder="p. ej. 0.101" /></label><br>
         </div>
         <div class="results">
-          <h2>Results</h2>
+          <h2><span data-lang="en">Results</span><span data-lang="es">Resultados</span></h2>
           <table>
-            <tr><th>Exit Velocity (m/s)</th>      <td id="vExit">—</td></tr>
-            <tr><th>Exit Pressure (Pa)</th>        <td id="pExit">—</td></tr>
-            <tr><th>Exit Temperature (K)</th>      <td id="tExit">—</td></tr>
-            <tr><th>Exit Mach</th>                 <td id="machExit">—</td></tr>
+            <tr><th><span data-lang="en">Exit Velocity (m/s)</span><span data-lang="es">Velocidad de salida (m/s)</span></th>      <td id="vExit">—</td></tr>
+            <tr><th><span data-lang="en">Exit Pressure (Pa)</span><span data-lang="es">Presión de salida (Pa)</span></th>        <td id="pExit">—</td></tr>
+            <tr><th><span data-lang="en">Exit Temperature (K)</span><span data-lang="es">Temperatura de salida (K)</span></th>      <td id="tExit">—</td></tr>
+            <tr><th><span data-lang="en">Exit Mach</span><span data-lang="es">Mach de salida</span></th>                 <td id="machExit">—</td></tr>
             <tr><th>Pe / Pc</th>                   <td id="pRatio">—</td></tr>
             <tr><th>Te / Tc</th>                   <td id="tRatio">—</td></tr>
-            <tr><th>Thrust Coefficient Cf</th>     <td id="cf">—</td></tr>
-            <tr><th>Thrust (N)</th>                <td id="thrust">—</td></tr>
-            <tr><th>Vacuum Thrust (N)</th>         <td id="thrustVac">—</td></tr>
-            <tr><th>Specific Impulse (s)</th>      <td id="isp">—</td></tr>
-            <tr><th>Mass Flow Rate (kg/s)</th>     <td id="mdot">—</td></tr>
+            <tr><th><span data-lang="en">Thrust Coefficient Cf</span><span data-lang="es">Coeficiente de empuje Cf</span></th>     <td id="cf">—</td></tr>
+            <tr><th><span data-lang="en">Thrust (N)</span><span data-lang="es">Empuje (N)</span></th>                <td id="thrust">—</td></tr>
+            <tr><th><span data-lang="en">Vacuum Thrust (N)</span><span data-lang="es">Empuje en vacío (N)</span></th>         <td id="thrustVac">—</td></tr>
+            <tr><th><span data-lang="en">Specific Impulse (s)</span><span data-lang="es">Impulso específico (s)</span></th>      <td id="isp">—</td></tr>
+            <tr><th><span data-lang="en">Mass Flow Rate (kg/s)</span><span data-lang="es">Gasto másico (kg/s)</span></th>     <td id="mdot">—</td></tr>
           </table>
-          <button id="compute">Calculate Performance 🚀</button>
+          <button id="compute"><span data-lang="en">Calculate Performance 🚀</span><span data-lang="es">Calcular rendimiento 🚀</span></button>
         </div>
       </div>
     </div>
@@ -81,23 +82,23 @@
 
   <!-- ISENTROPIC FLOW -->
   <section id="IsentropicFlow" class="reveal">
-    <div class="section-header"><h2>Isentropic Flow Relations</h2></div>
-    <p>Enter any known parameter to get the full isentropic flow table for that Mach number.</p>
+    <div class="section-header"><h2><span data-lang="en">Isentropic Flow Relations</span><span data-lang="es">Relaciones de flujo isentrópico</span></h2></div>
+    <p><span data-lang="en">Enter any known parameter to get the full isentropic flow table for that Mach number.</span><span data-lang="es">Introduce cualquier parámetro conocido para obtener la tabla isentrópica completa de ese número de Mach.</span></p>
     <div class="card" style="margin-top:1.2rem;">
       <div class="inputs">
         <label>γ: <input type="number" id="gamma" value="1.4" step="0.01" style="width:100px; display:inline-block; margin-left:.5rem;"></label>
         <div style="margin-top:.8rem; display:flex; align-items:center; flex-wrap:wrap; gap:.6rem;">
           <div class="custom-select-wrapper">
-            <label for="knownParam">Known parameter:</label>
+            <label for="knownParam"><span data-lang="en">Known parameter:</span><span data-lang="es">Parámetro conocido:</span></label>
             <select id="knownParam">
-              <option value="Ma">Mach number</option>
+              <option value="Ma" data-es-text="Número de Mach">Mach number</option>
               <option value="T0T">T₀/T</option>
               <option value="p0p">p₀/p</option>
               <option value="rho0rho">ρ₀/ρ</option>
               <option value="AAstar">A/A*</option>
             </select>
           </div>
-          <label style="margin:0;">Value: <input type="number" id="paramValue" step="any" style="width:110px; display:inline-block; margin-left:.3rem;"></label>
+          <label style="margin:0;"><span data-lang="en">Value: </span><span data-lang="es">Valor: </span><input type="number" id="paramValue" step="any" style="width:110px; display:inline-block; margin-left:.3rem;"></label>
         </div>
       </div>
       <div class="table-responsive" style="margin-top:1rem;">
@@ -113,38 +114,38 @@
           </tr>
         </table>
       </div>
-      <button id="computeIS">Fill Table</button>
+      <button id="computeIS"><span data-lang="en">Fill Table</span><span data-lang="es">Rellenar tabla</span></button>
     </div>
   </section>
 
   <!-- OBLIQUE SHOCK -->
   <section id="ShockCalculator" class="reveal">
-    <div class="section-header"><h2>Oblique Shock Wave Calculator</h2></div>
-    <p>Compute flow properties across an oblique shock wave given upstream conditions and shock angle.</p>
+    <div class="section-header"><h2><span data-lang="en">Oblique Shock Wave Calculator</span><span data-lang="es">Calculadora de onda de choque oblicua</span></h2></div>
+    <p><span data-lang="en">Compute flow properties across an oblique shock wave given upstream conditions and shock angle.</span><span data-lang="es">Calcula las propiedades del flujo a través de una onda de choque oblicua a partir de las condiciones aguas arriba y del ángulo de la onda.</span></p>
     <div class="card" style="margin-top:1.2rem;">
       <div class="row">
         <div>
-          <label for="mach1">Upstream Mach M₁</label>
+          <label for="mach1"><span data-lang="en">Upstream Mach M₁</span><span data-lang="es">Mach aguas arriba M₁</span></label>
           <input type="number" id="mach1" step="any" value="2.0" />
         </div>
         <div>
-          <label for="gamma_os">Specific Heat Ratio γ</label>
+          <label for="gamma_os"><span data-lang="en">Specific Heat Ratio γ</span><span data-lang="es">Relación de calores específicos γ</span></label>
           <input type="number" id="gamma_os" step="any" value="1.4" />
         </div>
         <div>
-          <label for="beta">Shock Angle β (°)</label>
+          <label for="beta"><span data-lang="en">Shock Angle β (°)</span><span data-lang="es">Ángulo de la onda β (°)</span></label>
           <input type="number" id="beta" step="any" value="45" />
         </div>
       </div>
-      <button id="computeOblique">Compute Shock</button>
+      <button id="computeOblique"><span data-lang="en">Compute Shock</span><span data-lang="es">Calcular onda de choque</span></button>
       <div class="results" style="margin-top:1rem;">
         <table>
-          <tr><th>Downstream Mach M₂</th>           <td id="mach2">—</td></tr>
-          <tr><th>Deflection angle θ (°)</th>        <td id="theta">—</td></tr>
-          <tr><th>Pressure Ratio P₂/P₁</th>          <td id="pRatio_os">—</td></tr>
-          <tr><th>Density Ratio ρ₂/ρ₁</th>           <td id="rhoRatio_os">—</td></tr>
-          <tr><th>Temperature Ratio T₂/T₁</th>       <td id="tRatio_os">—</td></tr>
-          <tr><th>Stag. Pressure Ratio P₀₂/P₀₁</th>  <td id="p0Ratio_os">—</td></tr>
+          <tr><th><span data-lang="en">Downstream Mach M₂</span><span data-lang="es">Mach aguas abajo M₂</span></th>           <td id="mach2">—</td></tr>
+          <tr><th><span data-lang="en">Deflection angle θ (°)</span><span data-lang="es">Ángulo de deflexión θ (°)</span></th>        <td id="theta">—</td></tr>
+          <tr><th><span data-lang="en">Pressure Ratio P₂/P₁</span><span data-lang="es">Relación de presiones P₂/P₁</span></th>          <td id="pRatio_os">—</td></tr>
+          <tr><th><span data-lang="en">Density Ratio ρ₂/ρ₁</span><span data-lang="es">Relación de densidades ρ₂/ρ₁</span></th>           <td id="rhoRatio_os">—</td></tr>
+          <tr><th><span data-lang="en">Temperature Ratio T₂/T₁</span><span data-lang="es">Relación de temperaturas T₂/T₁</span></th>       <td id="tRatio_os">—</td></tr>
+          <tr><th><span data-lang="en">Stag. Pressure Ratio P₀₂/P₀₁</span><span data-lang="es">Relación de presiones de remanso P₀₂/P₀₁</span></th>  <td id="p0Ratio_os">—</td></tr>
         </table>
       </div>
     </div>
@@ -152,36 +153,36 @@
 
   <!-- DRAG & LIFT -->
   <section id="DragCalculator" class="reveal">
-    <div class="section-header"><h2>Dynamic Pressure &amp; Drag / Lift</h2></div>
-    <p>Quick tool to compute dynamic pressure, drag, and lift forces on an object.</p>
+    <div class="section-header"><h2><span data-lang="en">Dynamic Pressure &amp; Drag / Lift</span><span data-lang="es">Presión dinámica y resistencia / sustentación</span></h2></div>
+    <p><span data-lang="en">Quick tool to compute dynamic pressure, drag, and lift forces on an object.</span><span data-lang="es">Herramienta rápida para calcular la presión dinámica y las fuerzas de resistencia y sustentación sobre un objeto.</span></p>
     <div class="card" style="margin-top:1.2rem;">
       <div class="row">
         <div>
-          <label for="speed">Speed V (m/s)</label>
+          <label for="speed"><span data-lang="en">Speed V (m/s)</span><span data-lang="es">Velocidad V (m/s)</span></label>
           <input type="number" id="speed" step="any" value="70" />
         </div>
         <div>
-          <label for="rho">Air density ρ (kg/m³)</label>
+          <label for="rho"><span data-lang="en">Air density ρ (kg/m³)</span><span data-lang="es">Densidad del aire ρ (kg/m³)</span></label>
           <input type="number" id="rho" step="any" value="1.225" />
         </div>
         <div>
-          <label for="area">Reference area A (m²)</label>
+          <label for="area"><span data-lang="en">Reference area A (m²)</span><span data-lang="es">Área de referencia A (m²)</span></label>
           <input type="number" id="area" step="any" value="0.7" />
         </div>
         <div>
-          <label for="cd">Drag coefficient C<sub>d</sub></label>
+          <label for="cd"><span data-lang="en">Drag coefficient C<sub>d</sub></span><span data-lang="es">Coeficiente de resistencia C<sub>d</sub></span></label>
           <input type="number" id="cd" step="any" value="0.32" />
         </div>
         <div>
-          <label for="cl">Lift coefficient C<sub>L</sub></label>
+          <label for="cl"><span data-lang="en">Lift coefficient C<sub>L</sub></span><span data-lang="es">Coeficiente de sustentación C<sub>L</sub></span></label>
           <input type="number" id="cl" step="any" value="0.4" />
         </div>
       </div>
-      <button id="computedrag">Compute Forces</button>
+      <button id="computedrag"><span data-lang="en">Compute Forces</span><span data-lang="es">Calcular fuerzas</span></button>
       <div class="result">
-        <div class="box"><div class="label">Drag D</div><div class="value"><span id="drag">—</span> N</div></div>
-        <div class="box"><div class="label">Lift L</div><div class="value"><span id="lift">—</span> N</div></div>
-        <div class="box"><div class="label">Dynamic pressure q</div><div class="value"><span id="q">—</span> Pa</div></div>
+        <div class="box"><div class="label"><span data-lang="en">Drag D</span><span data-lang="es">Resistencia D</span></div><div class="value"><span id="drag">—</span> N</div></div>
+        <div class="box"><div class="label"><span data-lang="en">Lift L</span><span data-lang="es">Sustentación L</span></div><div class="value"><span id="lift">—</span> N</div></div>
+        <div class="box"><div class="label"><span data-lang="en">Dynamic pressure q</span><span data-lang="es">Presión dinámica q</span></div><div class="value"><span id="q">—</span> Pa</div></div>
       </div>
     </div>
   </section>
