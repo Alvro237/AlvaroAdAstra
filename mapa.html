@@ -100,6 +100,9 @@
       transition: transform .28s ease; box-shadow: -8px 0 30px rgba(0,0,0,.35);
     }
     #mapa-panel.abierto { transform: none; }
+    /* Oculta del todo la ficha cerrada (si no, su sombra asomaba por el borde del mapa). */
+    #mapa-panel { visibility: hidden; transition: transform .28s ease, visibility .28s; }
+    #mapa-panel.abierto { visibility: visible; }
     #mapa-panel h2 { font-size: 1.3rem; margin: .2rem 2rem .3rem 0; }
     #mapa-panel p { line-height: 1.55; }
     .mapa-cerrar {
@@ -159,6 +162,63 @@
 
     .leaflet-container { font-family: inherit; }
 
+    /* ===== Lista de empresas en la zona visible (estilo Booking) =====
+       Escritorio: columna fija a la derecha; el mapa se estrecha para no quedar tapado.
+       Móvil y tablet vertical: hoja inferior que se abre con el botón "Lista". */
+    #mapa-app { --zona-w: min(380px, 42vw); }
+    #mapa-app.zona-fija #mapa { right: var(--zona-w); }
+    #mapa-app.zona-fija #mapa-panel { width: var(--zona-w); }
+    #mapa-zona, #mapa-zona * { box-sizing: border-box; }
+    #mapa-zona {
+      position: absolute; top: 0; right: 0; bottom: 0; width: var(--zona-w); z-index: 550;
+      display: flex; flex-direction: column; color: var(--text, #fff);
+      background: var(--card, #101827); border-left: 1px solid var(--border, #26354d);
+      transform: translateX(100%); visibility: hidden; transition: transform .28s ease, visibility .28s;
+    }
+    #mapa-zona.abierto { transform: none; visibility: visible; }
+    .zona-cabecera {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: .8rem;
+      padding: 1rem 1rem .6rem; border-bottom: 1px solid var(--border, #26354d);
+    }
+    .zona-cabecera h2 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
+    #zona-contador { margin: .25rem 0 0; color: var(--muted, #adb8ca); font-size: .8rem; }
+    .zona-orden {
+      display: flex; align-items: center; gap: .5rem; padding: .5rem 1rem;
+      border-bottom: 1px solid var(--border, #26354d); color: var(--muted, #adb8ca); font-size: .8rem;
+    }
+    .zona-orden select {
+      font: inherit; font-size: .8rem; color: var(--text, #fff); background: var(--card, #101827);
+      border: 1px solid var(--border, #26354d); border-radius: 999px; padding: .25rem .6rem; cursor: pointer;
+    }
+    #zona-lista { list-style: none; margin: 0; padding: .55rem; overflow-y: auto; overscroll-behavior: contain; flex: 1 1 auto; }
+    #zona-lista li { margin: 0; padding: 0; }
+    .zona-item {
+      display: block; width: 100%; padding: .7rem .75rem; margin: 0 0 .4rem; text-align: left;
+      color: var(--text, #fff); background: rgba(255,255,255,.02); border: 1px solid var(--border, #26354d);
+      border-radius: .7rem; font: inherit; cursor: pointer; overflow-wrap: anywhere;
+    }
+    .zona-item:hover, .zona-item:focus-visible { background: var(--card-hover, #1b2b42); border-color: var(--accent-2, #7dd3fc); }
+    .zona-item:focus-visible, .zona-abrir:focus-visible, .zona-orden select:focus-visible { outline: 2px solid var(--accent-2, #7dd3fc); outline-offset: 2px; }
+    .zi-nombre { display: flex; align-items: center; gap: .5rem; font-size: .92rem; font-weight: 600; }
+    .zi-punto { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; box-shadow: 0 0 0 1.5px rgba(255,255,255,.85); }
+    .zi-tipo { display: block; margin-top: .25rem; color: var(--accent, #9fc7ff); font-size: .8rem; line-height: 1.35; }
+    .zi-sitio { display: block; margin-top: .2rem; color: var(--muted, #adb8ca); font-size: .77rem; }
+    .zona-vacia, .zona-mas { padding: 1rem .5rem; color: var(--muted, #adb8ca); font-size: .85rem; text-align: center; }
+    .zona-abrir {
+      position: absolute; top: 12px; right: 12px; z-index: 540; display: inline-flex; align-items: center; gap: .45rem;
+      font: inherit; font-size: .85rem; color: var(--text, #fff); background: rgba(6,13,31,.94);
+      border: 1px solid var(--border, #26354d); border-radius: 999px; padding: .45rem .9rem; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,.35); backdrop-filter: blur(8px);
+    }
+    .zona-abrir:hover { border-color: var(--accent-2, #7dd3fc); }
+    /* El estilo general de botones de style.css añade margen y relleno: aquí se anulan para centrar la ✕. */
+    .zona-abrir, .mapa-cerrar, .mapa-lista-cerrar { margin: 0; }
+    .mapa-cerrar, .mapa-lista-cerrar { padding: 0; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+    .zona-abrir[hidden] { display: none; }
+    /* Al pasar el ratón por la lista se resalta su pin (o el grupo que lo contiene). */
+    .pin.hl { transform: scale(1.5); box-shadow: 0 0 0 4px rgba(77,184,255,.7), 0 1px 5px rgba(0,0,0,.45); }
+    .marker-cluster.zona-hl div { box-shadow: 0 0 0 4px rgba(77,184,255,.8); }
+
     /* Teléfonos: filtros a todo el ancho y zoom abajo a la izquierda (arriba lo taparían los filtros). */
     @media (max-width: 700px) {
       .mapa-leyenda { left: 12px; width: calc(100% - 24px); top: 10px; max-height: 82%; }
@@ -178,6 +238,14 @@
       #mapa-panel.abierto { transform: translateY(0); }
       #mapa-lista-nodo { top: auto; left: 10px; right: 10px; bottom: 10px; width: auto; max-height: 40%; transform: translateY(calc(100% + 20px)); }
       #mapa-lista-nodo.abierto { transform: translateY(0); }
+      #mapa-zona {
+        top: auto; left: 0; right: 0; width: 100%; height: 55%; border-left: 0;
+        border-top: 1px solid var(--border, #26354d); border-radius: 1.1rem 1.1rem 0 0;
+        transform: translateY(100%); box-shadow: 0 -8px 30px rgba(0,0,0,.35);
+      }
+      #mapa-zona.abierto { transform: translateY(0); }
+      #zona-lista { padding-bottom: max(.55rem, env(safe-area-inset-bottom)); }
+      .zona-abrir { top: auto; bottom: 26px; right: 12px; min-height: 44px; }
     }
     /* Pantallas táctiles: zonas de toque de 40 px o más y letra de 16 px en el buscador (iOS hace zoom si es menor). */
     @media (pointer: coarse), (max-width: 700px) {
@@ -191,12 +259,14 @@
       .mapa-lista-cerrar { width: 42px; height: 42px; }
       .mapa-sede { min-height: 46px; }
       .mapa-empresa-btn { min-height: 52px; }
+      .zona-item { min-height: 52px; }
+      .zona-orden select { min-height: 36px; font-size: 16px; }
     }
     /* Tablet, móvil o poca altura (móvil apaisado): sin pie, para dar todo el espacio al mapa. */
     @media (max-width: 1024px), (max-height: 560px) { body.pagina-mapa > footer { display: none; } }
     @media (max-height: 560px) { #mapa-app { min-height: 240px; } }
     @media (prefers-reduced-motion: reduce) {
-      #mapa-panel, #mapa-lista-nodo, .pin { transition: none; }
+      #mapa-panel, #mapa-lista-nodo, #mapa-zona, .pin { transition: none; }
     }
   </style>
 </head>
@@ -257,6 +327,26 @@
     </div>
     <ul id="mapa-lista-empresas"></ul>
   </aside>
+  <button type="button" class="zona-abrir" id="zona-abrir" aria-controls="mapa-zona" aria-expanded="false" hidden>
+    <span aria-hidden="true">☰</span> <span data-lang="en">List</span><span data-lang="es">Lista</span> <span class="mapa-insignia" id="zona-insignia">0</span>
+  </button>
+  <aside id="mapa-zona" aria-label="Companies in the visible area" data-es-aria-label="Empresas en la zona visible" aria-hidden="true">
+    <div class="zona-cabecera">
+      <div>
+        <h2><span data-lang="en">Companies in this area</span><span data-lang="es">Empresas en esta zona</span></h2>
+        <p id="zona-contador" role="status" aria-live="polite"></p>
+      </div>
+      <button class="mapa-lista-cerrar" id="zona-cerrar" type="button" aria-label="Hide list" data-es-aria-label="Ocultar lista">✕</button>
+    </div>
+    <div class="zona-orden">
+      <label for="zona-orden"><span data-lang="en">Sort by</span><span data-lang="es">Ordenar por</span></label>
+      <select id="zona-orden">
+        <option value="az" data-es-text="Nombre (A–Z)">Name (A–Z)</option>
+        <option value="cerca" data-es-text="Cercanía al centro del mapa">Closest to map centre</option>
+      </select>
+    </div>
+    <ul id="zona-lista"></ul>
+  </aside>
 </div>
 
 <footer>
@@ -279,6 +369,44 @@
   // Fichas de un mapa_data.js antiguo (sin campo "sectores"): se deriva del sector único.
   var SECTOR_ANTIGUO = { aero: ['aero'], espacial: ['espacial'], defensa: ['defensa'], ambos: ['aero', 'espacial'] };
 
+  var appEl = document.getElementById('mapa-app');
+  var mapEl = document.getElementById('mapa');
+  // Misma condición que el CSS: ficha y listas salen como hoja inferior en móvil y en tablet vertical.
+  var MQ_HOJA = window.matchMedia('(max-width: 700px), (max-width: 1024px) and (orientation: portrait)');
+
+  /* ==LISTA DE LA ZONA (estado)== se decide antes de crear el mapa para que arranque ya con su ancho. */
+  var zona = document.getElementById('mapa-zona');
+  var zonaLista = document.getElementById('zona-lista');
+  var zonaContador = document.getElementById('zona-contador');
+  var zonaInsignia = document.getElementById('zona-insignia');
+  var zonaOrden = document.getElementById('zona-orden');
+  var botonZona = document.getElementById('zona-abrir');
+  var zonaAbierta = false;
+  var CLAVE_ZONA = 'mapa-lista-zona';
+  // Escritorio: abierta salvo que el visitante la cerrara la última vez. Móvil: cerrada (taparía el mapa).
+  function zonaPreferida() {
+    if (MQ_HOJA.matches) return false;
+    try { var v = localStorage.getItem(CLAVE_ZONA); if (v !== null) return v === '1'; } catch (e) { /* sin almacenamiento */ }
+    return true;
+  }
+  function ponerZona(abierta, recordar) {
+    zonaAbierta = abierta;
+    zona.classList.toggle('abierto', abierta);
+    zona.setAttribute('aria-hidden', String(!abierta));
+    botonZona.hidden = abierta;
+    botonZona.setAttribute('aria-expanded', String(abierta));
+    var fija = abierta && !MQ_HOJA.matches;
+    if (appEl.classList.contains('zona-fija') !== fija) {
+      appEl.classList.toggle('zona-fija', fija);
+      // pan: true mantiene el centro del mapa al estrecharse o ensancharse.
+      if (map) map.invalidateSize({ pan: true, animate: false });
+    }
+    if (abierta && MQ_HOJA.matches) { cerrar(); cerrarListaNodo(); cerrarFiltros(); }
+    if (recordar && !MQ_HOJA.matches) { try { localStorage.setItem(CLAVE_ZONA, abierta ? '1' : '0'); } catch (e) { /* sin almacenamiento */ } }
+    if (abierta) { zonaLista.scrollTop = 0; programarZona(); }
+  }
+  ponerZona(zonaPreferida(), false);
+
   var map = L.map('mapa', { zoomControl: true, minZoom: 4 }).setView([40.2, -3.7], 6);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -294,28 +422,27 @@
   var markers = [];
   var desplegados = [];
   var selEl = null;
-  var appEl = document.getElementById('mapa-app');
-  // Misma condición que el CSS: ficha y lista salen como hoja inferior en móvil y en tablet vertical.
-  var MQ_HOJA = window.matchMedia('(max-width: 700px), (max-width: 1024px) and (orientation: portrait)');
-  // El mapa se redimensiona solo al cambiar de tamaño la ventana; esto cubre también cambios de la cabecera o de la barra del navegador.
-  if (window.ResizeObserver) new ResizeObserver(function () { map.invalidateSize({ pan: false }); }).observe(appEl);
+  // El mapa se redimensiona solo al cambiar de tamaño la ventana; esto cubre también cambios de la cabecera,
+  // de la barra del navegador y el estrechamiento al abrir la lista lateral.
+  if (window.ResizeObserver) new ResizeObserver(function () { map.invalidateSize({ pan: false }); programarZona(); }).observe(mapEl);
 
-  // Parte del mapa que queda a la vista mientras hay una ficha o lista abierta.
+  // Parte del mapa (en píxeles del contenedor del mapa) que queda a la vista con una ficha o lista abierta.
+  // En escritorio, si la lista de la zona está fija, la ficha la tapa a ella y no al mapa.
   function zonaVisible(cubierta) {
-    var W = appEl.clientWidth, H = appEl.clientHeight;
+    var W = mapEl.clientWidth, H = mapEl.clientHeight;
     var ley = document.querySelector('.mapa-leyenda');
-    if (MQ_HOJA.matches) return { x0: 0, x1: W, y0: ley.offsetTop + ley.offsetHeight + 6, y1: H - cubierta.offsetHeight };
-    return { x0: 0, x1: W - cubierta.offsetWidth, y0: 0, y1: H };
+    if (MQ_HOJA.matches) return { x0: 0, x1: W, y0: ley.offsetTop + ley.offsetHeight + 6, y1: H - (cubierta ? cubierta.offsetHeight : 0) };
+    return { x0: 0, x1: Math.min(W, appEl.clientWidth - (cubierta ? cubierta.offsetWidth : 0)), y0: 0, y1: H };
   }
   function centroDe(zv) {
-    var W = appEl.clientWidth, H = appEl.clientHeight;
+    var W = mapEl.clientWidth, H = mapEl.clientHeight;
     if (zv.x1 - zv.x0 < 100 || zv.y1 - zv.y0 < 40) return [W / 2, H / 2];
     return [(zv.x0 + zv.x1) / 2, (zv.y0 + zv.y1) / 2];
   }
   // Va a un punto dejándolo centrado en la parte visible (no escondido bajo la ficha).
   function irA(lat, lon, zoom) {
     var c = centroDe(zonaVisible(panel));
-    var p = map.project([lat, lon], zoom).add([appEl.clientWidth / 2 - c[0], appEl.clientHeight / 2 - c[1]]);
+    var p = map.project([lat, lon], zoom).add([mapEl.clientWidth / 2 - c[0], mapEl.clientHeight / 2 - c[1]]);
     map.flyTo(map.unproject(p, zoom), zoom, { duration: .8 });
   }
   function verGrupo(grupo) {
@@ -503,6 +630,7 @@
       });
       m._empresa = emp;
       m._sedeIndex = i;
+      (emp._markers = emp._markers || [])[i] = m;
       m.on('click', function () {
         if (selEl) selEl.classList.remove('sel');
         selEl = m.getElement() && m.getElement().querySelector('.pin');
@@ -575,7 +703,133 @@
     var nActivos = CAMPOS.reduce(function (n, c) { return n + claves(c).length; }, 0) + (texto ? 1 : 0);
     insignia.textContent = nActivos;
     insignia.hidden = !nActivos;
+    programarZona();
   }
+
+  /* ==LISTA DE LA ZONA== Empresas con alguna sede dentro de la parte visible del mapa y que pasan los filtros.
+     Se recalcula al mover o hacer zoom, al filtrar y al buscar. */
+  var zonaItems = [], zonaPintadas = 0, ZONA_PASO = 60, zonaTimer = null, resaltados = [];
+
+  function programarZona() {
+    if (!map) return;
+    clearTimeout(zonaTimer);
+    zonaTimer = setTimeout(pintarZona, 80);
+  }
+  // Límites geográficos de lo que se ve: en móvil se descuenta la hoja de la lista y la barra de filtros.
+  function limitesVisibles() {
+    var zv = (MQ_HOJA.matches && zonaAbierta) ? zonaVisible(zona) : { x0: 0, x1: mapEl.clientWidth, y0: 0, y1: mapEl.clientHeight };
+    if (zv.x1 - zv.x0 < 20 || zv.y1 - zv.y0 < 20) return map.getBounds();
+    return L.latLngBounds(map.containerPointToLatLng([zv.x0, zv.y1]), map.containerPointToLatLng([zv.x1, zv.y0]));
+  }
+  function municipio(sede) { return String(sede[0]).split(' – ')[0]; }
+
+  function pintarZona() {
+    if (!map) return;
+    var b = limitesVisibles(), centro = b.getCenter();
+    var items = [];
+    EMPRESAS.forEach(function (emp) {
+      if (!emp.sedes.length || !pasa(emp)) return;
+      var vis = [], d = Infinity;
+      emp.sedes.forEach(function (s, i) {
+        var ll = L.latLng(Number(s[1]), Number(s[2]));
+        if (!b.contains(ll)) return;
+        vis.push(i);
+        d = Math.min(d, centro.distanceTo(ll));
+      });
+      if (vis.length) items.push({ emp: emp, vis: vis, d: d });
+    });
+    if (zonaOrden.value === 'cerca') items.sort(function (a, b) { return a.d - b.d; });
+    else items.sort(function (a, b) { return String(a.emp.nombre).localeCompare(String(b.emp.nombre), 'es', { sensitivity: 'base', numeric: true }); });
+    zonaItems = items;
+    zonaInsignia.textContent = items.length;
+    zonaContador.textContent = (items.length === 1 ? tx('1 company', '1 empresa') : items.length + tx(' companies', ' empresas')) +
+      (hayFiltros() ? tx(' · filters on', ' · con filtros') : '');
+    quitarResalte();
+    zonaLista.innerHTML = '';
+    zonaPintadas = 0;
+    if (!items.length) {
+      zonaLista.innerHTML = '<li class="zona-vacia">' + tx('No companies in this area. Zoom out or move the map.',
+        'No hay empresas en esta zona. Aleja el zoom o mueve el mapa.') + '</li>';
+      return;
+    }
+    masZona();
+    zonaLista.scrollTop = 0;
+  }
+  // Se pintan por tandas al hacer scroll (a vista de país son casi mil).
+  function masZona() {
+    var viejo = zonaLista.querySelector('.zona-mas');
+    if (viejo) viejo.remove();
+    var hasta = Math.min(zonaItems.length, zonaPintadas + ZONA_PASO), html = '';
+    for (var k = zonaPintadas; k < hasta; k++) {
+      var it = zonaItems[k], emp = it.emp;
+      var munis = [];
+      it.vis.forEach(function (i) { var m = municipio(emp.sedes[i]); if (munis.indexOf(m) < 0) munis.push(m); });
+      var sitio = munis.slice(0, 3).join(' · ') + (munis.length > 3 ? ' …' : '');
+      if (emp.sedes.length > 1) sitio += ' · ' + emp.sedes.length + tx(' sites', ' sedes');
+      html += '<li><button type="button" class="zona-item" data-k="' + k + '">' +
+        '<span class="zi-nombre"><i class="zi-punto" style="background:' + fondoPin(emp.sectores) + '"></i>' + esc(emp.nombre) + '</span>' +
+        (emp.tipo ? '<span class="zi-tipo">' + esc(emp.tipo) + '</span>' : '') +
+        '<span class="zi-sitio">' + esc(sitio) + '</span></button></li>';
+    }
+    zonaPintadas = hasta;
+    if (zonaPintadas < zonaItems.length) {
+      html += '<li class="zona-mas">' + tx('Scroll to see more (', 'Desliza para ver más (') + (zonaItems.length - zonaPintadas) + tx(' left)', ' restantes)') + '</li>';
+    }
+    zonaLista.insertAdjacentHTML('beforeend', html);
+  }
+  zonaLista.addEventListener('scroll', function () {
+    if (zonaPintadas < zonaItems.length && zonaLista.scrollTop + zonaLista.clientHeight > zonaLista.scrollHeight - 250) masZona();
+  });
+
+  function quitarResalte() {
+    resaltados.forEach(function (r) { r.el.classList.remove(r.cls); });
+    resaltados = [];
+  }
+  // Resalta los pines visibles de la empresa o, si están agrupados, el grupo que los contiene.
+  function resaltar(it) {
+    quitarResalte();
+    if (!it || !it.emp._markers) return;
+    it.vis.forEach(function (i) {
+      var m = it.emp._markers[i];
+      var p = m && cluster.getVisibleParent(m);
+      var el = p && p.getElement && p.getElement();
+      if (!el) return;
+      var objetivo = p === m ? el.querySelector('.pin') : el, cls = p === m ? 'hl' : 'zona-hl';
+      if (!objetivo) return;
+      objetivo.classList.add(cls);
+      resaltados.push({ el: objetivo, cls: cls });
+    });
+  }
+  zonaLista.addEventListener('mouseover', function (e) {
+    var b = e.target.closest('.zona-item');
+    if (b) resaltar(zonaItems[Number(b.dataset.k)]);
+  });
+  zonaLista.addEventListener('mouseleave', quitarResalte);
+  zonaLista.addEventListener('click', function (e) {
+    var b = e.target.closest('.zona-item');
+    if (!b) return;
+    var it = zonaItems[Number(b.dataset.k)];
+    if (!it) return;
+    var i = it.vis[0], m = it.emp._markers && it.emp._markers[i];
+    quitarResalte();
+    if (selEl) selEl.classList.remove('sel');
+    selEl = null;
+    if (m && cluster.getVisibleParent(m) === m && m.getElement()) {
+      selEl = m.getElement().querySelector('.pin');
+      if (selEl) selEl.classList.add('sel');
+    }
+    abrir(it.emp, i);
+    // En móvil la ficha tapa media pantalla: se recoloca el mapa sin cambiar el zoom para que la sede siga a la vista.
+    if (MQ_HOJA.matches) irA(Number(it.emp.sedes[i][1]), Number(it.emp.sedes[i][2]), map.getZoom());
+  });
+  zonaOrden.addEventListener('change', pintarZona);
+  botonZona.addEventListener('click', function () { ponerZona(true, true); });
+  document.getElementById('zona-cerrar').addEventListener('click', function () { ponerZona(false, true); botonZona.focus(); });
+  map.on('moveend', programarZona);
+  // Al girar el móvil o cambiar el tamaño de la ventana entre escritorio y móvil.
+  function cambioModo() { ponerZona(zonaPreferida(), false); }
+  if (MQ_HOJA.addEventListener) MQ_HOJA.addEventListener('change', cambioModo); else if (MQ_HOJA.addListener) MQ_HOJA.addListener(cambioModo);
+  /* ==FIN LISTA DE LA ZONA== */
 
   function pintarResumen() {
     var visibles = EMPRESAS.filter(function (e) { return pasa(e); }).length;
@@ -623,7 +877,7 @@
   }
   botonFiltros.addEventListener('click', function () {
     var abrir = cuerpo.hidden;
-    if (abrir && MQ_HOJA.matches) { cerrar(); cerrarListaNodo(); }
+    if (abrir && MQ_HOJA.matches) { cerrar(); cerrarListaNodo(); if (zonaAbierta) ponerZona(false, false); }
     cuerpo.hidden = !abrir;
     botonFiltros.setAttribute('aria-expanded', String(abrir));
   });
@@ -664,6 +918,7 @@
     if (actual && panel.classList.contains('abierto')) pintarFicha(actual.emp, actual.idx);
     if (listaNodo.classList.contains('abierto')) pintarLista();
     else listaContador.textContent = tx('Select a company to see its card.', 'Selecciona una empresa para ver su ficha.');
+    pintarZona();
   });
 
   map.on('click', function () {
