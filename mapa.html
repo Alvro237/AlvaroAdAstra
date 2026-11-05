@@ -285,7 +285,7 @@
 </header>
 
 <div id="mapa-app">
-  <div id="mapa" aria-label="Map of aerospace companies in Spain" data-es-aria-label="Mapa de empresas aeroespaciales en España"></div>
+  <div id="mapa" aria-label="Map of aerospace companies in Spain and Europe" data-es-aria-label="Mapa de empresas aeroespaciales en España y Europa"></div>
   <div class="mapa-leyenda" role="group" aria-label="Map filters" data-es-aria-label="Filtros del mapa">
     <div class="mapa-barra">
       <button type="button" id="mapa-toggle" aria-expanded="false" aria-controls="mapa-cuerpo">
@@ -299,6 +299,14 @@
       <a class="mapa-info" href="The_Aerospace_Industry_In_Spain.html"><span data-lang="en">About the map</span><span data-lang="es">Sobre el mapa</span></a>
     </div>
     <div id="mapa-cuerpo" hidden>
+      <section class="mapa-grupo" id="grupo-ambito" aria-label="Spain or Europe" data-es-aria-label="España o Europa">
+        <h3><span data-lang="en">Area</span><span data-lang="es">Ámbito</span></h3>
+        <div class="mapa-chips-fila" role="radiogroup">
+          <button type="button" class="chip ambito" role="radio" data-ambito="es" aria-checked="false"><span data-lang="en">Spain only</span><span data-lang="es">Solo España</span> <small id="ambito-n-es"></small></button>
+          <button type="button" class="chip ambito on" role="radio" data-ambito="eu" aria-checked="true"><span data-lang="en">All of Europe</span><span data-lang="es">Toda Europa</span> <small id="ambito-n-eu"></small></button>
+        </div>
+        <p><span data-lang="en">Europe includes Spain and a few European sites elsewhere in the world (Kourou, ESA antennas…).</span><span data-lang="es">Europa incluye España y algunos centros europeos en otras partes del mundo (Kourou, antenas de la ESA…).</span></p>
+      </section>
       <section class="mapa-grupo" id="grupo-sector" aria-label="Filter by sector" data-es-aria-label="Filtrar por sector">
         <h3>Sector</h3>
         <div class="mapa-chips-fila" id="mapa-sectores"></div>
@@ -356,6 +364,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script src="mapa_data.js"></script>
+<script src="mapa_data_europa.js"></script>
 <script>
 (function () {
   'use strict';
@@ -451,8 +460,15 @@
     var pt = map.latLngToContainerPoint(grupo.getLatLng());
     if (Math.abs(pt.x - c[0]) > 4 || Math.abs(pt.y - c[1]) > 4) map.panBy([pt.x - c[0], pt.y - c[1]], { duration: .4 });
   }
+  // Los pocos centros europeos fuera de Europa (Kourou, antenas de la ESA, Antártida…) no cuentan para encuadrar,
+  // para que la vista no se aleje hasta el mapamundi.
+  function enEuropa(ll) { return ll.lat > 27 && ll.lat < 72 && ll.lng > -32 && ll.lng < 45; }
+  function encuadre(ps) {
+    var cerca = ps.filter(enEuropa);
+    return cerca.length ? cerca : ps;
+  }
   function ajustarVista() {
-    var ps = markers.filter(function (m) { return pasa(m._empresa); }).map(function (m) { return m.getLatLng(); });
+    var ps = encuadre(markers.filter(function (m) { return pasa(m._empresa); }).map(function (m) { return m.getLatLng(); }));
     if (ps.length) map.fitBounds(L.latLngBounds(ps).pad(0.15), { maxZoom: 10, duration: .8 });
   }
 
@@ -490,8 +506,19 @@
     return emp.sectores.length ? emp.sectores.map(function (s) { return tx(NOMBRE[s][0], NOMBRE[s][1]); }).join(' · ') : tx('Sector not determined', 'Sector sin determinar');
   }
 
+  // Dos archivos de datos: mapa_data.js (España) y mapa_data_europa.js (resto de Europa). Si falta el
+  // segundo, el mapa funciona solo con España y el filtro de ámbito se oculta.
+  var EMP_ES = (typeof EMPRESAS !== 'undefined' && Array.isArray(EMPRESAS)) ? EMPRESAS : [];
+  var EMP_EU = (typeof EMPRESAS_EUROPA !== 'undefined' && Array.isArray(EMPRESAS_EUROPA)) ? EMPRESAS_EUROPA : [];
+  EMP_ES.forEach(function (e) { e._ambito = 'es'; });
+  EMP_EU.forEach(function (e) { e._ambito = 'eu'; });
+  var TODAS = EMP_ES.concat(EMP_EU);
+  // Ámbito: 'eu' (toda Europa, también España) o 'es' (solo España). Empieza en Europa.
+  var ambito = EMP_EU.length ? 'eu' : 'es';
+  function enAmbito(emp) { return ambito === 'eu' || emp._ambito === 'es'; }
+
   // Normaliza y valida datos aunque el Excel haya dejado algún campo vacío.
-  (EMPRESAS || []).forEach(function (emp) {
+  TODAS.forEach(function (emp) {
     if (!Array.isArray(emp.sectores)) emp.sectores = SECTOR_ANTIGUO[emp.sector] || [];
     if (!Array.isArray(emp.acts)) emp.acts = [];
     if (!Array.isArray(emp.redes)) emp.redes = [];
@@ -504,7 +531,7 @@
     emp._q = norm(emp.nombre + ' ' + emp.sedes.map(function (s) { return s[0]; }).join(' '));
   });
 
-  var conCoordenadas = EMPRESAS.filter(function (e) { return e.sedes.length > 0; }).length;
+  function conCoordenadas() { return TODAS.filter(function (e) { return e.sedes.length > 0 && enAmbito(e); }).length; }
 
   function cerrarListaNodo() {
     listaNodo.classList.remove('abierto');
@@ -612,8 +639,7 @@
     marker.fire('click');
   });
 
-  var bounds = L.latLngBounds();
-  EMPRESAS.forEach(function (emp) {
+  TODAS.forEach(function (emp) {
     emp.sedes.forEach(function (s, i) {
       var fondo = fondoPin(emp.sectores);
       var icon = L.divIcon({
@@ -639,13 +665,12 @@
         irA(lat, lon, Math.max(map.getZoom(), 10));
       });
       markers.push(m);
-      bounds.extend([lat, lon]);
     });
   });
-  cluster.addLayers(markers);
-  if (markers.length && bounds.isValid()) {
-    map.fitBounds(bounds.pad(0.05), { maxZoom: 7 });
-  }
+  cluster.addLayers(markers.filter(function (m) { return enAmbito(m._empresa); }));
+  // Vista inicial: todo el ámbito (sin los centros lejanos de fuera de Europa).
+  var inicio = encuadre(markers.filter(function (m) { return enAmbito(m._empresa); }).map(function (m) { return m.getLatLng(); }));
+  if (inicio.length) map.fitBounds(L.latLngBounds(inicio).pad(0.05), { maxZoom: 7 });
 
   /* ==FILTROS== */
   // Cada grupo combina sus opciones con "o" (cualquiera); los grupos se combinan entre sí con "y".
@@ -671,7 +696,7 @@
   function hayFiltros() { return !!texto || CAMPOS.some(function (c) { return claves(c).length > 0; }); }
   // "ignorar" permite contar cuántas fichas saldrían al activar una opción de ese grupo.
   function pasa(emp, ignorar) {
-    if (!emp.sedes.length) return false;
+    if (!emp.sedes.length || !enAmbito(emp)) return false;
     if (ignorar !== 'q' && texto && emp._q.indexOf(texto) < 0) return false;
     for (var i = 0; i < CAMPOS.length; i++) {
       var c = CAMPOS[i];
@@ -694,7 +719,7 @@
     cluster.clearLayers();
     cluster.addLayers(markers.filter(function (m) { return pasa(m._empresa); }));
     controles.forEach(function (c) {
-      var n = EMPRESAS.filter(function (e) { return pasa(e, c.campo) && e[c.campo].indexOf(c.clave) >= 0; }).length;
+      var n = TODAS.filter(function (e) { return pasa(e, c.campo) && e[c.campo].indexOf(c.clave) >= 0; }).length;
       c.num.textContent = n;
       c.btn.classList.toggle('vacio', n === 0 && !sel[c.campo][c.clave]);
     });
@@ -727,7 +752,7 @@
     if (!map) return;
     var b = limitesVisibles(), centro = b.getCenter();
     var items = [];
-    EMPRESAS.forEach(function (emp) {
+    TODAS.forEach(function (emp) {
       if (!emp.sedes.length || !pasa(emp)) return;
       var vis = [], d = Infinity;
       emp.sedes.forEach(function (s, i) {
@@ -832,16 +857,18 @@
   /* ==FIN LISTA DE LA ZONA== */
 
   function pintarResumen() {
-    var visibles = EMPRESAS.filter(function (e) { return pasa(e); }).length;
+    var visibles = TODAS.filter(function (e) { return pasa(e); }).length;
+    var total = conCoordenadas();
+    var donde = ambito === 'es' ? tx(' in Spain', ' en España') : tx(' in Europe', ' en Europa');
     resumen.textContent = hayFiltros()
-      ? visibles + tx(' of ', ' de ') + conCoordenadas + tx(' companies', ' empresas')
-      : conCoordenadas + tx(' companies on the map', ' empresas en el mapa');
+      ? visibles + tx(' of ', ' de ') + total + tx(' companies', ' empresas') + donde
+      : total + tx(' companies', ' empresas') + donde;
     botonAplicar.textContent = visibles === 1 ? tx('Show 1 company', 'Ver 1 empresa') : tx('Show ', 'Ver ') + visibles + tx(' companies', ' empresas');
   }
 
   // etiqueta: función que devuelve el texto del chip en el idioma activo.
   function crearChip(contenedor, campo, clave, etiqueta, color) {
-    var total = EMPRESAS.filter(function (e) { return e.sedes.length && e[campo].indexOf(clave) >= 0; }).length;
+    var total = TODAS.filter(function (e) { return e.sedes.length && e[campo].indexOf(clave) >= 0; }).length;
     if (!total) return;
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'chip'; b.setAttribute('aria-pressed', 'false');
@@ -908,6 +935,32 @@
     controles.forEach(function (c) { c.btn.classList.remove('on'); c.btn.setAttribute('aria-pressed', 'false'); });
     actualizar();
   });
+
+  /* ==ÁMBITO== Solo España o toda Europa. Es un modo de vista: no cuenta como filtro ni lo quita «Quitar filtros». */
+  var botonesAmbito = document.querySelectorAll('button.ambito');
+  if (!EMP_EU.length) {
+    document.getElementById('grupo-ambito').hidden = true;
+  } else {
+    document.getElementById('ambito-n-es').textContent = EMP_ES.filter(function (e) { return e.sedes.length; }).length;
+    document.getElementById('ambito-n-eu').textContent = TODAS.filter(function (e) { return e.sedes.length; }).length;
+  }
+  function ponerAmbito(nuevo) {
+    if (nuevo === ambito) return;
+    ambito = nuevo;
+    botonesAmbito.forEach(function (b) {
+      var on = b.dataset.ambito === ambito;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-checked', String(on));
+    });
+    cerrar();
+    actualizar();
+    ajustarVista();
+  }
+  botonesAmbito.forEach(function (b) {
+    b.addEventListener('click', function () { ponerAmbito(b.dataset.ambito); });
+  });
+  /* ==FIN ÁMBITO== */
+
   actualizar();
   listaContador.textContent = tx('Select a company to see its card.', 'Selecciona una empresa para ver su ficha.');
 

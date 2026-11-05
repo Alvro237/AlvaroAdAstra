@@ -26051,12 +26051,422 @@ var EMPRESAS = [
       "Startups / ESA BIC"
     ],
     "redes": []
+  },
+  {
+    "nombre": "ESA ESAC",
+    "sector": "espacial",
+    "tipo": "Centro de la ESA",
+    "web": "https://esa.int",
+    "tags": [
+      "ESA",
+      "Marte"
+    ],
+    "desc": "Centro Europeo de Astronomía Espacial de la ESA en Villanueva de la Cañada (Madrid): operaciones científicas y archivos de misiones como Mars Express, JUICE, Gaia y Euclid.",
+    "sedes": [
+      [
+        "Villanueva de la Cañada (Madrid)",
+        40.444741,
+        -3.952535
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [],
+    "redes": []
+  },
+  {
+    "nombre": "ESA Cebreros Deep Space Antenna",
+    "sector": "espacial",
+    "tipo": "Antena de espacio profundo de la ESA",
+    "web": "https://esa.int",
+    "tags": [
+      "ESA",
+      "Estación terrena"
+    ],
+    "desc": "Estación de espacio profundo de la red ESTRACK de la ESA en Cebreros (Ávila), con una antena de 35 m para misiones interplanetarias.",
+    "sedes": [
+      [
+        "Cebreros (Ávila)",
+        40.453475,
+        -4.368266
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "EU Satellite Centre (SatCen)",
+    "sector": "espacial",
+    "tipo": "Agencia de la UE",
+    "web": "https://satcen.europa.eu",
+    "tags": [
+      "Observación de la Tierra",
+      "Defensa"
+    ],
+    "desc": "Centro de Satélites de la Unión Europea en Torrejón de Ardoz: análisis de imágenes e inteligencia geoespacial para la seguridad de la UE y el servicio de seguridad de Copernicus.",
+    "sedes": [
+      [
+        "Torrejón de Ardoz (Madrid)",
+        40.488,
+        -3.478
+      ]
+    ],
+    "sectores": [
+      "espacial",
+      "defensa"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Agencia Espacial Española (AEE)",
+    "sector": "espacial",
+    "tipo": "Agencia espacial nacional",
+    "web": "https://aee.gob.es",
+    "tags": [
+      "Agencia espacial",
+      "ESA"
+    ],
+    "desc": "Agencia Espacial Española, con sede en Sevilla: política espacial nacional y delegación de España en la ESA y la EUSPA. Gestiona el PERTE Aeroespacial y las suscripciones españolas a la ESA.",
+    "sedes": [
+      [
+        "Sevilla",
+        37.420466,
+        -5.986831
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "CDTI",
+    "sector": "espacial",
+    "tipo": "Agencia de innovación",
+    "web": "https://cdti.es",
+    "tags": [
+      "I+D",
+      "ESA"
+    ],
+    "desc": "Centro para el Desarrollo Tecnológico y la Innovación, agencia pública que financia la I+D industrial y que históricamente gestionó la participación de España en la ESA.",
+    "sedes": [
+      [
+        "Madrid",
+        40.4271,
+        -3.6883
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Ingeniería / I+D"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Centro de Astrobiología (CAB, CSIC-INTA)",
+    "sector": "espacial",
+    "tipo": "Centro de investigación",
+    "web": "https://cab.inta-csic.es",
+    "tags": [
+      "I+D",
+      "Marte"
+    ],
+    "desc": "Centro de Astrobiología (CSIC-INTA) en Torrejón de Ardoz: astrobiología e instrumentos planetarios, como REMS (Curiosity), MEDA (Perseverance) y RLS (Rosalind Franklin).",
+    "sedes": [
+      [
+        "Torrejón de Ardoz (Madrid)",
+        40.492,
+        -3.47
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Ingeniería / I+D"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "MDSCC - Madrid Deep Space Communications Complex",
+    "sector": "espacial",
+    "tipo": "Estación de espacio profundo",
+    "web": "",
+    "tags": [
+      "Estación terrena",
+      "Luna",
+      "Marte"
+    ],
+    "desc": "Complejo de Comunicaciones de Espacio Profundo de Madrid, en Robledo de Chavela: estación de la red de espacio profundo de la NASA, operada por el INTA e Isdefe. Da servicio a Artemis y a misiones a Marte y al espacio profundo.",
+    "sedes": [
+      [
+        "Robledo de Chavela (Madrid)",
+        40.431552,
+        -4.247986
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "IACTEC",
+    "sector": "espacial",
+    "tipo": "Centro tecnológico",
+    "web": "",
+    "tags": [
+      "I+D",
+      "Óptica e instrumentos",
+      "Satélites"
+    ],
+    "desc": "Centro tecnológico del Instituto de Astrofísica de Canarias en La Laguna: instrumentos y óptica para pequeños satélites.",
+    "sedes": [
+      [
+        "La Laguna (Tenerife)",
+        28.467758,
+        -16.296522
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Ingeniería / I+D",
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Isdefe",
+    "sector": "espacial",
+    "tipo": "Ingeniería pública",
+    "web": "https://isdefe.es",
+    "tags": [
+      "Ingeniería",
+      "Estación terrena",
+      "Defensa"
+    ],
+    "desc": "Empresa pública de ingeniería que apoya la operación de estaciones terrenas: el complejo de Robledo (MDSCC), los centros de la ESA en ESAC y Cebreros y Galileo.",
+    "sedes": [
+      [
+        "Madrid",
+        40.4168,
+        -3.7038
+      ]
+    ],
+    "sectores": [
+      "espacial",
+      "defensa"
+    ],
+    "acts": [
+      "Ingeniería / I+D"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Val Space Consortium (VSC)",
+    "sector": "espacial",
+    "tipo": "Laboratorio de ensayos de RF",
+    "web": "",
+    "tags": [
+      "Ensayos",
+      "Satélites"
+    ],
+    "desc": "Consorcio valenciano con un laboratorio de ensayos de radiofrecuencia de alta potencia (multipactor y PIM) para cargas útiles de satélite.",
+    "sedes": [
+      [
+        "Valencia",
+        39.4699,
+        -0.3763
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales",
+      "Ensayos e inspección"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Iberespacio",
+    "sector": "espacial",
+    "tipo": "Control térmico espacial",
+    "web": "",
+    "tags": [
+      "Sistemas espaciales"
+    ],
+    "desc": "Empresa madrileña de equipos de control térmico para el espacio: caloductos y subsistemas térmicos.",
+    "sedes": [
+      [
+        "Madrid",
+        40.415405,
+        -3.711678
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Zero 2 Infinity",
+    "sector": "espacial",
+    "tipo": "Globos estratosféricos",
+    "web": "",
+    "tags": [
+      "Sistemas espaciales",
+      "Startup"
+    ],
+    "desc": "Empresa barcelonesa que desarrolla globos estratosféricos para vuelos de carga útil (Bloon).",
+    "sedes": [
+      [
+        "Barcelona",
+        41.379465,
+        2.173895
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales",
+      "Startups / ESA BIC"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "AVS - Added Value Solutions",
+    "sector": "espacial",
+    "tipo": "Mecanismos y sistemas espaciales",
+    "web": "",
+    "tags": [
+      "Sistemas espaciales",
+      "Ingeniería",
+      "Satélites"
+    ],
+    "desc": "Empresa de Elgoibar de mecanismos espaciales (también para misiones de la ESA), pequeños satélites, servicio en órbita e instalaciones científicas.",
+    "sedes": [
+      [
+        "Elgoibar (Gipuzkoa)",
+        43.215,
+        -2.41
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Ingeniería / I+D",
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "Anteral",
+    "sector": "espacial",
+    "tipo": "Antenas y radiofrecuencia",
+    "web": "",
+    "tags": [
+      "Sistemas espaciales",
+      "Startup"
+    ],
+    "desc": "Startup de Pamplona de ingeniería de antenas, radiofrecuencia y radar.",
+    "sedes": [
+      [
+        "Pamplona",
+        42.81,
+        -1.64
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales",
+      "Startups / ESA BIC"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "TTI Norte",
+    "sector": "espacial",
+    "tipo": "Antenas y RF para satélites",
+    "web": "",
+    "tags": [
+      "Satélites",
+      "Telecomunicaciones por satélite"
+    ],
+    "desc": "Empresa de Santander que fabrica antenas y equipos de radiofrecuencia para comunicaciones por satélite: terminales y antenas de carga útil.",
+    "sedes": [
+      [
+        "Santander",
+        43.4623,
+        -3.8044
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales"
+    ],
+    "redes": []
+  },
+  {
+    "nombre": "UARX Space",
+    "sector": "espacial",
+    "tipo": "Vehículo de transferencia orbital",
+    "web": "",
+    "tags": [
+      "Sistemas espaciales",
+      "Satélites",
+      "Startup"
+    ],
+    "desc": "Startup de Nigrán (Pontevedra) que desarrolla el vehículo de transferencia orbital OSSIE y pequeños satélites.",
+    "sedes": [
+      [
+        "Nigrán (Pontevedra)",
+        42.140472,
+        -8.790554
+      ]
+    ],
+    "sectores": [
+      "espacial"
+    ],
+    "acts": [
+      "Sistemas espaciales",
+      "Startups / ESA BIC"
+    ],
+    "redes": []
   }
 ];
 
 var MAPA_STATS = {
-  "totalEmpresas": 923,
-  "empresasConCoordenadas": 923,
+  "totalEmpresas": 939,
+  "empresasConCoordenadas": 939,
   "empresasSinCoordenadas": 0,
-  "sedesConCoordenadas": 1043
+  "sedesConCoordenadas": 1059
 };
